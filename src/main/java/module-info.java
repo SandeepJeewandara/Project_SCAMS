@@ -5,4 +5,5 @@ module com.example.scams_ood {
                             
     opens com.example.scams_ood to javafx.fxml;
     exports com.example.scams_ood;
+    exports Features;
 }
