@@ -12,66 +12,60 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane layoutX="545.0" layoutY="30.0" prefHeight="639.0" prefWidth="523.0" style="-fx-background-color: #D3D3D3;">
-         <children>
-            <Text fontSmoothingType="LCD" layoutX="236.0" layoutY="621.0" strokeType="OUTSIDE" strokeWidth="0.0" text="©SCAMS" wrappingWidth="56.0">
-               <font>
-                  <Font name="Segoe UI Semibold" size="12.0" />
-               </font>
-            </Text>
-            <Button layoutX="120.0" layoutY="533.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Sign In" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma Bold" size="13.5" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button layoutX="283.0" layoutY="535.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Exit" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma Bold" size="13.5" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Text layoutX="73.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to School Activity Club Management System" textAlignment="CENTER" wrappingWidth="380.53668212890625">
-               <font>
-                  <Font name="Microsoft JhengHei Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="110.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Streamline your inventory with ease and precision. Effortlessly track stock, manage suppliers, and optimize operations.     Experience efficient inventory control at your fingertips.Simplify your business, unlock success at John's Internet Cafe.&quot;" wrappingWidth="307.86918640136713">
-               <font>
-                  <Font name="System Italic" size="17.0" />
-               </font>
-            </Text>
-            <TextField layoutX="118.0" layoutY="358.0" prefHeight="36.0" prefWidth="286.0" promptText="Enter Username" style="-fx-background-radius: 20;" />
-            <PasswordField layoutX="120.0" layoutY="431.0" prefHeight="36.0" prefWidth="286.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
-            <Text layoutX="193.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New to SCAMS?" />
-            <Hyperlink layoutX="279.0" layoutY="495.0" text="Sign Up" />
-            <Hyperlink layoutX="301.0" layoutY="410.0" text="Forgot Password?" />
-            <Text fontSmoothingType="LCD" layoutX="194.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In to SCAMS" wrappingWidth="136.0">
-               <font>
-                  <Font name="Segoe UI Semibold" size="17.0" />
-               </font>
-            </Text>
-            <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="127.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Incorrect Username" wrappingWidth="112.0">
-               <font>
-                  <Font name="Segoe UI Semibold" size="12.0" />
-               </font>
-            </Text>
-            <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="125.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Incorrect Password" wrappingWidth="112.0">
-               <font>
-                  <Font name="Segoe UI Semibold" size="12.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="205.0" fitWidth="278.0" layoutX="132.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../../../Downloads/JohnsCafe/JohnsCafe/src/main/resources/com/example/johnscafe/Pictures/Logo.png" />
-         </image>
-      </ImageView>
-   </children>
+   <AnchorPane layoutX="545.0" layoutY="30.0" prefHeight="639.0" prefWidth="523.0" style="-fx-background-color: #D3D3D3; -fx-background-radius: 20;">
+      <Text fontSmoothingType="LCD" layoutX="236.0" layoutY="621.0" strokeType="OUTSIDE" strokeWidth="0.0" text="©SCAMS" wrappingWidth="56.0">
+         <font>
+            <Font name="Segoe UI Semibold" size="12.0" />
+         </font>
+      </Text>
+      <Button layoutX="120.0" layoutY="533.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Sign In" textFill="WHITE">
+         <font>
+            <Font name="Tahoma Bold" size="13.5" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="283.0" layoutY="535.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Exit" textFill="WHITE">
+         <font>
+            <Font name="Tahoma Bold" size="13.5" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Text layoutX="73.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to School Activity Club Management System" textAlignment="CENTER" wrappingWidth="380.53668212890625">
+         <font>
+            <Font name="Microsoft JhengHei Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="110.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Streamline your inventory with ease and precision. Effortlessly track stock, manage suppliers, and optimize operations.     Experience efficient inventory control at your fingertips.Simplify your business, unlock success at John's Internet Cafe.&quot;" wrappingWidth="307.86918640136713">
+         <font>
+            <Font name="System Italic" size="17.0" />
+         </font>
+      </Text>
+      <TextField layoutX="118.0" layoutY="358.0" prefHeight="36.0" prefWidth="286.0" promptText="Enter Username" style="-fx-background-radius: 20;" />
+      <PasswordField layoutX="120.0" layoutY="431.0" prefHeight="36.0" prefWidth="286.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
+      <Text layoutX="193.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New to SCAMS?" />
+      <Hyperlink layoutX="279.0" layoutY="495.0" text="Sign Up" />
+      <Hyperlink layoutX="301.0" layoutY="410.0" text="Forgot Password?" />
+      <Text fontSmoothingType="LCD" layoutX="194.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In to SCAMS" wrappingWidth="136.0">
+         <font>
+            <Font name="Segoe UI Semibold" size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="127.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Incorrect Username" wrappingWidth="112.0">
+         <font>
+            <Font name="Segoe UI Semibold" size="12.0" />
+         </font>
+      </Text>
+      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="125.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Incorrect Password" wrappingWidth="112.0">
+         <font>
+            <Font name="Segoe UI Semibold" size="12.0" />
+         </font>
+      </Text>
+   </AnchorPane>
+   <ImageView fitHeight="205.0" fitWidth="278.0" layoutX="132.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../../../../../../../../../Downloads/JohnsCafe/JohnsCafe/src/main/resources/com/example/johnscafe/Pictures/Logo.png" />
+   </ImageView>
 </AnchorPane>
