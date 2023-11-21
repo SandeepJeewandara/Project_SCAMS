@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="215.0" prefWidth="225.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_2.ItemController">
+    <children>
+        <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
+                    <children>
+                        <Label fx:id="clubName" prefHeight="50.0" prefWidth="132.0" text="Astrological Club">
+                            <font>
+                                <Font name="Segoe UI Semibold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="clubButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" stylesheets="@Style.css" text="Click" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <styleClass>
+                                <String fx:value="club-1-button" />
+                                <String fx:value="font-normal" />
+                            </styleClass>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="5.0" right="20.0" top="20.0" />
+                    </VBox.margin>
+                </HBox>
+                <ImageView fx:id="clubImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@logo_4.png" />
+                    </image>
+                </ImageView>
+            </children>
+            <padding>
+                <Insets left="5.0" />
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>
