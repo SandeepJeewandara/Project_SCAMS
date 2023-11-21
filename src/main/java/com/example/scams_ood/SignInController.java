@@ -1,16 +1,16 @@
 package com.example.scams_ood;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
-public class SignInController implements Initializable {
+public class SignInController {
 
     @FXML
     private Button exitButton;
@@ -30,9 +30,52 @@ public class SignInController implements Initializable {
     @FXML
     private TextField usernameFill;
 
+    @FXML
+    public void exitPress(MouseEvent event) {
+        exitButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
+    }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    public void exitRelease(MouseEvent event) {
+        System.exit(0);
+        exitButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
+    }
 
+    @FXML
+    public void signInPress(MouseEvent event) {
+        signInButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
+    }
+
+    @FXML
+    public void signInRelease(MouseEvent event) {
+        signInButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
+    }
+
+    @FXML
+    private void initialize() {
+        // Add listeners to text properties of text fields
+        usernameFill.textProperty().addListener((observable, oldValue, newValue) -> updateLoginButtonState());
+        passwordFill.textProperty().addListener((observable, oldValue, newValue) -> updateLoginButtonState());
+    }
+
+    private void updateLoginButtonState() {
+        // Enable the button only if both fields are filled
+        boolean usernameFilled = !usernameFill.getText().trim().isEmpty();
+        boolean passwordFilled = !passwordFill.getText().trim().isEmpty();
+        signInButton.setDisable(!(usernameFilled && passwordFilled));
+    }
+
+    @FXML
+    public void signUpRelease(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("sign-up.fxml"));
+            Parent root = loader.load();
+            Scene anotherScene = new Scene(root);
+            Stage stage = (Stage) ((Hyperlink) event.getSource()).getScene().getWindow();
+            stage.setScene(anotherScene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
