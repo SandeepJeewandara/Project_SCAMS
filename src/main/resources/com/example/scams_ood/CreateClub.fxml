@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1150.0" style="-fx-blend-mode: transparent;" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.CreateClubController">
+   <children>
+      <Text layoutX="322.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter New Club Details" textAlignment="CENTER" wrappingWidth="600.3999999999999">
+         <font>
+            <Font name="Segoe UI Semibold" size="22.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="232.0" layoutY="156.0" prefHeight="402.0" prefWidth="791.0">
+         <children>
+            <Text layoutX="25.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club ID       " wrappingWidth="125.0">
+               <font>
+                  <Font name="Segoe UI Semibold" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Name      " wrappingWidth="125.0">
+               <font>
+                  <Font name="Segoe UI Semibold" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Type" wrappingWidth="125.0">
+               <font>
+                  <Font name="Segoe UI Semibold" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Started Date " wrappingWidth="125.0">
+               <font>
+                  <Font name="Segoe UI Semibold" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Advisor" wrappingWidth="125.0">
+               <font>
+                  <Font name="Segoe UI Semibold" size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="clubIDInput" layoutX="150.0" layoutY="7.0" prefHeight="26.0" prefWidth="201.0" />
+            <TextField fx:id="clubNameInput" layoutX="150.0" layoutY="47.0" prefWidth="204.0" />
+            <DatePicker fx:id="clubStartDateInput" layoutX="149.0" layoutY="127.0" prefHeight="26.0" prefWidth="201.0" />
+            <Text layoutX="25.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Description       " wrappingWidth="181.53329467773438">
+               <font>
+                  <Font name="Segoe UI Semibold" size="16.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="clubDescriptionInput" layoutX="23.0" layoutY="237.0" prefHeight="102.0" prefWidth="340.0" />
+            <Text layoutX="501.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Logo" textAlignment="CENTER" wrappingWidth="125.0">
+               <font>
+                  <Font name="Segoe UI Semibold" size="16.0" />
+               </font>
+            </Text>
+            <Pane fx:id="clubLogoInput" layoutX="471.0" layoutY="30.0" prefHeight="179.0" prefWidth="179.0" styleClass="image-view" stylesheets="@Styles.css" />
+            <Button fx:id="browseImageButton" layoutX="525.0" layoutY="219.0" mnemonicParsing="false" onAction="#onChooseImageBtnClick" prefHeight="30.0" prefWidth="69.0" styleClass="function-button" text="Browse" textAlignment="RIGHT" textFill="WHITE" />
+            <Button fx:id="CreateButton" layoutX="404.0" layoutY="360.0" mnemonicParsing="false" onAction="#onCreateBtnClick" prefHeight="26.0" prefWidth="71.0" styleClass="function-button" text="Create" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="ClubAdvisorInput" layoutX="150.0" layoutY="167.0" prefHeight="27.0" prefWidth="201.0" />
+            <ChoiceBox fx:id="clubTypeInput" layoutX="150.0" layoutY="87.0" onAction="#onClubTypeSelected" prefHeight="27.0" prefWidth="201.0">
+               <String fx:value="Sport" />
+               <String fx:value="Extra-Curricular" />
+               <String fx:value="Academic" />
+            </ChoiceBox>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="134.0" fitWidth="153.0" layoutX="52.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Images/Logo/logo_6.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

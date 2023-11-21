@@ -4,6 +4,12 @@
     -fx-cursor:pointer;
 }
 
+.option_Button_main{
+    -fx-background-color:linear-gradient(to bottom right, #433169, #b435cb);
+    -fx-text-fill: white;
+    -fx-background-radius: 50;
+}
+
 
 
 #logo{

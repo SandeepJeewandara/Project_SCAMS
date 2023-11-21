@@ -1,5 +1,6 @@
 package com.example.scams_ood;
 
+import Features.DatabaseConnectionTest;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -10,7 +11,10 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+
+
 public class HelloApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("WelcomeBanner.fxml"));
@@ -26,6 +30,7 @@ public class HelloApplication extends Application {
                 event -> loadLoginOrSignUpPane(stage)
         ));
         timeline.play();
+
     }
 
     private void loadLoginOrSignUpPane(Stage stage) {

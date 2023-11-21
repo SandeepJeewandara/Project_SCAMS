@@ -11,14 +11,14 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1150.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.WelcomeController">
    <children>
-      <AnchorPane layoutX="582.0" layoutY="33.0" prefHeight="639.0" prefWidth="523.0" style="-fx-background-color: #D3D3D3;">
+      <AnchorPane layoutX="582.0" layoutY="33.0" prefHeight="639.0" prefWidth="523.0" style="-fx-background-color: #D3D3D3; -fx-background-radius: 20;">
          <children>
             <Text fontSmoothingType="LCD" layoutX="121.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have SCAM Account?" wrappingWidth="371.5830783843994">
                <font>
                   <Font name="Calibri" size="16.0" />
                </font>
             </Text>
-            <Button fx:id="ContinueButton" layoutX="120.0" layoutY="517.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Continue" textFill="WHITE">
+            <Button fx:id="ContinueButton" layoutX="120.0" layoutY="517.0" mnemonicParsing="false" onAction="#OnContinueButtonClick" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Continue" textFill="WHITE">
                <font>
                   <Font name="Tahoma Bold" size="13.5" />
                </font>
@@ -40,7 +40,7 @@
             </Text>
             <TextField fx:id="usernameField" layoutX="117.0" layoutY="369.0" prefHeight="36.0" prefWidth="311.0" promptText="Enter Username" style="-fx-background-radius: 20;" />
             <PasswordField fx:id="loginPassword" layoutX="120.0" layoutY="416.0" prefHeight="36.0" prefWidth="312.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
-            <Text fontSmoothingType="LCD" layoutX="206.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@OOP_Group2023" textAlignment="CENTER" wrappingWidth="161.44971656799316">
+            <Text fontSmoothingType="LCD" layoutX="194.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@SCAMS" textAlignment="CENTER" wrappingWidth="161.44971656799316">
                <font>
                   <Font name="Segoe UI Semibold" size="15.0" />
                </font>
