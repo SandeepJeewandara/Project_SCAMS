@@ -48,9 +48,6 @@ public class SignUpController {
     private PasswordField reEnterPasswordFill;
 
     @FXML
-    private Hyperlink signInLink;
-
-    @FXML
     private Button signUpButton;
 
     @FXML
@@ -63,6 +60,9 @@ public class SignUpController {
     private TextField usernameFill;
 
     @FXML
+    private Text typeMessage;
+
+    @FXML
     private ToggleGroup genderGroup;
 
     @FXML
@@ -73,10 +73,32 @@ public class SignUpController {
 
         genderGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
         });
+
+        firstNameFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+        LastNameFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+        usernameFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+        idFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+        dateOfBirthPicker.editorProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+        emailFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+        passwordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+        reEnterPasswordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+    }
+
+    private void enableSignUp() {
+        boolean firstnameFilled = !firstNameFill.getText().trim().isEmpty();
+        boolean lastnameFilled = !LastNameFill.getText().trim().isEmpty();
+        boolean usernameFilled = !LastNameFill.getText().trim().isEmpty();
+        boolean idFilled = !idFill.getText().trim().isEmpty();
+        boolean dobFilled = !dateOfBirthPicker.getEditor().getText().isEmpty();
+        boolean emailFilled = !emailFill.getText().trim().isEmpty();
+        boolean passwordFilled = !passwordFill.getText().trim().isEmpty();
+        boolean reEnterPasswordFilled = !reEnterPasswordFill.getText().trim().isEmpty();
+        signUpButton.setDisable(!(firstnameFilled && lastnameFilled && usernameFilled && idFilled &&
+                dobFilled && emailFilled && passwordFilled && reEnterPasswordFilled));
     }
 
     @FXML
-    void typeSelect(ActionEvent event) {
+    private void typeSelect(ActionEvent event) {
         firstNameFill.setDisable(false);
         LastNameFill.setDisable(false);
         maleRadio.setDisable(false);
@@ -90,17 +112,19 @@ public class SignUpController {
     }
 
     @FXML
-    void advisorPress(MouseEvent event) {
+    public void advisorPress(MouseEvent event) {
         advisorButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
         studentButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
         idText.setText("Staff ID:");
+        typeMessage.setVisible(false);
     }
 
     @FXML
-    void studentPress(MouseEvent event) {
+    public void studentPress(MouseEvent event) {
         studentButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
         advisorButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
         idText.setText("Student ID:");
+        typeMessage.setVisible(false);
     }
 
     @FXML
@@ -118,12 +142,12 @@ public class SignUpController {
     }
 
     @FXML
-    void cancelPress(MouseEvent event) {
+    public void cancelPress(MouseEvent event) {
         cancelButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
     }
 
     @FXML
-    void cancelRelease(MouseEvent event) {
+    public void cancelRelease(MouseEvent event) {
         cancelButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
 
         try {

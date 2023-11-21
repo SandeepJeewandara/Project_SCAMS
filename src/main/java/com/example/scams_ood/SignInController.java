@@ -53,13 +53,11 @@ public class SignInController {
 
     @FXML
     private void initialize() {
-        // Add listeners to text properties of text fields
-        usernameFill.textProperty().addListener((observable, oldValue, newValue) -> updateLoginButtonState());
-        passwordFill.textProperty().addListener((observable, oldValue, newValue) -> updateLoginButtonState());
+        usernameFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignIn());
+        passwordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignIn());
     }
 
-    private void updateLoginButtonState() {
-        // Enable the button only if both fields are filled
+    private void enableSignIn() {
         boolean usernameFilled = !usernameFill.getText().trim().isEmpty();
         boolean passwordFilled = !passwordFill.getText().trim().isEmpty();
         signInButton.setDisable(!(usernameFilled && passwordFilled));
