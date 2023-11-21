@@ -20,7 +20,7 @@
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <Button fx:id="studentButton" layoutX="300.0" layoutY="72.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#studentPress" prefHeight="23.0" prefWidth="73.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Student" textFill="WHITE">
+      <Button fx:id="studentButton" layoutX="300.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#studentPress" prefHeight="23.0" prefWidth="73.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Student" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
@@ -28,7 +28,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="advisorButton" layoutX="172.0" layoutY="74.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#advisorPress" prefHeight="28.0" prefWidth="73.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Advisor" textFill="WHITE">
+      <Button fx:id="advisorButton" layoutX="172.0" layoutY="72.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#advisorPress" prefHeight="28.0" prefWidth="73.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Advisor" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
@@ -46,41 +46,41 @@
             <Font name="Segoe UI Semibold" size="16.0" />
          </font>
       </Text>
-      <Text fx:id="typeMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="228.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Please select one" wrappingWidth="90.0">
+      <Text fx:id="typeMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="228.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Please select one" wrappingWidth="90.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>
       </Text>
-      <TextField fx:id="firstNameFill" disable="true" layoutX="210.0" layoutY="124.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: John" style="-fx-background-radius: 20;" />
-      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" wrappingWidth="63.0">
+      <TextField fx:id="firstNameFill" disable="true" layoutX="210.0" layoutY="120.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: John" style="-fx-background-radius: 20;" />
+      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name:" wrappingWidth="63.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" wrappingWidth="63.0">
+      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" wrappingWidth="63.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <TextField fx:id="LastNameFill" disable="true" layoutX="210.0" layoutY="176.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: Wick" style="-fx-background-radius: 20;" />
-      <Text fx:id="idText" fontSmoothingType="LCD" layoutX="60.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID:" wrappingWidth="90.0">
+      <TextField fx:id="LastNameFill" disable="true" layoutX="210.0" layoutY="172.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: Wick" style="-fx-background-radius: 20;" />
+      <Text fx:id="idText" fontSmoothingType="LCD" layoutX="60.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID:" wrappingWidth="90.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="33.0">
+      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="33.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:" wrappingWidth="73.0">
+      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Birth:" wrappingWidth="73.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <TextField fx:id="idFill" disable="true" layoutX="210.0" layoutY="320.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: 12345" style="-fx-background-radius: 20;" />
-      <TextField fx:id="emailFill" disable="true" layoutX="210.0" layoutY="426.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: john.wick@scams.com" style="-fx-background-radius: 20;" />
-      <DatePicker fx:id="dateOfBirthPicker" disable="true" layoutX="210.0" layoutY="373.0" prefHeight="36.0" prefWidth="286.0" promptText="MM/DD/YYYY" />
+      <TextField fx:id="idFill" disable="true" layoutX="210.0" layoutY="317.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: 12345" style="-fx-background-radius: 20;" />
+      <TextField fx:id="emailFill" disable="true" layoutX="210.0" layoutY="423.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: john.wick@scams.com" style="-fx-background-radius: 20;" />
+      <DatePicker fx:id="dateOfBirthPicker" disable="true" layoutX="210.0" layoutY="370.0" prefHeight="36.0" prefWidth="286.0" promptText="MM/DD/YYYY" />
       <Button fx:id="cancelButton" layoutX="122.0" layoutY="605.0" mnemonicParsing="false" onMousePressed="#cancelPress" onMouseReleased="#cancelRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
@@ -89,7 +89,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="signUpButton" disable="true" layoutX="299.0" layoutY="605.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Sign Up" textFill="WHITE">
+      <Button fx:id="signUpButton" disable="true" layoutX="299.0" layoutY="605.0" mnemonicParsing="false" onMouseReleased="#signUpRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Sign Up" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
@@ -97,52 +97,57 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" wrappingWidth="259.0">
+      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" wrappingWidth="259.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>
       </Text>
-      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" wrappingWidth="259.0">
+      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" wrappingWidth="259.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>
       </Text>
-      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="63.0">
+      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="63.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <TextField fx:id="usernameFill" disable="true" layoutX="210.0" layoutY="268.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: john_wick" style="-fx-background-radius: 20;" />
-      <Text fontSmoothingType="LCD" layoutX="264.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" wrappingWidth="16.0">
+      <TextField fx:id="usernameFill" disable="true" layoutX="210.0" layoutY="265.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: john_wick" style="-fx-background-radius: 20;" />
+      <Text fontSmoothingType="LCD" layoutX="264.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or" wrappingWidth="16.0">
          <font>
             <Font name="Segoe UI Semibold" size="16.0" />
          </font>
       </Text>
-      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="56.0">
+      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="56.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <PasswordField fx:id="passwordFill" disable="true" layoutX="210.0" layoutY="479.0" prefHeight="36.0" prefWidth="286.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
-      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Re-enter Password:" wrappingWidth="107.0">
+      <PasswordField fx:id="passwordFill" disable="true" layoutX="210.0" layoutY="477.0" prefHeight="36.0" prefWidth="286.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
+      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Re-enter Password:" wrappingWidth="107.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <PasswordField fx:id="reEnterPasswordFill" disable="true" layoutX="210.0" layoutY="532.0" prefHeight="36.0" prefWidth="286.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
-      <Text fontSmoothingType="LCD" layoutX="194.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already Registered? " wrappingWidth="113.0">
+      <PasswordField fx:id="reEnterPasswordFill" disable="true" layoutX="210.0" layoutY="529.0" prefHeight="36.0" prefWidth="286.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
+      <Text fontSmoothingType="LCD" layoutX="194.0" layoutY="595.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already Registered? " wrappingWidth="113.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <Hyperlink layoutX="302.0" layoutY="576.0" onMouseReleased="#signInRelease" prefHeight="23.0" prefWidth="46.0" text="Sign In" />
-      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" wrappingWidth="63.0">
+      <Hyperlink layoutX="302.0" layoutY="579.0" onMouseReleased="#signInRelease" prefHeight="23.0" prefWidth="46.0" text="Sign In" />
+      <Text fontSmoothingType="LCD" layoutX="60.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:" wrappingWidth="63.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <RadioButton fx:id="maleRadio" disable="true" layoutX="210.0" layoutY="232.0" mnemonicParsing="false" text="Male" />
-      <RadioButton fx:id="femaleRadio" disable="true" layoutX="301.0" layoutY="232.0" mnemonicParsing="false" text="Female" />
+      <RadioButton fx:id="maleRadio" disable="true" layoutX="210.0" layoutY="228.0" mnemonicParsing="false" text="Male" />
+      <RadioButton fx:id="femaleRadio" disable="true" layoutX="301.0" layoutY="228.0" mnemonicParsing="false" text="Female" />
+      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="219.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Password not matching" wrappingWidth="259.0">
+         <font>
+            <Font name="Segoe UI Semibold" size="11.0" />
+         </font>
+      </Text>
    </AnchorPane>
    <ImageView fitHeight="205.0" fitWidth="278.0" layoutX="151.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../../../../../../../../../Downloads/JohnsCafe/JohnsCafe/src/main/resources/com/example/johnscafe/Pictures/Logo.png" />

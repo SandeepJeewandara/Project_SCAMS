@@ -1,5 +1,6 @@
 package com.example.scams_ood;
 
+import Features.DatabaseConnectionTest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class SignUpController {
 
@@ -158,6 +162,56 @@ public class SignUpController {
             stage.setScene(anotherScene);
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void signUpRelease(MouseEvent event) {
+        firstNameFill.getText();
+        LastNameFill.getText();
+        maleRadio.getText();
+        femaleRadio.getText();
+        usernameFill.getText();
+        idFill.getText();
+        dateOfBirthPicker.getValue();
+        emailFill.getText();
+        passwordFill.getText();
+        reEnterPasswordFill.getText();
+
+
+        try {
+            Connection connection = DatabaseConnectionTest.getConnection();
+
+            if (connection == null) {
+                System.err.println("Database connection is null.");
+                return;
+            }
+
+            // SQL query for inserting data into the Club table
+            String sql = "INSERT INTO Student (StudentID, First_name, Last_name, Gender, Email, DOB, User_name, Password) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+            try {
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    preparedStatement.setString(1, idFill.getText());
+                    preparedStatement.setString(2, firstNameFill.getText());
+                    preparedStatement.setString(3, LastNameFill.getText());
+                    preparedStatement.setString(4, " ");
+                    preparedStatement.setString(5, emailFill.getText());
+                    preparedStatement.setDate(6, java.sql.Date.valueOf(dateOfBirthPicker.getValue()));
+                    preparedStatement.setString(7, usernameFill.getText());
+                    preparedStatement.setString(8, passwordFill.getText());
+
+
+                    // Execute the SQL query
+                    preparedStatement.executeUpdate();
+
+                    System.out.println("Club details inserted into the database successfully!");
+                }
+            } catch (SQLException e) {
+                System.err.println("Error inserting club details into the database: " + e.getMessage());
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
