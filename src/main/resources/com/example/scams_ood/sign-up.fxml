@@ -143,7 +143,7 @@
       </Text>
       <RadioButton fx:id="maleRadio" disable="true" layoutX="210.0" layoutY="228.0" mnemonicParsing="false" text="Male" />
       <RadioButton fx:id="femaleRadio" disable="true" layoutX="301.0" layoutY="228.0" mnemonicParsing="false" text="Female" />
-      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="219.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Password not matching" wrappingWidth="259.0">
+      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="219.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Password not matching" wrappingWidth="259.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>

@@ -16,6 +16,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import static com.example.scams_ood.Validations.addTextLimiter;
+
 public class SignUpController {
 
     @FXML
@@ -71,6 +73,9 @@ public class SignUpController {
 
     @FXML
     private void initialize() {
+        addTextLimiter(idFill, 4);
+        addTextLimiter(dateOfBirthPicker.getEditor(), 10);
+
         genderGroup = new ToggleGroup();
         maleRadio.setToggleGroup(genderGroup);
         femaleRadio.setToggleGroup(genderGroup);
