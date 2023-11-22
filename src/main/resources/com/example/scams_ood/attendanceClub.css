@@ -29,10 +29,19 @@
     -fx-color:#813EB6 ;
     -fx-transition-duration: 0.4s;
     -fx-background-radius: 30;
+    -fx-cursor: pointer;
 }
 .club-1-button:hover{
     -fx-background-color:#ad3cb5 ;
+
 }
+.back-button {
+    -fx-color: #000080;
+    -fx-transition-duration: 0.4s;
+    -fx-background-radius: 30;
+    -fx-cursor: pointer;
+}
+
 
 .club-item{
     -fx-background-color:#FFFFFF;
