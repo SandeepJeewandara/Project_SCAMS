@@ -78,7 +78,7 @@
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <TextField fx:id="idFill" disable="true" layoutX="210.0" layoutY="317.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: 12345" style="-fx-background-radius: 20;" />
+      <TextField fx:id="idFill" disable="true" layoutX="210.0" layoutY="317.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: S123" style="-fx-background-radius: 20;" />
       <TextField fx:id="emailFill" disable="true" layoutX="210.0" layoutY="423.0" prefHeight="36.0" prefWidth="286.0" promptText="Ex: john.wick@scams.com" style="-fx-background-radius: 20;" />
       <DatePicker fx:id="dateOfBirthPicker" disable="true" layoutX="210.0" layoutY="370.0" prefHeight="36.0" prefWidth="286.0" promptText="MM/DD/YYYY" />
       <Button fx:id="cancelButton" layoutX="122.0" layoutY="605.0" mnemonicParsing="false" onMousePressed="#cancelPress" onMouseReleased="#cancelRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Cancel" textFill="WHITE">
