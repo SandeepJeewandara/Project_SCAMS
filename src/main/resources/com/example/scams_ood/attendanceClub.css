@@ -26,8 +26,19 @@
     -fx-background-radius: 30;
 }
 .club-1-button{
-    -fx-background-color:#813EB6 ;
+    -fx-color:#813EB6 ;
+    -fx-transition-duration: 0.4s;
     -fx-background-radius: 30;
 }
+.club-1-button:hover{
+    -fx-background-color:#ad3cb5 ;
+}
+
+.club-item{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 30;
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0,0.2), 10,0,4,4);
+}
+
 
 

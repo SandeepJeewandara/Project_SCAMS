@@ -7,17 +7,17 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.AttendanceClubController">
     <children>
         <BorderPane layoutY="-7.0" prefHeight="713.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <VBox prefHeight="700.0" prefWidth="235.0" styleClass="right-bar" stylesheets="@../../../../java/com/example/scams_2/Style.css" BorderPane.alignment="CENTER">
+                <VBox prefHeight="700.0" prefWidth="235.0" styleClass="right-bar" stylesheets="@attendanceClub.css" BorderPane.alignment="CENTER">
                     <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <VBox.margin>
@@ -33,15 +33,15 @@
             <center>
                 <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" stylesheets="@attendanceClub.css">
                             <VBox.margin>
                                 <Insets left="20.0" right="20.0" top="10.0" />
                             </VBox.margin>
                             <children>
-                                <Label prefHeight="66.0" prefWidth="57.0" styleClass="font-normal" stylesheets="@../../../../java/com/example/scams_2/Style.css" text="Language" />
-                                <Label prefHeight="66.0" prefWidth="57.0" styleClass="font-normal" stylesheets="@../../../../java/com/example/scams_2/Style.css" text="English" textFill="#a89999" underline="true" />
+                                <Label prefHeight="66.0" prefWidth="57.0" styleClass="font-normal" stylesheets="@attendanceClub.css" text="Language" />
+                                <Label prefHeight="66.0" prefWidth="57.0" styleClass="font-normal" stylesheets="@attendanceClub.css" text="English" textFill="#a89999" underline="true" />
                                 <Pane prefHeight="80.0" prefWidth="592.0" stylesheets="@attendanceClub.css" />
-                                <Label prefHeight="66.0" prefWidth="84.0" styleClass="font-normal" stylesheets="@../../../../java/com/example/scams_2/Style.css" text="My Account" />
+                                <Label prefHeight="66.0" prefWidth="84.0" styleClass="font-normal" stylesheets="@attendanceClub.css" text="My Account" />
                                 <ImageView id="user-image" fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@user_icon.jpg" />
@@ -52,17 +52,17 @@
                                 <Insets top="10.0" />
                             </opaqueInsets>
                         </HBox>
-                        <HBox prefHeight="80.0" prefWidth="180.0" styleClass="track-student-label" stylesheets="@../../../../java/com/example/scams_2/Style.css">
+                        <HBox prefHeight="80.0" prefWidth="180.0" styleClass="track-student-label" stylesheets="@attendanceClub.css">
                             <VBox.margin>
                                 <Insets left="20.0" right="20.0" top="18.0" />
                             </VBox.margin>
                             <children>
                                 <HBox prefHeight="80.0" prefWidth="435.0">
                                     <children>
-                                        <VBox alignment="CENTER" prefHeight="75.0" prefWidth="393.0" styleClass="student-vBox" stylesheets="@../../../../java/com/example/scams_2/Style.css">
+                                        <VBox alignment="CENTER" prefHeight="75.0" prefWidth="393.0" styleClass="student-vBox" stylesheets="@attendanceClub.css">
                                             <children>
-                                                <Label styleClass="font-topic" stylesheets="@../../../../java/com/example/scams_2/Style.css" text="Your Students'" textFill="WHITE" />
-                                                <Label styleClass="font-topic" stylesheets="@../../../../java/com/example/scams_2/Style.css" text="Attendence" textFill="WHITE" />
+                                                <Label styleClass="font-topic" stylesheets="@attendanceClub.css" text="Your Students'" textFill="WHITE" />
+                                                <Label styleClass="font-topic" stylesheets="@attendanceClub.css" text="Attendence" textFill="WHITE" />
                                             </children>
                                             <HBox.margin>
                                                 <Insets bottom="5.0" top="5.0" />
@@ -79,10 +79,10 @@
                                 <Pane prefHeight="80.0" prefWidth="194.0" />
                                 <HBox prefHeight="80.0" prefWidth="307.0">
                                     <children>
-                                        <VBox alignment="CENTER" prefHeight="70.0" prefWidth="327.0" styleClass="unity-attendance" stylesheets="@../../../../java/com/example/scams_2/Style.css">
+                                        <VBox alignment="CENTER" prefHeight="70.0" prefWidth="327.0" styleClass="unity-attendance" stylesheets="@attendanceClub.css">
                                             <children>
-                                                <Label styleClass="font-topic" stylesheets="@../../../../java/com/example/scams_2/Style.css" text="Unity in " textFill="WHITE" />
-                                                <Label styleClass="font-topic" stylesheets="@../../../../java/com/example/scams_2/Style.css" text="Attendence" textFill="WHITE" />
+                                                <Label styleClass="font-topic" stylesheets="@attendanceClub.css" text="Unity in " textFill="WHITE" />
+                                                <Label styleClass="font-topic" stylesheets="@attendanceClub.css" text="Attendence" textFill="WHITE" />
                                             </children>
                                             <HBox.margin>
                                                 <Insets bottom="5.0" top="5.0" />
@@ -106,13 +106,12 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@attendanceClub.css" VBox.vgrow="ALWAYS">
                             <children>
-                                <ScrollPane prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@../../../../java/com/example/scams_2/Style.css">
+                                <ScrollPane fx:id="clubScroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@attendanceClub.css">
                                     <content>
-                                        <GridPane prefHeight="12.0" prefWidth="27.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
+                                        <GridPane fx:id="clubGrid" prefHeight="17.0" prefWidth="39.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
                                         </GridPane>
                                     </content>
                                 </ScrollPane>

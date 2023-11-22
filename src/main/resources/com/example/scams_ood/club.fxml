@@ -21,6 +21,9 @@
                             <font>
                                 <Font name="Segoe UI Semibold" size="14.0" />
                             </font>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
                         </Label>
                         <Button fx:id="clubButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" stylesheets="@attendanceClub.css" text="Click" textFill="WHITE">
                             <font>
@@ -50,4 +53,8 @@
             </padding>
         </VBox>
     </children>
+   <styleClass>
+      <String fx:value="club-item" />
+      <String fx:value="transparent" />
+   </styleClass>
 </AnchorPane>
