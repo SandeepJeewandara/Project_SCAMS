@@ -134,7 +134,7 @@ public class CreateClubController {
                     // Execute the SQL query
                     preparedStatement.executeUpdate();
 
-                    System.out.println("Club details inserted into the database successfully!");
+                    System.out.println("Club details inserted into the database successfullys!");
                     clearInputFields();
                 }
 
