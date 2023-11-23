@@ -1,5 +1,7 @@
 package com.example.scams_ood;
 
+import javafx.scene.control.CheckBox;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +11,9 @@ public class Student {
     private Date studentDob;
     private String studentGmail;
     private List<Club> clubsJoined;
+
+
+    //private Boolean attendance;
 
     public Student(String studentId, String studentName, Date studentDob, String studentGmail, List<Club> clubsJoined) {
         this.studentId = studentId;
@@ -60,4 +65,14 @@ public class Student {
     public void setClubsJoined(List<Club> clubsJoined) {
         this.clubsJoined = clubsJoined;
     }
+    /*
+    public Boolean getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(Boolean attendance) {
+        this.attendance = attendance;
+    }
+    
+     */
 }

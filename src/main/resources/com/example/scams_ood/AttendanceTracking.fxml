@@ -29,7 +29,7 @@
                                 <Image url="@logo_4.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="backButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" stylesheets="@attendanceClub.css" text="Back">
+                        <Button fx:id="backButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#backToClubDashBoard" prefHeight="35.0" prefWidth="95.0" stylesheets="@attendanceClub.css" text="Back">
                             <VBox.margin>
                                 <Insets left="58.0" right="25.0" top="450.0" />
                             </VBox.margin>
@@ -66,44 +66,61 @@
                         <Insets top="10.0" />
                      </opaqueInsets>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="248.0" prefWidth="200.0" styleClass="student-vBox" stylesheets="@attendanceClub.css">
+                  <HBox prefHeight="248.0" prefWidth="200.0" styleClass="student-vBox" stylesheets="@attendanceClub.css">
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </VBox.margin>
                      <children>
-                        <Label styleClass="font-topic" stylesheets="@attendanceClub.css" text="Enter Event ID: ">
+                        <VBox prefHeight="200.0" prefWidth="181.0">
+                           <children>
+                              <Label styleClass="font-topic" stylesheets="@attendanceClub.css" text="Enter Event ID: ">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets left="15.0" top="60.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="188.0" prefWidth="175.0">
+                           <children>
+                              <TextField fx:id="eventIdTextField" prefHeight="35.0" prefWidth="169.0" stylesheets="@attendanceClub.css">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="font-topic" />
+                                    <String fx:value="track-student-label" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
                            <HBox.margin>
-                              <Insets bottom="80.0" left="20.0" top="20.0" />
+                              <Insets bottom="40.0" />
                            </HBox.margin>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Label>
-                        <TextField fx:id="eventIdTextField" prefHeight="35.0" prefWidth="152.0" stylesheets="@attendanceClub.css">
+                        </HBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="310.0">
                            <HBox.margin>
-                              <Insets bottom="80.0" left="5.0" right="70.0" top="20.0" />
+                              <Insets left="200.0" />
                            </HBox.margin>
-                           <styleClass>
-                              <String fx:value="track-student-label" />
-                              <String fx:value="transparent" />
-                           </styleClass>
-                        </TextField>
-                        <Pane prefHeight="200.0" prefWidth="336.0" />
-                        <Button fx:id="submitButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#submit" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #006CA5; -fx-background-radius: 30;" styleClass="font-normal" stylesheets="@attendanceClub.css" text="Submit" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets bottom="60.0" />
-                           </HBox.margin>
-                        </Button>
+                           <children>
+                              <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submit" prefHeight="35.0" prefWidth="95.0" styleClass="submit-button" stylesheets="@attendanceClub.css" text="Submit" textFill="#fffefe">
+                                 <VBox.margin>
+                                    <Insets bottom="40.0" left="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="372.0" prefWidth="200.0">
+                  <HBox prefHeight="372.0" prefWidth="200.0" style="-fx-background-color: #5EC5D4;" styleClass="table-view-1" stylesheets="@attendanceClub.css">
                      <children>
-                        <TableView prefHeight="356.0" prefWidth="745.0">
+                        <TableView fx:id="attendanceTableView" prefHeight="324.0" prefWidth="875.0" styleClass="table-view-1" stylesheets="@attendanceClub.css">
                           <columns>
-                            <TableColumn fx:id="studentName" prefWidth="234.0" text="Student Name" />
-                            <TableColumn fx:id="studentId" prefWidth="155.0" text="Student Id" />
-                              <TableColumn fx:id="studentGmail" prefWidth="157.0" text="Student Gmail" />
-                              <TableColumn fx:id="attendance" prefWidth="112.0" text="Attendance" />
+                            <TableColumn fx:id="studentNameColumn" prefWidth="277.0" text="Student Name" />
+                            <TableColumn fx:id="studentIdColumn" prefWidth="203.0" text="Student Id" />
+                              <TableColumn fx:id="studentGmailColumn" prefWidth="214.0" text="Student Gmail" />
+                              <TableColumn fx:id="attendanceColumn" prefWidth="154.0" text="Attendance" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
