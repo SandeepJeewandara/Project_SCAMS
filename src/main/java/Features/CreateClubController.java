@@ -1,5 +1,7 @@
 package Features;
 
+import Database.DatabaseConnectionTest;
+import com.example.scams_ood.Club;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -95,39 +97,39 @@ public class CreateClubController {
                 Files.copy(selectedImageFile.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
                 System.out.println(destinationFilePath);
 
-                System.out.println(clubID+" "+clubName+" "+clubType+" "+startDate+" "+description+" "+destinationFilePath+" ");
-
-                // Insert data into the database
-                insertClubIntoDatabase(clubID, clubName, clubType, startDate, description, destinationFilePath.toString());
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
+        Club newClub = new Club(clubID, clubName, clubType, startDate, description, imageFileName, null);
+
+        // Insert data into the database
+        insertClubIntoDatabase(newClub);
     }
 
-    private void insertClubIntoDatabase(String clubID, String clubName, String clubType, LocalDate startDate, String description, String imagePath) {
+
+    private void insertClubIntoDatabase(Club club) {
         try {
             Connection connection = DatabaseConnectionTest.getConnection();
 
             if (connection == null) {
-                System.err.println("Database connection is null.");
+                System.err.println("Error encountered while attempting to connect to the database");
                 return;
             }
 
             // SQL query for inserting data into the Club table
-            String sql = "INSERT INTO Club (club_id, club_name, club_type, started_date, club_advisor, club_description, club_logo_path) " + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Club (ClubID, Club_name, Club_type, Started_date, Club_description, Club_logo_path, AdvisorID) " + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try {
                 try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                    preparedStatement.setString(1, clubID);
-                    preparedStatement.setString(2, clubName);
-                    preparedStatement.setString(3, clubType);
-                    preparedStatement.setDate(4, java.sql.Date.valueOf(startDate));
-                    preparedStatement.setString(5," ");
-                    preparedStatement.setString(6, description);
-                    preparedStatement.setString(7, imagePath);
+                    preparedStatement.setString(1, club.getClubId());
+                    preparedStatement.setString(2, club.getClubName());
+                    preparedStatement.setString(3, club.getClubType());
+                    preparedStatement.setDate(4, java.sql.Date.valueOf(club.getStartedDate()));
+                    preparedStatement.setString(5, club.getClubDescription());
+                    preparedStatement.setString(6, club.getClubLogoPath());
+                    preparedStatement.setString(7, "A001");  // This is Need to Change
 
                     // Execute the SQL query
                     preparedStatement.executeUpdate();
@@ -135,6 +137,7 @@ public class CreateClubController {
                     System.out.println("Club details inserted into the database successfully!");
                     clearInputFields();
                 }
+
             } catch (SQLException e) {
                 System.err.println("Error inserting club details into the database: " + e.getMessage());
             }

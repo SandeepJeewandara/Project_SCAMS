@@ -9,4 +9,5 @@ module com.example.scams_ood {
     exports Features;
 
     opens Features to javafx.fxml;
+    opens Database to javafx.fxml;
 }

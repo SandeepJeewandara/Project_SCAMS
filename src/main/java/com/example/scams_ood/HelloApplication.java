@@ -1,6 +1,5 @@
 package com.example.scams_ood;
 
-import Features.DatabaseConnectionTest;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
