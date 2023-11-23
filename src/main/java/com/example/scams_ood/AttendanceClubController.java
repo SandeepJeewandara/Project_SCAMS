@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -22,7 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AttendanceClubController implements Initializable {
+public class AttendanceClubController  {
+
+    @FXML
+    private Button advisorSubmitButton;
+    @FXML
+    private  TextField advisorIdTextField;
 
     @FXML
     private GridPane clubGrid;
@@ -38,33 +44,39 @@ public class AttendanceClubController implements Initializable {
 
     //private List<Club> clubs = new ArrayList<>();
 
-    private List<Club> retrieveDataFromDatabase() {
-         List<Club> clubs = new ArrayList<>();
+    public List<Club> retrieveDataFromDatabase() {
+         List<Club> clubsList = new ArrayList<>();
+         String advisorId = advisorIdTextField.getText();
 
-        try(Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db","root","");
-            Statement statement = connection.createStatement()) {
+        try(Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db","root","")){
 
 
-            String query = "SELECT Club_name FROM club";
-            //SELECT Club_name, Club_logo_path FROM club
-            ResultSet resultSet = statement.executeQuery(query);
+            String query = "SELECT Club.ClubID, Club.Club_name,Club.Club_logo_path FROM Club_Advisor JOIN Club  ON Club_Advisor.AdvisorID = Club.AdvisorID WHERE Club_Advisor.AdvisorID = ?";
 
-            while (resultSet.next()){
-                Club club = new Club();
-                club.setClubName(resultSet.getString("Club_name"));
-                //club.setImageLogoPath(resultSet.getString("Club_logo_path"));
-                clubs.add(club);
-                System.out.println(club.getClubName());
-                System.out.println(club.getImageLogoPath());
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, advisorId);
+                //SELECT Club_name, Club_logo_path FROM club
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                    while (resultSet.next()) {
+                        Club club = new Club();
+                        club.setClubId(resultSet.getString("ClubID"));
+                        club.setClubName(resultSet.getString("Club_name"));
+                        //club.setImageLogoPath(resultSet.getString("Club_logo_path"));
+                        clubsList.add(club);
+                        System.out.println(club.getClubName());
+                        System.out.println(club.getImageLogoPath());
+                    }
+                }
             }
+
 
         } catch (SQLException e){
             e.printStackTrace();
         }
-        return clubs;
+        return clubsList;
     }
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void displayAdvisorClub(ActionEvent event) {
         List <Club> retrievedClubs = retrieveDataFromDatabase();
 
         int column = 0;
@@ -76,6 +88,7 @@ public class AttendanceClubController implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("/com/example/scams_ood/club.fxml"));
                 //main/resources/com/example/scams_ood
                 AnchorPane anchorPane = fxmlLoader.load();
+
 
                 ClubController clubController = fxmlLoader.getController();
                 clubController.clubIconSetData(retrievedClubs.get(i));

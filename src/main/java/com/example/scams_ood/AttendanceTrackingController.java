@@ -45,7 +45,6 @@ public class AttendanceTrackingController {
     @FXML
     private TableColumn<Student, String> studentNameColumn;
 
-
     //private List<Student> retrieveStudentDataFromDatabase(TextField textField) {
     public void submit(ActionEvent event) {
         List<Student> studentsList = new ArrayList<>();
@@ -74,6 +73,7 @@ public class AttendanceTrackingController {
                         System.out.println(student.getStudentGmail());
                         studentsList.add(student);
                         System.out.println(studentsList);
+
                     }
                     if (!studentsList.isEmpty()) {
 

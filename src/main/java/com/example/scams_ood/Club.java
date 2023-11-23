@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Club {
 
-    private int clubId;
+    private String clubId;
     private String clubName;
     private  String ClubDescription;
     private ClubAdvisor clubAdvisor; // Bi-directional association
@@ -13,7 +13,7 @@ public class Club {
 
     private String ImageLogoPath;
 
-    public Club(int clubId, String clubName, String clubDescription, ClubAdvisor clubAdvisor, List<Student> members, List<Event> events) {
+    public Club(String clubId, String clubName, String clubDescription, ClubAdvisor clubAdvisor, List<Student> members, List<Event> events) {
         this.clubId = clubId;
         this.clubName = clubName;
         ClubDescription = clubDescription;
@@ -25,11 +25,11 @@ public class Club {
     public Club() {
     }
 
-    public int getClubId() {
+    public String getClubId() {
         return clubId;
     }
 
-    public void setClubId(int clubId) {
+    public void setClubId(String clubId) {
         this.clubId = clubId;
     }
 

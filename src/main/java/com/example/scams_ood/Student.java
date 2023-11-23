@@ -73,6 +73,6 @@ public class Student {
     public void setAttendance(Boolean attendance) {
         this.attendance = attendance;
     }
-    
+
      */
 }
