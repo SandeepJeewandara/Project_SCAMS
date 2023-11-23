@@ -43,7 +43,6 @@ public class CreateClubController {
     private File selectedImageFile;
 
     public void onClubTypeSelected() {
-
         String selectedType = clubTypeInput.getValue();
     }
 
@@ -134,7 +133,7 @@ public class CreateClubController {
                     // Execute the SQL query
                     preparedStatement.executeUpdate();
 
-                    System.out.println("Club details inserted into the database successfullys!");
+                    System.out.println("Club details inserted into the database successfully!");
                     clearInputFields();
                 }
 
