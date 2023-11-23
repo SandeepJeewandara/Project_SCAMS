@@ -1,5 +1,7 @@
 package com.example.scams_ood;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,8 +12,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +35,7 @@ public class AttendanceTrackingController {
     private Button submitButton;
 
     @FXML
-    private TableColumn<Student, CheckBox> attendanceColumn;
+    private TableColumn<Student, Boolean> attendanceColumn;
 
     @FXML
     private Button backButton;
@@ -82,12 +86,27 @@ public class AttendanceTrackingController {
                         studentIdColumn.setCellValueFactory(new PropertyValueFactory("studentId"));
                         System.out.println(studentIdColumn);
                         studentGmailColumn.setCellValueFactory(new PropertyValueFactory("studentGmail"));
-                        attendanceColumn.setCellValueFactory(new PropertyValueFactory("attendance"));
+                        //attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("attendance"));
+                        attendanceColumn.setCellFactory(CheckBoxTableCell.forTableColumn(attendanceColumn));
+
+                        /*
+                        attendanceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Boolean>, ObservableValue<Boolean>>() {
+                            @Override
+                            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Student, Boolean> param){
+                                Student student = param.getValue();
+                                SimpleBooleanProperty booleanProp = new SimpleBooleanProperty(student.isAttendance());
+                                booleanProp.addListener((observable, oldValue, newValue) -> student.setAttendance(newValue));
+                                return booleanProp;
+                            }
+                        });
+
+                         */
 
 
                         if (attendanceTableView != null) {
                             ObservableList<Student> students = FXCollections.observableArrayList(studentsList);
                             attendanceTableView.setItems(students);
+                            attendanceColumn.setEditable(true);
                         }
                     }
                 }

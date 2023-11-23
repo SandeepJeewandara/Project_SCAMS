@@ -1,5 +1,7 @@
 package com.example.scams_ood;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.CheckBox;
 
 import java.util.Date;
@@ -12,8 +14,7 @@ public class Student {
     private String studentGmail;
     private List<Club> clubsJoined;
 
-
-    //private Boolean attendance;
+    //private BooleanProperty attendance;
 
     public Student(String studentId, String studentName, Date studentDob, String studentGmail, List<Club> clubsJoined) {
         this.studentId = studentId;
@@ -25,6 +26,16 @@ public class Student {
 
     public Student() {
     }
+
+    /*
+    public BooleanProperty attendanceProperty(){
+        if(attendance == null){
+            attendance = new SimpleBooleanProperty(this,"attendance",false);
+        }
+        return attendance;
+    }
+
+     */
 
     public String getStudentId() {
         return studentId;
@@ -65,14 +76,6 @@ public class Student {
     public void setClubsJoined(List<Club> clubsJoined) {
         this.clubsJoined = clubsJoined;
     }
-    /*
-    public Boolean getAttendance() {
-        return attendance;
-    }
 
-    public void setAttendance(Boolean attendance) {
-        this.attendance = attendance;
-    }
 
-     */
 }
