@@ -14,4 +14,6 @@ public class ClubAdvisor {
         this.advisorGmail = advisorGmail;
         this.managedClubs = managedClubs;
     }
+
+
 }
