@@ -14,9 +14,9 @@ public class WelcomeController {
 
     public void OnContinueButtonClick(ActionEvent actionEvent) {
         try {
-            FXMLLoader createClubLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/CreateClub.fxml"));
-            Parent createClubRoot = createClubLoader.load();
-            CreateClubController createClubController = createClubLoader.getController();
+            FXMLLoader dashBoardLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/Dashboard.fxml"));
+            Parent createClubRoot = dashBoardLoader.load();
+            DashboardController dashboardController = dashBoardLoader.getController();
 
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(createClubRoot);
