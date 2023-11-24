@@ -1,5 +1,6 @@
 package com.example.scams_ood;
 
+import DB_Operations.SelectedClubDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,42 +43,10 @@ public class AttendanceClubController  {
     @FXML
     private Scene scene;
 
-    //private List<Club> clubs = new ArrayList<>();
-
-    public List<Club> retrieveDataFromDatabase() {
-         List<Club> clubsList = new ArrayList<>();
-         String advisorId = advisorIdTextField.getText();
-
-        try(Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db","root","")){
-
-
-            String query = "SELECT Club.ClubID, Club.Club_name,Club.Club_logo_path FROM Club_Advisor JOIN Club  ON Club_Advisor.AdvisorID = Club.AdvisorID WHERE Club_Advisor.AdvisorID = ?";
-
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setString(1, advisorId);
-                //SELECT Club_name, Club_logo_path FROM club
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-
-                    while (resultSet.next()) {
-                        Club club = new Club();
-                        club.setClubId(resultSet.getString("ClubID"));
-                        club.setClubName(resultSet.getString("Club_name"));
-                        //club.setImageLogoPath(resultSet.getString("Club_logo_path"));
-                        clubsList.add(club);
-                        System.out.println(club.getClubName());
-                        System.out.println(club.getImageLogoPath());
-                    }
-                }
-            }
-
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return clubsList;
-    }
     public void displayAdvisorClub(ActionEvent event) {
-        List <Club> retrievedClubs = retrieveDataFromDatabase();
+        String advisorId = advisorIdTextField.getText();
+
+        List <Club> retrievedClubs = SelectedClubDB.retrieveClubDetailsFromDatabase(advisorId);
 
         int column = 0;
         int row = 1;
@@ -110,6 +79,8 @@ public class AttendanceClubController  {
                 clubGrid.setMaxHeight(Region.USE_PREF_SIZE);
 
                 GridPane.setMargin(anchorPane,new Insets(10));
+
+                retrievedClubs.clear();
             }
 
         }catch (IOException e){

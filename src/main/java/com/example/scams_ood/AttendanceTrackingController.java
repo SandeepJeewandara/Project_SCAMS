@@ -1,5 +1,6 @@
 package com.example.scams_ood;
 
+import DB_Operations.ClubAttendanceTrackingDB;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -24,13 +25,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static DB_Operations.ClubAttendanceTrackingDB.retrieveStudentDataFromDatabase;
+
 public class AttendanceTrackingController {
 
     @FXML
     private TableView<Student> attendanceTableView;
-
     @FXML
-    private TextField eventIdTextField;
+    private  TextField eventIdTextField;
+
+
     @FXML
     private Button submitButton;
 
@@ -49,45 +53,19 @@ public class AttendanceTrackingController {
     @FXML
     private TableColumn<Student, String> studentNameColumn;
 
-    //private List<Student> retrieveStudentDataFromDatabase(TextField textField) {
+
     public void submit(ActionEvent event) {
-        List<Student> studentsList = new ArrayList<>();
         String eventId = eventIdTextField.getText();
-        //System.out.println(eventId);
-        //String eventId = "E001";
+        List<Student> retrieveStudentsList = retrieveStudentDataFromDatabase(eventId);
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db", "root", "")) {
-
-
-            String query = "SELECT  S.StudentID AS StudentID,E.Event_Name AS Event_Name,S.First_name AS Student_First_name,S.Email AS Student_Email, ER.Attendance FROM Event_Registration ER JOIN Student S ON ER.StudentID = S.StudentID JOIN Event E ON ER.EventID = E.EventID WHERE  E.EventID = ?";
-
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setString(1, eventId);
-
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-
-                    while (resultSet.next()) {
-                        Student student = new Student();
-                        student.setStudentName(resultSet.getString("Student_First_name"));
-                        student.setStudentId(resultSet.getString("StudentID"));
-
-                        student.setStudentGmail(resultSet.getString("Student_Email"));
-                        System.out.println(student.getStudentId());
-                        System.out.println(student.getStudentName());
-                        System.out.println(student.getStudentGmail());
-                        studentsList.add(student);
-                        System.out.println(studentsList);
-
-                    }
-                    if (!studentsList.isEmpty()) {
-
-                        studentNameColumn.setCellValueFactory(new PropertyValueFactory("studentName"));
-                        System.out.println(studentNameColumn.getText());
-                        studentIdColumn.setCellValueFactory(new PropertyValueFactory("studentId"));
-                        System.out.println(studentIdColumn);
-                        studentGmailColumn.setCellValueFactory(new PropertyValueFactory("studentGmail"));
-                        //attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("attendance"));
-                        attendanceColumn.setCellFactory(CheckBoxTableCell.forTableColumn(attendanceColumn));
+        if (!retrieveStudentsList.isEmpty()) {
+            studentNameColumn.setCellValueFactory(new PropertyValueFactory("studentName"));
+            System.out.println(studentNameColumn.getText());
+            studentIdColumn.setCellValueFactory(new PropertyValueFactory("studentId"));
+            System.out.println(studentIdColumn);
+            studentGmailColumn.setCellValueFactory(new PropertyValueFactory("studentGmail"));
+            //attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("attendance"));
+            attendanceColumn.setCellFactory(CheckBoxTableCell.forTableColumn(attendanceColumn));
 
                         /*
                         attendanceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Boolean>, ObservableValue<Boolean>>() {
@@ -101,25 +79,13 @@ public class AttendanceTrackingController {
                         });
 
                          */
-
-
-                        if (attendanceTableView != null) {
-                            ObservableList<Student> students = FXCollections.observableArrayList(studentsList);
-                            attendanceTableView.setItems(students);
-                            attendanceColumn.setEditable(true);
+            if (attendanceTableView != null) {
+                ObservableList<Student> students = FXCollections.observableArrayList(retrieveStudentsList);
+                attendanceTableView.setItems(students);
+                attendanceColumn.setEditable(true);
                         }
                     }
                 }
-
-
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-
-    }
 
     public void backToClubDashBoard(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("attendance-club.fxml"));
