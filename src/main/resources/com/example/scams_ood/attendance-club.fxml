@@ -22,17 +22,9 @@
             <left>
                 <VBox prefHeight="700.0" prefWidth="235.0" styleClass="right-bar" stylesheets="@attendanceClub.css" BorderPane.alignment="CENTER">
                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <VBox.margin>
-                                <Insets left="45.0" top="10.0" />
-                            </VBox.margin>
-                            <image>
-                                <Image url="@logo_4.png" />
-                            </image>
-                        </ImageView>
                   <Button fx:id="backButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="95.0" stylesheets="@attendanceClub.css" text="Back">
                      <VBox.margin>
-                        <Insets left="58.0" right="25.0" top="450.0" />
+                        <Insets left="58.0" right="25.0" top="650.0" />
                      </VBox.margin>
                      <styleClass>
                         <String fx:value="font-normal" />
