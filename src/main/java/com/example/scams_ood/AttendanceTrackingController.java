@@ -1,6 +1,7 @@
 package com.example.scams_ood;
 
 import DB_Operations.ClubAttendanceTrackingDB;
+import DB_Operations.EventAssignClubsDB;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,12 +28,15 @@ import java.util.ResourceBundle;
 
 import static DB_Operations.ClubAttendanceTrackingDB.retrieveStudentDataFromDatabase;
 
-public class AttendanceTrackingController {
+public class AttendanceTrackingController implements Initializable {
 
     @FXML
     private TableView<Student> attendanceTableView;
+
     @FXML
-    private  TextField eventIdTextField;
+    private TableView<Event> eventTable;
+    @FXML
+    private TextField eventIdTextField;
 
 
     @FXML
@@ -53,6 +57,8 @@ public class AttendanceTrackingController {
     @FXML
     private TableColumn<Student, String> studentNameColumn;
 
+    private String clubId;
+
 
     public void submit(ActionEvent event) {
         String eventId = eventIdTextField.getText();
@@ -67,25 +73,17 @@ public class AttendanceTrackingController {
             //attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("attendance"));
             attendanceColumn.setCellFactory(CheckBoxTableCell.forTableColumn(attendanceColumn));
 
-                        /*
-                        attendanceColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, Boolean>, ObservableValue<Boolean>>() {
-                            @Override
-                            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Student, Boolean> param){
-                                Student student = param.getValue();
-                                SimpleBooleanProperty booleanProp = new SimpleBooleanProperty(student.isAttendance());
-                                booleanProp.addListener((observable, oldValue, newValue) -> student.setAttendance(newValue));
-                                return booleanProp;
-                            }
-                        });
-
-                         */
             if (attendanceTableView != null) {
                 ObservableList<Student> students = FXCollections.observableArrayList(retrieveStudentsList);
                 attendanceTableView.setItems(students);
-                attendanceColumn.setEditable(true);
-                        }
-                    }
-                }
+                //attendanceColumn.setEditable(true);
+            }
+        }
+    }
+
+    public void setClubId(String clubId) {
+        this.clubId = clubId;
+    }
 
     public void backToClubDashBoard(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("attendance-club.fxml"));
@@ -93,6 +91,27 @@ public class AttendanceTrackingController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        TableColumn eventName = new TableColumn("Event Name");
+        TableColumn eventId = new TableColumn("Event Id");
+        eventTable.getColumns().addAll(eventName, eventId);
+        System.out.println(clubId);
+
+        List<Event> retrievedEventsList = EventAssignClubsDB.retrieveEventDataFromDatabase(clubId);
+
+        eventName.setCellValueFactory(new PropertyValueFactory<Event, String>("eventName"));
+        eventId.setCellValueFactory(new PropertyValueFactory<Event, String>("eventId"));
+
+        if (eventTable != null) {
+            ObservableList<Event> events = FXCollections.observableArrayList(retrievedEventsList);
+            eventTable.setItems(events);
+
+
+        }
     }
 }
 
