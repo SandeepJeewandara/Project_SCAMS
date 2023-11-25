@@ -34,9 +34,18 @@ public class AttendanceTrackingController implements Initializable {
     private TableView<Student> attendanceTableView;
 
     @FXML
-    private TableView<Event> eventTable;
+    private TableView<Event> eventTable ;
     @FXML
     private TextField eventIdTextField;
+    @FXML
+    private TableColumn<Event, String> eventIdColumn;
+
+
+
+
+
+    @FXML
+    private TableColumn<Event,String> eventNameColumn;
 
 
     @FXML
@@ -71,7 +80,7 @@ public class AttendanceTrackingController implements Initializable {
             System.out.println(studentIdColumn);
             studentGmailColumn.setCellValueFactory(new PropertyValueFactory("studentGmail"));
             //attendanceColumn.setCellValueFactory(new PropertyValueFactory<>("attendance"));
-            attendanceColumn.setCellFactory(CheckBoxTableCell.forTableColumn(attendanceColumn));
+            //attendanceColumn.setCellFactory(CheckBoxTableCell.forTableColumn(attendanceColumn));
 
             if (attendanceTableView != null) {
                 ObservableList<Student> students = FXCollections.observableArrayList(retrieveStudentsList);
@@ -83,6 +92,9 @@ public class AttendanceTrackingController implements Initializable {
 
     public void setClubId(String clubId) {
         this.clubId = clubId;
+        System.out.println(clubId);
+
+        setEventDataInTable();
     }
 
     public void backToClubDashBoard(ActionEvent event) throws IOException {
@@ -93,11 +105,21 @@ public class AttendanceTrackingController implements Initializable {
         stage.show();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    public void setEventDataInTable()  {
+
+        //this.eventTable.getSelectionModel().clearSelection();
+        //eventTable.getColumns().clear();
+        //this.eventTable.refresh();
+
+        //eventTable =new TableView<>() ;
+
+
+
+
+        /*
         TableColumn eventName = new TableColumn("Event Name");
-        TableColumn eventId = new TableColumn("Event Id");
+        TableColumn eventId = new TableColumn("Event ID");
         eventTable.getColumns().addAll(eventName, eventId);
         System.out.println(clubId);
 
@@ -106,12 +128,27 @@ public class AttendanceTrackingController implements Initializable {
         eventName.setCellValueFactory(new PropertyValueFactory<Event, String>("eventName"));
         eventId.setCellValueFactory(new PropertyValueFactory<Event, String>("eventId"));
 
+         */
+        List<Event> retrievedEventsList = EventAssignClubsDB.retrieveEventDataFromDatabase(clubId);
+
+        if(!retrievedEventsList.isEmpty()){
+            this.eventNameColumn.setCellValueFactory(new PropertyValueFactory("eventName"));
+            this.eventIdColumn.setCellValueFactory(new PropertyValueFactory("eventId"));
+        }
+
         if (eventTable != null) {
             ObservableList<Event> events = FXCollections.observableArrayList(retrievedEventsList);
-            eventTable.setItems(events);
-
+            this.eventTable.setItems(events);
 
         }
+        //eventTable.getItems().clear();
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
     }
 }
 

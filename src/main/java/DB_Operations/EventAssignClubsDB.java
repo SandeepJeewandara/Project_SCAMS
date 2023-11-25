@@ -33,6 +33,7 @@ public class EventAssignClubsDB {
                         //System.out.println(student.getStudentName());
                         //System.out.println(student.getStudentGmail());
                         eventsList.add(event);
+
                     }
                 }
             }
