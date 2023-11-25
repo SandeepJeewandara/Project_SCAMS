@@ -7,21 +7,19 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1150.0" style="-fx-blend-mode: transparent;" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.CreateClubController">
+<AnchorPane prefHeight="690.0" prefWidth="920.0" style="-fx-background-color: ;" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.CreateClubController">
    <children>
-      <Text layoutX="322.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter New Club Details" textAlignment="CENTER" wrappingWidth="600.3999999999999">
+      <Text layoutX="174.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter New Club Details" textAlignment="CENTER" wrappingWidth="600.3999999999999">
          <font>
             <Font name="Segoe UI Semibold" size="22.0" />
          </font>
       </Text>
-      <AnchorPane layoutX="232.0" layoutY="156.0" prefHeight="402.0" prefWidth="791.0">
+      <AnchorPane layoutX="121.0" layoutY="156.0" prefHeight="402.0" prefWidth="678.0">
          <children>
             <Text layoutX="25.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club ID       " wrappingWidth="125.0">
                <font>
@@ -77,10 +75,5 @@
             </ChoiceBox>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="134.0" fitWidth="153.0" layoutX="52.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Images/Logo/logo_6.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

@@ -62,6 +62,25 @@ public class Club {
         return events;
     }
 
+    public void addMember(Student member) {
+        members.add(member);
+        member.joinClub(this);
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
+        event.setClub(this);
+    }
+
+
+    public void setClubAdvisor(ClubAdvisor clubAdvisor) {
+        if (this.clubAdvisor == null) {
+            this.clubAdvisor = clubAdvisor;
+            clubAdvisor.addManagedClub(this); // Add this club to the advisor's managed clubs
+        }
+    }
+
+
     @Override
     public String toString() {
         return "Club{" +
@@ -71,7 +90,7 @@ public class Club {
                 ", startedDate=" + startedDate +
                 ", clubDescription='" + clubDescription + '\'' +
                 ", clubLogoPath='" + clubLogoPath + '\'' +
-                ", clubAdvisor=" + clubAdvisor +
+                ", clubAdvisor=" + (clubAdvisor != null ? clubAdvisor.getAdvisorId() : null) +
                 '}';
     }
 }

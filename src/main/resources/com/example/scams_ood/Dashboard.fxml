@@ -10,36 +10,37 @@
    <children>
       <AnchorPane layoutX="-1.0" layoutY="-4.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="230.0" styleClass="navigation_pane" stylesheets="@Styles.css">
          <children>
-            <Text fill="WHITE" layoutX="50.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLUB DETAILS" textAlignment="CENTER" wrappingWidth="144.0">
+            <Text fx:id="ClubDetailstxt" fill="WHITE" layoutX="50.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLUB DETAILS" textAlignment="CENTER" wrappingWidth="144.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="50.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DASHBOARD" textAlignment="CENTER" wrappingWidth="144.0">
+            <Text fx:id="Dashboardtxt" fill="WHITE" layoutX="50.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DASHBOARD" textAlignment="CENTER" wrappingWidth="144.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <FontAwesomeIconView fill="WHITE" glyphName="DASHBOARD" layoutX="43.0" layoutY="187.0" size="25" />
-            <Button fx:id="dashboardButton" layoutX="16.0" layoutY="157.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
-            <Button fx:id="createClubButton" layoutX="16.0" layoutY="222.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
-            <Button fx:id="clubDetailsButton" layoutX="16.0" layoutY="287.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
-            <Text fill="WHITE" layoutX="50.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SECHEDULE EVENT" textAlignment="CENTER" wrappingWidth="144.89894861446945">
+            <FontAwesomeIconView fill="WHITE" glyphName="WINDOWS" layoutX="43.0" layoutY="187.0" size="20" />
+            <Button fx:id="dashboardButton" layoutX="16.0" layoutY="157.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
+            <FontAwesomeIconView fill="WHITE" glyphName="REORDER" layoutX="44.0" layoutY="254.0" size="20" />
+            <Button fx:id="createClubButton" layoutX="16.0" layoutY="222.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
+            <Button fx:id="clubDetailsButton" layoutX="16.0" layoutY="287.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
+            <Text fx:id="ScheduleEventtxt" fill="WHITE" layoutX="50.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCHEDULE EVENT" textAlignment="CENTER" wrappingWidth="144.89894861446945">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="50.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EVENT DETAILS" textAlignment="CENTER" wrappingWidth="144.0">
+            <Text fx:id="EventDetailstxt" fill="WHITE" layoutX="50.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EVENT DETAILS" textAlignment="CENTER" wrappingWidth="144.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="50.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRACK ATTENDACE" textAlignment="CENTER" wrappingWidth="145.0">
+            <Text fx:id="TrackAttendancetxt" fill="WHITE" layoutX="50.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRACK ATTENDANCE" textAlignment="CENTER" wrappingWidth="145.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="50.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GENERATE REPORTS" textAlignment="CENTER" wrappingWidth="145.0">
+            <Text fx:id="GenerateReportstxt" fill="WHITE" layoutX="50.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GENERATE REPORTS" textAlignment="CENTER" wrappingWidth="145.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -52,21 +53,107 @@
                      </font>
                   </FontAwesomeIconView>
                </children></AnchorPane>
-            <Button fx:id="secheduleEventButton" layoutX="16.0" layoutY="352.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
-            <Button fx:id="eventDetailsButton" layoutX="16.0" layoutY="417.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
-            <Button fx:id="trackAttendanceButton" layoutX="16.0" layoutY="482.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
-            <Button fx:id="generateReportsButton" layoutX="16.0" layoutY="547.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
+            <FontAwesomeIconView fill="WHITE" glyphName="TASKS" layoutX="35.0" layoutY="382.0" size="20" />
+            <Button fx:id="scheduleEventButton" layoutX="16.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
+            <FontAwesomeIconView fill="WHITE" glyphName="OUTDENT" layoutX="36.0" layoutY="446.0" size="20" />
+            <Button fx:id="eventDetailsButton" layoutX="16.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
+            <FontAwesomeIconView fx:id="TrackattendanceIcon" fill="WHITE" glyphName="BAR_CHART" layoutX="32.0" layoutY="513.0" size="18" />
+            <Button fx:id="trackAttendanceButton" layoutX="16.0" layoutY="482.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
+            <FontAwesomeIconView fx:id="GeneratereportIcon" fill="WHITE" glyphName="SHIELD" layoutX="35.0" layoutY="580.0" selectionEnd="2" size="20" wrappingWidth="25.0" />
+            <Button fx:id="generateReportsButton" layoutX="16.0" layoutY="547.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
             <Button fx:id="backToLogin" layoutX="-4.0" layoutY="1.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="38.0" style="-fx-background-radius: 50px; -fx-background-color: transpaent;" textFill="WHITE">
 
             </Button>
-            <FontAwesomeIconView fill="#fffefe" glyphName="GROUP" layoutX="39.0" layoutY="319.0" size="25" />
-            <Text fill="WHITE" layoutX="50.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE CLUB" textAlignment="CENTER" wrappingWidth="144.0">
+            <FontAwesomeIconView fill="#fffefe" glyphName="GROUP" layoutX="39.0" layoutY="319.0" size="20" />
+            <Text fx:id="CreateClubtxt" fill="WHITE" layoutX="50.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE CLUB" textAlignment="CENTER" wrappingWidth="144.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
+            <Button fx:id="joinClubButton" layoutX="15.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="47.0" prefWidth="195.0" styleClass="option_button1" />
+            <Button fx:id="joinEventButton" layoutX="17.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="38.0" prefWidth="195.0" styleClass="option_button1" />
          </children>
       </AnchorPane>
-      <FontAwesomeIconView glyphName="SHIELD" layoutX="513.0" layoutY="163.0" selectionEnd="2" />
+      <AnchorPane fx:id="pnCreateClub" layoutX="231.0" layoutY="4.0" prefHeight="690.0" prefWidth="920.0" style="-fx-background-color: white;">
+         <children>
+            <Text layoutX="358.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Club Pane">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pnDashboard" layoutX="231.0" layoutY="4.0" prefHeight="690.0" prefWidth="920.0" style="-fx-background-color: white;">
+         <children>
+            <Text layoutX="346.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DashBoard Pane">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pnClubDetails" layoutX="231.0" layoutY="4.0" prefHeight="690.0" prefWidth="920.0" style="-fx-background-color: white;">
+         <children>
+            <Text layoutX="346.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ClubDetails Pane">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pnScheduleEvent" layoutX="241.0" layoutY="14.0" prefHeight="690.0" prefWidth="920.0" style="-fx-background-color: white;">
+         <children>
+            <Text layoutX="346.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ScheduleEvent Pane">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pnEventDetails" layoutX="231.0" layoutY="4.0" prefHeight="690.0" prefWidth="920.0" style="-fx-background-color: white;">
+         <children>
+            <Text layoutX="346.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EventDetails Pane">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pnTrackAttendance" layoutX="231.0" layoutY="4.0" prefHeight="690.0" prefWidth="920.0" style="-fx-background-color: white;">
+         <children>
+            <Text layoutX="346.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TrackAttendance Pane">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pnGenerateReports" layoutX="231.0" layoutY="4.0" prefHeight="690.0" prefWidth="920.0" style="-fx-background-color: white;">
+         <children>
+            <Text layoutX="309.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GenerateReports Pane">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pnJoinClub" layoutX="231.0" layoutY="4.0" prefHeight="690.0" prefWidth="920.0" style="-fx-background-color: white;">
+         <children>
+            <Text layoutX="346.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JoinClub Pane">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pnJoinEvent" layoutX="231.0" layoutY="4.0" prefHeight="690.0" prefWidth="920.0" style="-fx-background-color: white;">
+         <children>
+            <Text layoutX="346.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JoinEvent Pane">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

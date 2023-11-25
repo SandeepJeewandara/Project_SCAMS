@@ -10,6 +10,11 @@ public class Event {
     private String eventDescription;
     private Club club;
 
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
     public Event(int eventId, String eventName, Date eventDate, String eventDescription, Club club) {
         this.eventId = eventId;
         this.eventName = eventName;
