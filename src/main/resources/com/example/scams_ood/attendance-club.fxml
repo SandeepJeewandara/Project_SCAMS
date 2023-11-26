@@ -6,8 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -16,27 +14,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.AttendanceEventController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="920.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.AttendanceEventController">
     <children>
         <BorderPane layoutY="-7.0" prefHeight="713.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <left>
-                <VBox prefHeight="700.0" prefWidth="235.0" styleClass="right-bar" stylesheets="@attendanceClub.css" BorderPane.alignment="CENTER">
-                    <children>
-                  <Button fx:id="backButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="95.0" stylesheets="@attendanceClub.css" text="Back">
-                     <VBox.margin>
-                        <Insets left="58.0" right="25.0" top="650.0" />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="font-normal" />
-                        <String fx:value="back-button" />
-                     </styleClass>
-                     <padding>
-                        <Insets bottom="10.0" top="10.0" />
-                     </padding>
-                  </Button>
-                    </children>
-                </VBox>
-            </left>
             <center>
                 <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
@@ -48,12 +28,6 @@
                                 <Label prefHeight="66.0" prefWidth="57.0" styleClass="font-normal" stylesheets="@attendanceClub.css" text="Language" />
                                 <Label prefHeight="66.0" prefWidth="57.0" styleClass="font-normal" stylesheets="@attendanceClub.css" text="English" textFill="#a89999" underline="true" />
                                 <Pane prefHeight="80.0" prefWidth="592.0" stylesheets="@attendanceClub.css" />
-                                <Label prefHeight="66.0" prefWidth="84.0" styleClass="font-normal" stylesheets="@attendanceClub.css" text="My Account" />
-                                <ImageView id="user-image" fitHeight="80.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@user_icon.jpg" />
-                                    </image>
-                                </ImageView>
                             </children>
                             <opaqueInsets>
                                 <Insets top="10.0" />
@@ -117,7 +91,7 @@
                               <String fx:value="submit-button" />
                            </styleClass>
                            <HBox.margin>
-                              <Insets top="20.0" />
+                              <Insets right="10.0" top="30.0" />
                            </HBox.margin>
                         </Button>
                             </children>
