@@ -1,6 +1,6 @@
 package com.example.scams_ood;
 
-import Features.DatabaseConnectionTest;
+import Database.DatabaseConnectionTest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -151,7 +151,7 @@ public class SignUpController {
     @FXML
     public void signInRelease(MouseEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("sign-in.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Sign_in.fxml"));
             Parent root = loader.load();
             Scene anotherScene = new Scene(root);
             Stage stage = (Stage) ((Hyperlink) event.getSource()).getScene().getWindow();
@@ -172,7 +172,7 @@ public class SignUpController {
         cancelButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("sign-in.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Sign_in.fxml"));
             Parent root = loader.load();
             Scene anotherScene = new Scene(root);
             Stage stage = (Stage) cancelButton.getScene().getWindow();
