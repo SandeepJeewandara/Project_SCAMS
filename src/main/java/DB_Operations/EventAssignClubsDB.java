@@ -1,7 +1,7 @@
 package DB_Operations;
 
 import com.example.scams_ood.Event;
-import com.example.scams_ood.ClubController;
+import com.example.scams_ood.EventController;
 
 import java.sql.*;
 import java.util.ArrayList;

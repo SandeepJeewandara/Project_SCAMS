@@ -14,6 +14,8 @@ public class Student {
     private String studentGmail;
     private List<Club> clubsJoined;
 
+    private CheckBox attendance;
+
     //private BooleanProperty attendance;
 
     public Student(String studentId, String studentName, Date studentDob, String studentGmail, List<Club> clubsJoined) {
@@ -22,10 +24,13 @@ public class Student {
         this.studentDob = studentDob;
         this.studentGmail = studentGmail;
         this.clubsJoined = clubsJoined;
+        this.attendance = new CheckBox();
     }
 
     public Student() {
+        this.attendance =new CheckBox();
     }
+
 
     /*
     public BooleanProperty attendanceProperty(){
@@ -77,5 +82,11 @@ public class Student {
         this.clubsJoined = clubsJoined;
     }
 
+    public CheckBox getAttendance() {
+        return attendance;
+    }
 
+    public void setAttendance(CheckBox attendance) {
+        this.attendance = attendance;
+    }
 }

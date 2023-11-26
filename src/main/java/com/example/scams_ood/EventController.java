@@ -1,9 +1,5 @@
 package com.example.scams_ood;
 
-import DB_Operations.EventAssignClubsDB;
-import Features.DatabaseConnectionTest;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,52 +8,41 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 
-public class ClubController {
+public class EventController {
 
 
     @FXML
-    private Button clubButton;
+    private ImageView Image;
 
     @FXML
-    private ImageView clubImage;
+    private Button eventButton;
 
     @FXML
-    private Label clubName;
+    private Label eventId;
 
     @FXML
-    private Scene scene;
+    private Label eventName;
 
-    @FXML
-    private Label clubId;
+    private Event event;
 
-    private Club club;
-
-    public void clubIconSetData(Club club){
-        this.club = club;
-        clubName.setText(club.getClubName());
-        clubId.setText((club.getClubId()));
+    public void eventIconSetData(Event event){
+        this.event = event;
+        eventName.setText(event.getEventName());
+        eventId.setText((event.getEventId()));
 
         //Image image = new Image(getClass().getResourceAsStream(club.getImageLogoPath()));
         //clubImage.setImage(image);
 
     }
+
+
 
 
 
@@ -85,8 +70,8 @@ public class ClubController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/AttendanceTracking.fxml"));
         Parent root = loader.load();
 
-        AttendanceTrackingController attendanceController = loader.getController();
-        attendanceController.setClubId(club.getClubId());
+        AttendanceTrackingController attendanceTrackingController = loader.getController();
+        attendanceTrackingController.setStudentDataInTable(eventId);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("SCAMS - Attendance Tracking");

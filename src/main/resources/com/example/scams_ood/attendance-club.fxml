@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.AttendanceClubController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.AttendanceEventController">
     <children>
         <BorderPane layoutY="-7.0" prefHeight="713.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -59,7 +59,7 @@
                                 <Insets top="10.0" />
                             </opaqueInsets>
                         </HBox>
-                        <HBox prefHeight="80.0" prefWidth="180.0" styleClass="track-student-label" stylesheets="@attendanceClub.css">
+                        <HBox prefHeight="100.0" prefWidth="875.0" styleClass="track-student-label" stylesheets="@attendanceClub.css">
                             <VBox.margin>
                                 <Insets left="20.0" right="20.0" top="18.0" />
                             </VBox.margin>
@@ -88,8 +88,8 @@
                                     <children>
                                         <VBox alignment="CENTER" prefHeight="70.0" prefWidth="299.0" styleClass="unity-attendance" stylesheets="@attendanceClub.css">
                                             <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="203.0" styleClass="font-topic" stylesheets="@attendanceClub.css" text="Enter AdvisorID " textFill="WHITE" />
-                                    <TextField fx:id="advisorIdTextField" prefHeight="25.0" prefWidth="236.0" styleClass="club-item" stylesheets="@attendanceClub.css">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="203.0" styleClass="font-topic" stylesheets="@attendanceClub.css" text="Enter Club ID " textFill="WHITE" />
+                                    <TextField fx:id="clubIdTextField" prefHeight="25.0" prefWidth="236.0" styleClass="club-item" stylesheets="@attendanceClub.css">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="15.0" right="15.0" />
                                        </VBox.margin>
@@ -111,7 +111,7 @@
                                     </opaqueInsets>
                                 </HBox>
                         <Pane prefHeight="80.0" prefWidth="36.0" />
-                        <Button fx:id="advisorSubmitButton" mnemonicParsing="false" onAction="#displayAdvisorClub" prefHeight="35.0" prefWidth="95.0" stylesheets="@attendanceClub.css" text="Submit" textFill="#f2eded">
+                        <Button fx:id="clubSubmitButton" mnemonicParsing="false" onAction="#displayClubEvent" prefHeight="35.0" prefWidth="95.0" stylesheets="@attendanceClub.css" text="Submit" textFill="#f2eded">
                            <styleClass>
                               <String fx:value="font-normal" />
                               <String fx:value="submit-button" />
@@ -127,9 +127,9 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@attendanceClub.css" VBox.vgrow="ALWAYS">
                             <children>
-                                <ScrollPane fx:id="clubScroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@attendanceClub.css">
+                                <ScrollPane fx:id="eventScroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@attendanceClub.css">
                                     <content>
-                                        <GridPane fx:id="clubGrid" prefHeight="17.0" prefWidth="39.0">
+                                        <GridPane fx:id="eventGrid" prefHeight="17.0" prefWidth="39.0">
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
                                  </rowConstraints>
