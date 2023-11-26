@@ -84,6 +84,8 @@ public class ClubAdvisor {
         }
     }
 
+
+
     public ClubAdvisor(String advisorId, String name, String gender, String gmail, Date DOB, String username, String password) {
         this.advisorId = advisorId;
         this.name = name;

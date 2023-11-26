@@ -77,6 +77,10 @@ public class Student {
         this.clubsJoined = clubsJoined;
     }
 
+    public void joinClub(Club club) {
+        clubsJoined.add(club);
+    }
+
     public Student(String studentId, String studentName, String gender, String gmail, Date DOB, String username, String password) {
         this.studentId = studentId;
         this.studentName = studentName;
