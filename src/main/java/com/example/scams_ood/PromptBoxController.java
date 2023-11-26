@@ -1,40 +1,21 @@
 package com.example.scams_ood;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 
 public class PromptBoxController {
-   
-
+    @FXML
     public Button okButton;
-    public AnchorPane promptBoxPain;
-    public Label promptText;
 
-
-    public void onOkButtonClick(ActionEvent actionEvent) {
-        Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
-        stage.close();
+    @FXML
+    public void okPress() {
+        okButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
     }
 
-    public void setPromptText(String  message) {
-        promptText.setText(message);
-    }
-
-    public void showPromptMessage(String message) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("PromptBox.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(loader.load()));
-        PromptBoxController controller = loader.getController();
-        controller.setPromptText(message);
-        stage.setResizable(false);
-        stage.show();
+    @FXML
+    public void okRelease() {
+        okButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
     }
 
 }

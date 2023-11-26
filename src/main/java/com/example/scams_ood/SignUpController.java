@@ -188,6 +188,8 @@ public class SignUpController {
         Toggle selectedToggle = genderGroup.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
 
+        
+
         try {
             Connection connection = DatabaseConnectionTest.getConnection();
 
