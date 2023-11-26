@@ -1,0 +1,181 @@
+/* New Styles */
+
+.menuButton_1{
+    -fx-cursor:pointer;
+}
+
+.option_Button_main{
+    -fx-background-color:linear-gradient(to bottom right, #433169, #b435cb);
+    -fx-text-fill: white;
+    -fx-background-radius: 50;
+}
+
+ #logo{
+     -fx-background-color: white;
+     -fx-background-radius: 50px;
+ }
+
+.background{
+}
+
+.navigation_pane{
+    -fx-background-color:linear-gradient(to bottom right, #433169, #b435cb);
+}
+
+
+.profile_picture{
+    -fx-background-color: white;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+
+.option_button{
+    -fx-background-color: black;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-border-color: white;
+    -fx-border-width:2px ;
+    -fx-cursor:pointer;
+}
+
+.option_button1{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-cursor: pointer;
+}
+
+.option_button1:hover{
+    -fx-background-color: white;
+    -fx-opacity:.2;
+    -fx-background-radius:20px;
+}
+
+
+.title_pane{
+    -fx-background-color:linear-gradient(to right, #433169, #b435cb);
+}
+
+
+.item-pane{
+    -fx-border-color: white;
+    -fx-border-radius: 20;
+    -fx-background-color: rgba(255, 255, 255, 1.0);
+    -fx-background-radius: 20;
+}
+
+
+
+.item-header{
+    -fx-background-color: red;
+}
+
+.function-button{
+    -fx-background-color:#AB7595;
+    -fx-background-radius: 20px;
+    -fx-cursor: pointer;
+}
+.delete-button{
+    -fx-background-color:#EB3838;
+    -fx-cursor: pointer;
+}
+
+.save-button{
+    -fx-background-color: #72be08;
+    -fx-cursor: pointer;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.prompt-Background{
+    -fx-background-color: #D3D3D3;
+}
+
+.image-view{
+    -fx-background-color: #D3D3D3;
+}
+
+.addDealerBackground{
+    -fx-background-color: #D3D3D3;
+}
+
+.dealerItemsPane{
+    -fx-background-color: #D3D3D3;
+}
+
+.selectedDealers{
+    -fx-background-color: rgba(191, 90, 211, 0.82);
+    -fx-background-radius: 20px;
+}
+
+.right-bar {
+    -fx-background-color: linear-gradient(#813EB6, #97349e, #ad3cb5);
+}
+
+.font-topic {
+    -fx-font-size: 24;
+    -fx-font-family: Segoe UI Semibold;
+}
+
+.transparent {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+.font-normal {
+    -fx-font-size: 12;
+    -fx-font-family: Segoe UI Semibold;
+}
+
+.track-student-label {
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.student-vBox {
+    -fx-background-color: #5EC5D4;
+    -fx-background-radius: 30;
+}
+
+.unity-attendance {
+    -fx-background-color: #A782EC;
+    -fx-background-radius: 30;
+}
+
+.club-1-button {
+    -fx-color: #813EB6;
+    -fx-transition-duration: 0.4s;
+    -fx-background-radius: 30;
+    -fx-cursor: pointer;
+}
+
+.club-1-button:hover {
+    -fx-background-color: #ad3cb5;
+
+}
+
+.back-button {
+    -fx-color: #000080;
+    -fx-transition-duration: 0.4s;
+    -fx-background-radius: 30;
+    -fx-cursor: pointer;
+}
+
+.submit-button {
+    -fx-background-color: #006CA5;
+    -fx-transition-duration: 0.4s;
+    -fx-background-radius: 30;
+    -fx-cursor: pointer;
+
+}
+
+.submit-button:hover {
+    -fx-background-color: #ad3cb5;
+}
+
+.club-item {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 4, 4);
+}
+
+
+

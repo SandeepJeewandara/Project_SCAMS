@@ -11,72 +11,72 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="690.0" prefWidth="920.0" style="-fx-blend-mode: transparent;" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.CreateClubController">
+<AnchorPane prefHeight="690.0" prefWidth="920.0" style="-fx-blend-mode: transparent;" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.addController">
     <children>
-        <Text layoutX="224.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter New Event Details" textAlignment="CENTER" wrappingWidth="600.3999999999999">
+        <Text fx:id="codeTitle" layoutX="183.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter New Event Details" textAlignment="CENTER" wrappingWidth="600.3999999999999">
             <font>
                 <Font name="Segoe UI Semibold" size="22.0" />
             </font>
         </Text>
-        <AnchorPane layoutX="69.0" layoutY="125.0" prefHeight="436.0" prefWidth="791.0">
+        <AnchorPane layoutX="49.0" layoutY="150.0" prefHeight="481.0" prefWidth="791.0">
             <children>
-                <Text layoutX="25.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event ID       " wrappingWidth="125.0">
+                <Text fx:id="codeId" layoutX="25.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event ID" wrappingWidth="125.0">
                     <font>
                         <Font name="Segoe UI Semibold" size="16.0" />
                     </font>
                 </Text>
-                <Text layoutX="25.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Name      " wrappingWidth="125.0">
+                <Text fx:id="codeName" layoutX="25.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Name      " wrappingWidth="125.0">
                     <font>
                         <Font name="Segoe UI Semibold" size="16.0" />
                     </font>
                 </Text>
-                <Text layoutX="25.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Type" wrappingWidth="125.0">
+                <Text fx:id="codeType" layoutX="25.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Type" wrappingWidth="125.0">
                     <font>
                         <Font name="Segoe UI Semibold" size="16.0" />
                     </font>
                 </Text>
-                <Text layoutX="25.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Date " wrappingWidth="125.0">
+                <Text fx:id="codeDate" layoutX="25.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Date " wrappingWidth="125.0">
                     <font>
                         <Font name="Segoe UI Semibold" size="16.0" />
                     </font>
                 </Text>
-                <Text layoutX="25.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor ID" wrappingWidth="125.0">
+                <Text fx:id="codeClubId" layoutX="24.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club ID" wrappingWidth="125.0">
                     <font>
                         <Font name="Segoe UI Semibold" size="16.0" />
                     </font>
                 </Text>
-                <TextField fx:id="clubIDInput" layoutX="150.0" layoutY="7.0" prefHeight="26.0" prefWidth="201.0" />
-                <TextField fx:id="clubNameInput" layoutX="150.0" layoutY="47.0" prefWidth="204.0" />
-                <DatePicker fx:id="clubStartDateInput" layoutX="149.0" layoutY="128.0" prefHeight="26.0" prefWidth="201.0" />
-                <Text layoutX="25.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Description       " wrappingWidth="181.53329467773438">
+                <TextField fx:id="eventIdInput" layoutX="150.0" layoutY="7.0" prefHeight="26.0" prefWidth="201.0" />
+                <TextField fx:id="eventNameInput" layoutX="150.0" layoutY="47.0" prefWidth="204.0" />
+                <DatePicker fx:id="eventDateInput" layoutX="149.0" layoutY="127.0" prefHeight="26.0" prefWidth="201.0" />
+                <Text fx:id="CodeDescription" layoutX="25.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Description       " wrappingWidth="181.53329467773438">
                     <font>
                         <Font name="Segoe UI Semibold" size="16.0" />
                     </font>
                 </Text>
-                <TextArea fx:id="clubDescriptionInput" layoutX="23.0" layoutY="307.0" prefHeight="102.0" prefWidth="340.0" />
-                <Button fx:id="CreateButton" layoutX="404.0" layoutY="382.0" mnemonicParsing="false" onAction="#onCreateBtnClick" prefHeight="26.0" prefWidth="71.0" styleClass="function-button" text="Create" textFill="WHITE">
+                <TextArea fx:id="eventDescriptionInput" layoutX="23.0" layoutY="315.0" prefHeight="102.0" prefWidth="340.0" />
+                <Button fx:id="CreateButton" layoutX="404.0" layoutY="418.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" styleClass="function-button" text="Create" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <ComboBox fx:id="ClubAdvisorInput" layoutX="150.0" layoutY="204.0" prefHeight="27.0" prefWidth="201.0" />
-                <ChoiceBox fx:id="clubTypeInput" layoutX="150.0" layoutY="88.0" onAction="#onClubTypeSelected" prefHeight="27.0" prefWidth="201.0">
+                <ComboBox fx:id="clubIdInput" layoutX="150.0" layoutY="243.0" prefHeight="27.0" prefWidth="201.0" />
+                <ChoiceBox fx:id="eventTypeInput" layoutX="150.0" layoutY="87.0" prefHeight="27.0" prefWidth="201.0">
                     <String fx:value="Sport" />
                     <String fx:value="Extra-Curricular" />
                     <String fx:value="Academic" />
                 </ChoiceBox>
-            <Text layoutX="25.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Time      " wrappingWidth="125.0">
-               <font>
-                  <Font name="Segoe UI Semibold" size="16.0" />
-               </font>
-            </Text>
-            <TextField fx:id="clubNameInput1" layoutX="148.0" layoutY="166.0" prefWidth="204.0" promptText="12.00" />
-            <Text layoutX="24.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club ID" wrappingWidth="125.0">
-               <font>
-                  <Font name="Segoe UI Semibold" size="16.0" />
-               </font>
-            </Text>
-            <ComboBox fx:id="ClubAdvisorInput1" layoutX="149.0" layoutY="243.0" prefHeight="27.0" prefWidth="201.0" />
+                <Text fx:id="codeAdvisorId" layoutX="24.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor ID" wrappingWidth="125.0">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="16.0" />
+                    </font>
+                </Text>
+                <ComboBox fx:id="advisorIdInput" layoutX="150.0" layoutY="203.0" prefHeight="27.0" prefWidth="201.0" />
+                <Text fx:id="codeTime" layoutX="24.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Time" wrappingWidth="125.0">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="16.0" />
+                    </font>
+                </Text>
+                <TextField fx:id="eventTimeInput" layoutX="149.0" layoutY="165.0" prefWidth="204.0" promptText="22:00" />
             </children>
         </AnchorPane>
     </children>
