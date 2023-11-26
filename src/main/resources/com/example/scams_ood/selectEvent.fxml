@@ -76,7 +76,7 @@
                         <Pane layoutX="246.0" layoutY="10.0" prefHeight="150.0" prefWidth="124.0" />
                         <Label styleClass="font-topic" stylesheets="@Styles.css" text="Meeting" />
                         <Pane layoutX="240.0" layoutY="10.0" prefHeight="150.0" prefWidth="98.0" />
-                        <Button fx:id="addMeetingButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" stylesheets="@Styles.css" text="ADD" textFill="#f2eded">
+                        <Button fx:id="addMeetingButton" mnemonicParsing="false" onAction="#setAddMeetingButton" prefHeight="45.0" prefWidth="120.0" stylesheets="@Styles.css" text="ADD" textFill="#f2eded">
                            <styleClass>
                               <String fx:value="font-normal" />
                               <String fx:value="submit-button" />
@@ -109,7 +109,7 @@
                               <Insets />
                            </HBox.margin>
                         </Pane>
-                        <Button fx:id="addActivityButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" stylesheets="@Styles.css" text="ADD" textFill="#f2eded">
+                        <Button fx:id="addActivityButton" mnemonicParsing="false" onAction="#setAddActivityButton" prefHeight="45.0" prefWidth="120.0" stylesheets="@Styles.css" text="ADD" textFill="#f2eded">
                            <styleClass>
                               <String fx:value="font-normal" />
                               <String fx:value="submit-button" />
