@@ -78,7 +78,6 @@ public class ClubAdvisor {
         this.managedClubs = managedClubs;
     }
 
-
     public void addManagedClub(Club club) {
         if (!managedClubs.contains(club)) {
             managedClubs.add(club);
@@ -93,7 +92,7 @@ public class ClubAdvisor {
         this.DOB = DOB;
         Username = username;
         this.password = password;
-        this.managedClubs=new ArrayList<>();
+        this.managedClubs = new ArrayList<>();
     }
 
     public ClubAdvisor(String advisorId, String name, String username, String password) {
@@ -116,3 +115,4 @@ public class ClubAdvisor {
                 '}';
     }
 }
+
