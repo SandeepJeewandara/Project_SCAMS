@@ -184,11 +184,13 @@ public class SignUpController {
     }
 
     @FXML
-    void signUpRelease() {
+    void signUpRelease() throws IOException {
         Toggle selectedToggle = genderGroup.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
 
-        
+        PromptBoxController promptBoxController = new PromptBoxController();
+
+        promptBoxController.showPromptMessage("Successfully Signed Up!");
 
         try {
             Connection connection = DatabaseConnectionTest.getConnection();

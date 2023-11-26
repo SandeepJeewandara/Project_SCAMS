@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="promptBoxPain" prefHeight="150.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.PromptBoxController">
    <children>
-      <Label fx:id="promptText" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="31.0" prefHeight="22.0" prefWidth="400.0" text="Successfully Signed Up!" textAlignment="CENTER">
+      <Label fx:id="promptText" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="31.0" prefHeight="22.0" prefWidth="400.0" text="Text" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Semibold" size="15.0" />
          </font>
