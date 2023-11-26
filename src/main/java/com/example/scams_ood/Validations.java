@@ -11,9 +11,9 @@ public class Validations {
         });
     }
 
-    public static void validInput(TextField text) {
+    public static void validInput(TextField text, String validation) {
         String input = text.getText();
-        if (!input.matches("\\d*\\.?\\d*")) {
+        if (!input.matches(validation)) {
             text.clear();
         }
     }
