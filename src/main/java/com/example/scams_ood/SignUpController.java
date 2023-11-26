@@ -1,7 +1,6 @@
 package com.example.scams_ood;
 
 import Features.DatabaseConnectionTest;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import static com.example.scams_ood.Validations.addTextLimiter;
+import static com.example.scams_ood.Validations.validInput;
 
 public class SignUpController {
 
@@ -69,10 +69,14 @@ public class SignUpController {
     private Text typeMessage;
 
     @FXML
+    private Text emailMessage;
+
+    @FXML
     private ToggleGroup genderGroup;
 
     @FXML
     private void initialize() {
+
         addTextLimiter(idFill, 4);
         addTextLimiter(dateOfBirthPicker.getEditor(), 10);
 
@@ -91,6 +95,12 @@ public class SignUpController {
         reEnterPasswordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
     }
 
+    @FXML
+    void validTyped() {
+        validInput(idFill, "[SA0-9]*");
+        validInput(emailFill, "[a-z0-9@._%-+]*");
+    }
+
     private void enableSignUp() {
         boolean firstnameFilled = !firstNameFill.getText().trim().isEmpty();
         boolean lastnameFilled = !LastNameFill.getText().trim().isEmpty();
@@ -107,7 +117,7 @@ public class SignUpController {
     }
 
     @FXML
-    private void typeSelect(ActionEvent event) {
+    private void typeSelect() {
         firstNameFill.setDisable(false);
         LastNameFill.setDisable(false);
         maleRadio.setDisable(false);
@@ -121,7 +131,7 @@ public class SignUpController {
     }
 
     @FXML
-    public void advisorPress(MouseEvent event) {
+    public void advisorPress() {
         advisorButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
         studentButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
         idText.setText("Staff ID:");
@@ -130,7 +140,7 @@ public class SignUpController {
     }
 
     @FXML
-    public void studentPress(MouseEvent event) {
+    public void studentPress() {
         studentButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
         advisorButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
         idText.setText("Student ID:");
@@ -153,12 +163,12 @@ public class SignUpController {
     }
 
     @FXML
-    public void cancelPress(MouseEvent event) {
+    public void cancelPress() {
         cancelButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
     }
 
     @FXML
-    public void cancelRelease(MouseEvent event) {
+    public void cancelRelease() {
         cancelButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
 
         try {
@@ -174,7 +184,7 @@ public class SignUpController {
     }
 
     @FXML
-    void signUpRelease(MouseEvent event) {
+    void signUpRelease() {
         Toggle selectedToggle = genderGroup.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
 

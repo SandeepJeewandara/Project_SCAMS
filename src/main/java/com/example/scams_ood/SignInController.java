@@ -10,9 +10,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+
+import static Features.DatabaseConnectionTest.getConnection;
 
 public class SignInController {
 
@@ -35,25 +35,68 @@ public class SignInController {
     private TextField usernameFill;
 
     @FXML
-    public void exitPress(MouseEvent event) {
+    public void exitPress() {
         exitButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
     }
 
     @FXML
-    public void exitRelease(MouseEvent event) {
+    public void exitRelease() {
         System.exit(0);
         exitButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
     }
 
     @FXML
-    public void signInPress(MouseEvent event) {
-        signInButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
+    public void signInPress() {
+        signInButton.setStyle("-fx-background-color: #690260;" + "-fx-background-radius: 40");
     }
 
     @FXML
-    public void signInRelease(MouseEvent event) {
-        signInButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
+    public void signInRelease() {
+        String username = usernameFill.getText();
+        String password = passwordFill.getText();
+
+        signInButton.setStyle("-fx-background-color: #813EB6;" + "-fx-background-radius: 40");
+
+        if (authenticateUser(username, password)) {
+            // User authentication successful, proceed with your logic (e.g., open a new window)
+            System.out.println("Sign in successful!");
+        } else {
+            // Authentication failed, show an error message or perform other actions
+            System.out.println("Sign in failed!");
+        }
     }
+
+    private boolean authenticateUser(String username, String password) {
+        // Connect to the database
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db", "root", "")) {
+
+            // Prepare the SQL query
+            String query = "SELECT * FROM students WHERE username = ? AND password = ? " +
+                    "UNION " +
+                    "SELECT * FROM advisors WHERE username = ? AND password = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                // Set parameters for the query
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, password);
+                preparedStatement.setString(3, username);
+                preparedStatement.setString(4, password);
+
+                // Execute the query
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    // Check if the result set has any rows
+                    return resultSet.next();
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle database connection or query errors
+        }
+
+        return false;
+    }
+
 
     @FXML
     private void initialize() {
