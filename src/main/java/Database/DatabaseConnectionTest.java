@@ -12,6 +12,7 @@ public class DatabaseConnectionTest {
         String password = "";
 
         try {
+            System.out.println();
             return DriverManager.getConnection(jdbcUrl, username, password);
         } catch (SQLException e) {
 
