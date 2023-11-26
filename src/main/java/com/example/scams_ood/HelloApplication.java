@@ -35,6 +35,7 @@ public class HelloApplication extends Application {
     private void loadLoginOrSignUpPane(Stage stage) {
         try {
             FXMLLoader loginLoader = new FXMLLoader(HelloApplication.class.getResource("Sign_in.fxml"));
+
             Scene loginScene = new Scene(loginLoader.load(), 1150, 700);
             stage.setScene(loginScene);
         } catch (IOException e) {

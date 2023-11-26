@@ -12,6 +12,5 @@ import java.io.IOException;
 public class WelcomeController {
 
     public void OnContinueButtonClick(ActionEvent actionEvent) {
-
     }
 }

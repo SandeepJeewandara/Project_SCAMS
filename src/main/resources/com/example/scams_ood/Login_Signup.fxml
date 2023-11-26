@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1150.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.WelcomeController">
+   <children>
+      <AnchorPane layoutX="582.0" layoutY="33.0" prefHeight="639.0" prefWidth="523.0" style="-fx-background-color: #D3D3D3; -fx-background-radius: 20;">
+         <children>
+            <Text fontSmoothingType="LCD" layoutX="121.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have SCAM Account?" wrappingWidth="371.5830783843994">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+            </Text>
+            <Button fx:id="ContinueButton" layoutX="120.0" layoutY="517.0" mnemonicParsing="false" onAction="#OnContinueButtonClick" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Continue" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma Bold" size="13.5" />
+               </font>
+            </Button>
+            <Button fx:id="ExitButton" layoutX="315.0" layoutY="519.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Exit" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma Bold" size="13.5" />
+               </font>
+            </Button>
+            <Text layoutX="88.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to School Club Activity Managemet System" textAlignment="CENTER" wrappingWidth="380.53668212890625">
+               <font>
+                  <Font name="Microsoft JhengHei" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="121.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to SACMS! Elevate your school club experience with our streamlined management system. From effortless club creation to event scheduling, user-friendly registration, attendance tracking, and insightful reporting, SACMS is your key to a vibrant and engaging extracurricular journey. Join us in shaping memorable school club experiences!" textAlignment="JUSTIFY" wrappingWidth="328.06913757324213">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Text>
+            <TextField fx:id="usernameField" layoutX="117.0" layoutY="369.0" prefHeight="36.0" prefWidth="311.0" promptText="Enter Username" style="-fx-background-radius: 20;" />
+            <PasswordField fx:id="loginPassword" layoutX="120.0" layoutY="416.0" prefHeight="36.0" prefWidth="312.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
+            <Text fontSmoothingType="LCD" layoutX="194.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@SCAMS" textAlignment="CENTER" wrappingWidth="161.44971656799316">
+               <font>
+                  <Font name="Segoe UI Semibold" size="15.0" />
+               </font>
+            </Text>
+            <Button fx:id="CreateAccountButton" layoutX="295.0" layoutY="468.0" mnemonicParsing="false" style="-fx-background-color: trabsparent; -fx-cursor: pointer;" styleClass="menuButton_1" stylesheets="@Styles.css" text="Create Account" textFill="#813eb6">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="471.0" fitWidth="457.0" layoutX="75.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Images/Logo/Animation_3.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
