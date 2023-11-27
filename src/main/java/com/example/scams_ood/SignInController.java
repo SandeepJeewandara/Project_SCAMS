@@ -153,6 +153,5 @@ public class SignInController {
         if (passwordFill.getText().isEmpty()) {
             passwordMessage.setVisible(false);
         }
-
     }
 }

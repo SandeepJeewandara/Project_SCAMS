@@ -13,7 +13,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.example.scams_ood.Validations.addTextLimiter;
 import static com.example.scams_ood.Validations.validInput;
@@ -72,6 +76,12 @@ public class SignUpController {
     private Text emailMessage;
 
     @FXML
+    private Text passwordMessage;
+
+    @FXML
+    private Text idMessage;
+
+    @FXML
     private ToggleGroup userType;
 
     @FXML
@@ -82,6 +92,11 @@ public class SignUpController {
 
         addTextLimiter(idFill, 4);
         addTextLimiter(dateOfBirthPicker.getEditor(), 10);
+        addTextLimiter(firstNameFill, 100);
+        addTextLimiter(LastNameFill, 100);
+        addTextLimiter(emailFill, 150);
+        addTextLimiter(usernameFill, 50);
+        addTextLimiter(passwordFill,50);
 
         genderGroup = new ToggleGroup();
         maleRadio.setToggleGroup(genderGroup);
@@ -96,12 +111,19 @@ public class SignUpController {
         emailFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
         passwordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
         reEnterPasswordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+        idMessage.visibleProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+        emailMessage.visibleProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
+        passwordMessage.visibleProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
     }
 
     @FXML
     void validTyped() {
-        validInput(idFill, "[SA0-9]*");
-        validInput(emailFill, "[a-z0-9@._%-+]*");
+        if (advisorToggle.isSelected()) {
+            validInput(idFill, "[A][0-9]*");
+        }
+        else if (studentToggle.isSelected()) {
+            validInput(idFill, "[S][0-9]*");
+        }
     }
 
     private void enableSignUp() {
@@ -116,7 +138,14 @@ public class SignUpController {
         boolean reEnterPasswordFilled = !reEnterPasswordFill.getText().trim().isEmpty();
 
         signUpButton.setDisable(!(firstnameFilled && lastnameFilled && usernameFilled && genderSelected && idFilled &&
-                dobFilled && emailFilled && passwordFilled && reEnterPasswordFilled));
+                dobFilled && emailFilled && passwordFilled && reEnterPasswordFilled ));
+    }
+    private void disableSignUp() {
+        boolean idMessageVisible = idMessage.isVisible();
+        boolean emailMessageVisible = emailMessage.isVisible();
+        boolean passwordMessageVisible = passwordMessage.isVisible();
+
+        signUpButton.setDisable(idMessageVisible || emailMessageVisible || passwordMessageVisible);
     }
 
     @FXML
@@ -186,10 +215,98 @@ public class SignUpController {
         }
     }
 
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    private boolean isAvailable(String check, String table, String column) {
+        try {
+            Connection connection = DatabaseConnectionTest.getConnection();
+            if (connection == null) {
+                System.err.println("Database connection is null.");
+            }
+            String query = "SELECT * FROM " + table +" WHERE "+ column +" = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, check);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    return resultSet.next();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     @FXML
-    void signUpRelease() throws IOException {
+    void idExit() {
+        String id = idFill.getText();
+        if (idFill.getText().isEmpty()) {
+            idMessage.setVisible(false);
+        }
+        else if (isAvailable(id,"club_advisor", "AdvisorID")) {
+            idMessage.setVisible(true);
+        }
+        else if (isAvailable(id,"student", "StudentID")) {
+            idMessage.setVisible(true);
+        }
+    }
 
+    @FXML
+    void emailExit() {
+        String email = emailFill.getText();
 
+        if (email.isEmpty()) {
+            emailMessage.setVisible(false);
+        }
+        else if (!isValidEmail(email)) {
+            emailMessage.setText("*Email not valid");
+            emailMessage.setVisible(true);
+        }
+        else if (isAvailable(email,"club_advisor", "Email")) {
+            emailMessage.setVisible(true);
+        }
+        else if (isAvailable(email,"student", "Email")) {
+            emailMessage.setVisible(true);
+        }
+    }
+
+    @FXML
+    public void hiddenError() {
+        if (idFill.getText().isEmpty()) {
+            idMessage.setVisible(false);
+        }
+        if (reEnterPasswordFill.getText().isEmpty()) {
+            passwordMessage.setVisible(false);
+        }
+        if (emailFill.getText().isEmpty()) {
+            emailMessage.setVisible(false);
+        }
+    }
+
+    @FXML
+    public void passwordExit() {
+        if (reEnterPasswordFill.getText().isEmpty()) {
+            passwordMessage.setVisible(false);
+        }
+        else if (!(Objects.equals(passwordFill.getText(), reEnterPasswordFill.getText()))) {
+            passwordMessage.setVisible(true);
+        }
+        disableSignUp();
+    }
+
+    @FXML
+    public void signUpPress() {
+        signUpButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
+    }
+
+    @FXML
+    public void signUpRelease() throws IOException {
         Toggle selectedToggle = genderGroup.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
 
@@ -197,6 +314,8 @@ public class SignUpController {
         promptBoxController.showPromptMessage("Successfully Signed Up!");
 
         StoreUserData storeUserData = new StoreUserData();
+
+        signUpButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
 
         if (advisorToggle.isSelected()) {
             storeUserData.setUserType("club_advisor", "AdvisorID", "Username", idFill, firstNameFill, LastNameFill, selectedRadioButton,

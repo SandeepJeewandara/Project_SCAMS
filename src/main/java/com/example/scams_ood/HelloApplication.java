@@ -10,8 +10,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-
-
 public class HelloApplication extends Application {
 
     @Override
@@ -29,7 +27,6 @@ public class HelloApplication extends Application {
                 event -> loadLoginOrSignUpPane(stage)
         ));
         timeline.play();
-
     }
 
     private void loadLoginOrSignUpPane(Stage stage) {

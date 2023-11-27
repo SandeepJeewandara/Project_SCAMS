@@ -64,8 +64,8 @@
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <TextField fx:id="idFill" disable="true" layoutX="210.0" layoutY="317.0" onKeyTyped="#validTyped" prefHeight="36.0" prefWidth="286.0" promptText="Ex: S123" style="-fx-background-radius: 20;" />
-      <TextField fx:id="emailFill" disable="true" layoutX="210.0" layoutY="423.0" onKeyTyped="#validTyped" prefHeight="36.0" prefWidth="286.0" promptText="Ex: john.wick@scams.com" style="-fx-background-radius: 20;" />
+      <TextField fx:id="idFill" disable="true" layoutX="210.0" layoutY="317.0" onKeyPressed="#hiddenError" onKeyTyped="#validTyped" onMouseExited="#idExit" prefHeight="36.0" prefWidth="286.0" promptText="Ex: S123" style="-fx-background-radius: 20;" />
+      <TextField fx:id="emailFill" disable="true" layoutX="210.0" layoutY="423.0" onKeyPressed="#hiddenError" onKeyTyped="#validTyped" onMouseExited="#emailExit" prefHeight="36.0" prefWidth="286.0" promptText="Ex: john.wick@scams.com" style="-fx-background-radius: 20;" />
       <DatePicker fx:id="dateOfBirthPicker" disable="true" layoutX="210.0" layoutY="370.0" onKeyTyped="#validTyped" prefHeight="36.0" prefWidth="286.0" promptText="MM/DD/YYYY" />
       <Button fx:id="cancelButton" layoutX="122.0" layoutY="605.0" mnemonicParsing="false" onMousePressed="#cancelPress" onMouseReleased="#cancelRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Cancel" textFill="WHITE">
          <font>
@@ -75,7 +75,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="signUpButton" disable="true" layoutX="299.0" layoutY="605.0" mnemonicParsing="false" onMouseReleased="#signUpRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Sign Up" textFill="WHITE">
+      <Button fx:id="signUpButton" disable="true" layoutX="299.0" layoutY="605.0" mnemonicParsing="false" onMousePressed="#signUpPress" onMouseReleased="#signUpRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Sign Up" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
@@ -83,12 +83,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" wrappingWidth="259.0">
+      <Text fx:id="idMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" visible="false" wrappingWidth="259.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>
       </Text>
-      <Text fx:id="emailMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" wrappingWidth="259.0">
+      <Text fx:id="emailMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" visible="false" wrappingWidth="259.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>
@@ -115,7 +115,7 @@
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <PasswordField fx:id="reEnterPasswordFill" disable="true" layoutX="210.0" layoutY="529.0" prefHeight="36.0" prefWidth="286.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
+      <PasswordField fx:id="reEnterPasswordFill" disable="true" layoutX="210.0" layoutY="529.0" onKeyPressed="#hiddenError" onMouseExited="#passwordExit" prefHeight="36.0" prefWidth="286.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
       <Text fontSmoothingType="LCD" layoutX="194.0" layoutY="595.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already Registered? " wrappingWidth="113.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
@@ -132,7 +132,7 @@
             <ToggleGroup fx:id="genderGroup" />
          </toggleGroup></RadioButton>
       <RadioButton fx:id="femaleRadio" disable="true" layoutX="301.0" layoutY="228.0" mnemonicParsing="false" text="Female" toggleGroup="$genderGroup" />
-      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="219.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Password not matching" wrappingWidth="259.0">
+      <Text fx:id="passwordMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="219.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Password not matching" visible="false" wrappingWidth="259.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>

@@ -4,14 +4,15 @@ import Database.DatabaseConnectionTest;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.RadialGradient;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StoreUserData {
-    public void setUserType(String name, String id, String userName, TextField field1, TextField field2, TextField field3, RadioButton radio4, TextField field5,
+    public void setUserType(String name, String id, String userName, TextField field1, TextField field2,
+                            TextField field3, RadioButton radio4, TextField field5,
                             DatePicker picker6, TextField field7, TextField field8) {
         try {
             Connection connection = DatabaseConnectionTest.getConnection();
@@ -36,7 +37,7 @@ public class StoreUserData {
 
                     preparedStatement.executeUpdate();
 
-                    System.out.println("Club details inserted into the database successfully!");
+                    System.out.println("User details inserted into the database successfully!");
                 }
             } catch (SQLException e) {
                 System.err.println("Error inserting user details into the database: " + e.getMessage());

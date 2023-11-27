@@ -12,7 +12,7 @@
             <Font name="Segoe UI Semibold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="okButton" layoutX="160.0" layoutY="82.0" mnemonicParsing="false" onKeyPressed="#okPress" onKeyReleased="#okRelease" prefHeight="47.0" prefWidth="77.0" style="-fx-background-radius: 40; -fx-background-color: #813EB6;" text="OK" textFill="#fafafa">
+      <Button fx:id="okButton" layoutX="160.0" layoutY="82.0" mnemonicParsing="false" onMousePressed="#okPress" onMouseReleased="#okRelease" prefHeight="47.0" prefWidth="77.0" style="-fx-background-radius: 40; -fx-background-color: #813EB6;" text="OK" textFill="#fafafa">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
