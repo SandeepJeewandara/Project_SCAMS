@@ -7,6 +7,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,22 +22,6 @@
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <Button fx:id="studentButton" layoutX="300.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#studentPress" prefHeight="23.0" prefWidth="73.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Student" textFill="WHITE">
-         <font>
-            <Font name="Tahoma Bold" size="13.5" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="advisorButton" layoutX="172.0" layoutY="72.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#advisorPress" prefHeight="28.0" prefWidth="73.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Advisor" textFill="WHITE">
-         <font>
-            <Font name="Tahoma Bold" size="13.5" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Text fontSmoothingType="LCD" layoutX="169.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up to SCAMS" wrappingWidth="204.0">
          <font>
             <Font name="Segoe UI Semibold" size="24.0" />
@@ -141,13 +127,35 @@
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <RadioButton fx:id="maleRadio" disable="true" layoutX="210.0" layoutY="228.0" mnemonicParsing="false" text="Male" />
-      <RadioButton fx:id="femaleRadio" disable="true" layoutX="301.0" layoutY="228.0" mnemonicParsing="false" text="Female" />
+      <RadioButton fx:id="maleRadio" disable="true" layoutX="210.0" layoutY="228.0" mnemonicParsing="false" text="Male">
+         <toggleGroup>
+            <ToggleGroup fx:id="genderGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="femaleRadio" disable="true" layoutX="301.0" layoutY="228.0" mnemonicParsing="false" text="Female" toggleGroup="$genderGroup" />
       <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="219.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Password not matching" wrappingWidth="259.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>
       </Text>
+      <ToggleButton fx:id="studentToggle" layoutX="297.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#studentPress" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Student" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Tahoma Bold" size="13.5" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="userType" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton fx:id="advisorToggle" layoutX="176.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#advisorPress" prefHeight="28.0" prefWidth="72.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Advisor" textFill="WHITE" toggleGroup="$userType">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Tahoma Bold" size="13.5" />
+         </font>
+      </ToggleButton>
    </AnchorPane>
    <ImageView fitHeight="205.0" fitWidth="278.0" layoutX="151.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../../../../../../../../../Downloads/JohnsCafe/JohnsCafe/src/main/resources/com/example/johnscafe/Pictures/Logo.png" />

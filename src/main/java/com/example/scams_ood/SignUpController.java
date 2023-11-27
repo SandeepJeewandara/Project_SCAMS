@@ -24,7 +24,7 @@ public class SignUpController {
     private TextField LastNameFill;
 
     @FXML
-    private Button advisorButton;
+    private ToggleButton advisorToggle;
 
     @FXML
     private Button cancelButton;
@@ -57,7 +57,7 @@ public class SignUpController {
     private Button signUpButton;
 
     @FXML
-    private Button studentButton;
+    private ToggleButton studentToggle;
 
     @FXML
     private TextField idFill;
@@ -70,6 +70,9 @@ public class SignUpController {
 
     @FXML
     private Text emailMessage;
+
+    @FXML
+    private ToggleGroup userType;
 
     @FXML
     private ToggleGroup genderGroup;
@@ -132,8 +135,8 @@ public class SignUpController {
 
     @FXML
     public void advisorPress() {
-        advisorButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
-        studentButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
+        advisorToggle.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
+        studentToggle.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
         idText.setText("Staff ID:");
         typeMessage.setVisible(false);
         idFill.setPromptText("Ex: A123");
@@ -141,8 +144,8 @@ public class SignUpController {
 
     @FXML
     public void studentPress() {
-        studentButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
-        advisorButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
+        studentToggle.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
+        advisorToggle.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
         idText.setText("Student ID:");
         typeMessage.setVisible(false);
         idFill.setPromptText("Ex: S123");
@@ -185,44 +188,23 @@ public class SignUpController {
 
     @FXML
     void signUpRelease() throws IOException {
+
+
         Toggle selectedToggle = genderGroup.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
 
         PromptBoxController promptBoxController = new PromptBoxController();
-
         promptBoxController.showPromptMessage("Successfully Signed Up!");
 
-        try {
-            Connection connection = DatabaseConnectionTest.getConnection();
+        StoreUserData storeUserData = new StoreUserData();
 
-            if (connection == null) {
-                System.err.println("Database connection is null.");
-                return;
-            }
-
-            String sql = "INSERT INTO Student(StudentID, First_name, Last_name, Gender, Email, DOB, User_name, Password)"
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-
-            try {
-                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                    preparedStatement.setString(1, idFill.getText());
-                    preparedStatement.setString(2, firstNameFill.getText());
-                    preparedStatement.setString(3, LastNameFill.getText());
-                    preparedStatement.setString(4, selectedRadioButton.getText());
-                    preparedStatement.setString(5, emailFill.getText());
-                    preparedStatement.setDate(6, java.sql.Date.valueOf(dateOfBirthPicker.getValue()));
-                    preparedStatement.setString(7, usernameFill.getText());
-                    preparedStatement.setString(8, passwordFill.getText());
-
-                    preparedStatement.executeUpdate();
-
-                    System.out.println("Club details inserted into the database successfully!");
-                }
-            } catch (SQLException e) {
-                System.err.println("Error inserting user details into the database: " + e.getMessage());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (advisorToggle.isSelected()) {
+            storeUserData.setUserType("club_advisor", "AdvisorID", "Username", idFill, firstNameFill, LastNameFill, selectedRadioButton,
+                    emailFill, dateOfBirthPicker, usernameFill, passwordFill);
+        }
+        else if (studentToggle.isSelected()) {
+            storeUserData.setUserType("student", "StudentID", "User_name", idFill, firstNameFill, LastNameFill, selectedRadioButton,
+                    emailFill, dateOfBirthPicker, usernameFill, passwordFill);
         }
     }
 }
