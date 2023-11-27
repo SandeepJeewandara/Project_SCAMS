@@ -3,14 +3,20 @@ package Features;
 import Database.DataAccess;
 import com.example.scams_ood.Club;
 import com.example.scams_ood.ClubAdvisor;
+import com.example.scams_ood.Event;
 import com.example.scams_ood.Student;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 import java.io.IOException;
@@ -19,99 +25,112 @@ import java.util.List;
 
 public class DashboardController {
 
+    @FXML
     public FontAwesomeIconView GeneratereportIcon;
+    @FXML
     public FontAwesomeIconView TrackattendanceIcon;
+    @FXML
     public AnchorPane pnCreateClub;
+    @FXML
     public AnchorPane pnDashboard;
+    @FXML
     public AnchorPane pnClubDetails;
+    @FXML
     public AnchorPane pnScheduleEvent;
+    @FXML
     public AnchorPane pnEventDetails;
+    @FXML
     public AnchorPane pnTrackAttendance;
+    @FXML
     public AnchorPane pnGenerateReports;
+    @FXML
     public AnchorPane pnJoinClub;
+    @FXML
     public AnchorPane pnJoinEvent;
+    @FXML
     public Label nameLabel;
+    @FXML
     public Label usenameLabel;
     @FXML
-    private Text ClubDetailstxt;
-
+    public Button exitButton;
     @FXML
     private Text CreateClubtxt;
-
-    @FXML
-    private Text Dashboardtxt;
-
-    @FXML
-    private Text EventDetailstxt;
-
     @FXML
     private Text GenerateReportstxt;
-
     @FXML
     private Text ScheduleEventtxt;
-
     @FXML
     private Text TrackAttendancetxt;
-
     @FXML
     private Button backToLogin;
-
     @FXML
     private Button clubDetailsButton;
-
     @FXML
     private Button createClubButton;
-
     @FXML
     private Button dashboardButton;
-
     @FXML
     private Button eventDetailsButton;
-
     @FXML
     private Button generateReportsButton;
-
     @FXML
     private AnchorPane group;
-
     @FXML
     private Button joinClubButton;
-
     @FXML
     private Button joinEventButton;
-
     @FXML
     private Button scheduleEventButton;
-
     @FXML
     private Button trackAttendanceButton;
 
+    //InClass Variables
     private Boolean isAdvisor;
-
     private List<Club> clubs;
     private List<ClubAdvisor> clubAdvisors;
+    private List<Student> students;
+    private List<Event> events;
+
 
     @FXML
     private void initialize() {
 
         clubs = DataAccess.getClubs();
         clubAdvisors = DataAccess.getClubAdvisors();
+        students=DataAccess.getStudents();
+        events=DataAccess.getEvents();
 
-        // Print Club data to console
+
+        // Print club details in the console
         System.out.println("Clubs:");
         for (Club club : clubs) {
             System.out.println(club);
         }
 
-        // Print ClubAdvisor data to console
+        // Print club Advisor details in the console
         System.out.println("\nClub Advisors:");
         for (ClubAdvisor clubAdvisor : clubAdvisors) {
             System.out.println(clubAdvisor);
         }
 
+        // Print Student details in the console
+        System.out.println("\nStudent:");
+        for (Student student : students) {
+            System.out.println(student);
+        }
+
+        // Print Event details in the console
+        System.out.println("\nEvent:");
+        for (Event event : events) {
+            System.out.println(event);
+        }
+
         pnDashboard.toFront();
     }
 
+
+
+    //Main Dashboard with Panes
     @FXML
     private void handleClicks(ActionEvent event) throws IOException {
 
@@ -120,6 +139,7 @@ public class DashboardController {
             pnDashboard.toFront();
 
         } else if (event.getSource() == createClubButton) {
+
             pnCreateClub.toFront();
 
         } else if (event.getSource() == clubDetailsButton) {
@@ -154,6 +174,7 @@ public class DashboardController {
     }
 
     @FXML
+    //Check if logged user is a Club Advisor or Student
     public void setUser(Object user, boolean isAdvisor) {
         this.isAdvisor=isAdvisor;
 
@@ -166,7 +187,7 @@ public class DashboardController {
             usenameLabel.setText(student.getUsername());
         }
 
-        // Adjust visibility of buttons based on the user's role
+        // Adjust visibility of functionalities based on the user's role
         if(isAdvisor){
             joinClubButton.setVisible(false);
             joinEventButton.setVisible(false);
@@ -184,5 +205,23 @@ public class DashboardController {
         }
     }
 
+
+    @FXML
+    public void onExitButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/example/scams_ood/Sign_in.fxml"));
+            Parent parent = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

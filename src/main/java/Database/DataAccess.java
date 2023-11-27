@@ -1,28 +1,36 @@
 package Database;
 
-import Database.DatabaseConnectionTest;
 import com.example.scams_ood.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataAccess {
 
+    //Static lists uses for all operations
     private static List<Club> clubs;
     private static List<ClubAdvisor> clubAdvisors;
+    private static List<Event> events;
+    private static List<Student> students;
+
+
 
     static {
         clubs = new ArrayList<>();
         clubAdvisors = new ArrayList<>();
+        students=new ArrayList<>();
+        events=new ArrayList<>();
+
 
         try {
             Connection connection = DatabaseConnectionTest.getConnection();
             fetchClubAdvisors(connection);
             fetchClubs(connection);
+            fetchEvents(connection);
+            fetchStudents(connection);
             connection.close();
 
         } catch (SQLException e) {
@@ -30,6 +38,8 @@ public class DataAccess {
         }
     }
 
+
+    //Update Club Advisors list from Database
     private static void fetchClubAdvisors(Connection connection) throws SQLException {
         String query = "SELECT * FROM Club_Advisor";
 
@@ -51,6 +61,7 @@ public class DataAccess {
         }
     }
 
+    //Update Club list from Database
     private static void fetchClubs(Connection connection) throws SQLException {
         String query = "SELECT * FROM Club";
 
@@ -76,6 +87,55 @@ public class DataAccess {
         }
     }
 
+    private static void fetchStudents(Connection connection) throws SQLException {
+        String query = "SELECT * FROM Student";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Student student = new Student(
+                        resultSet.getString("StudentID"),
+                        resultSet.getString("First_name"),
+                        resultSet.getString("Gender"),
+                        resultSet.getString("Email"),
+                        resultSet.getDate("DOB"),
+                        resultSet.getString("User_name"),
+                        resultSet.getString("Password")
+                );
+                students.add(student);
+
+                // Connect Student and Clubs
+                connectStudentAndClubs(student, resultSet.getString("StudentID"));
+            }
+        }
+    }
+
+
+    private static void fetchEvents(Connection connection) throws SQLException {
+        String query = "SELECT * FROM Event";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Event event = new Event();
+                event.setEventId(resultSet.getString("EventID"));
+                event.setEventName(resultSet.getString("Event_name"));
+                event.setEventDate(resultSet.getDate("Event_date"));
+                event.setEventTime(resultSet.getTime("Event_time"));
+                event.setEventDescription(resultSet.getString("Event_description"));
+
+                // Connect Event, Club, and Students
+                connectEventAndClub(event, resultSet.getString("ClubID"));
+                connectEventAndStudents(event, resultSet.getString("EventID"));
+
+                events.add(event);
+
+            }
+        }
+    }
+
     private static void connectClubAndAdvisor(Club club, String advisorId) {
         for (ClubAdvisor advisor : clubAdvisors) {
             if (advisor.getAdvisorId().equals(advisorId)) {
@@ -85,6 +145,71 @@ public class DataAccess {
         }
     }
 
+
+
+    private static void connectStudentAndClubs(Student student, String studentId) {
+        String query = "SELECT * FROM Student_Club WHERE StudentID = ?";
+
+        try (Connection connection = DatabaseConnectionTest.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, studentId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String clubId = resultSet.getString("ClubID");
+                for (Club club : clubs) {
+                    if (club.getClubId().equals(clubId)) {
+                        student.joinClub(club);
+                        break;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+    private static void connectEventAndClub(Event event, String clubId) {
+        for (Club club : clubs) {
+            if (club.getClubId().equals(clubId)) {
+                event.setClubID(club);
+                break;
+            }
+        }
+    }
+
+
+    private static void connectEventAndStudents(Event event, String eventId) {
+        String query = "SELECT * FROM Event_Registration WHERE EventID = ?";
+
+        try (Connection connection = DatabaseConnectionTest.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, eventId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String studentId = resultSet.getString("StudentID");
+                for (Student student : students) {
+                    if (student.getStudentId().equals(studentId)) {
+                        event.addMember(student);
+                        break;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static List<Club> getClubs() {
         return clubs;
     }
@@ -92,4 +217,8 @@ public class DataAccess {
     public static List<ClubAdvisor> getClubAdvisors() {
         return clubAdvisors;
     }
+
+    public static List<Student> getStudents(){ return students;}
+
+    public static List<Event> getEvents(){ return  events;}
 }

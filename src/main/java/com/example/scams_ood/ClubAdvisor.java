@@ -81,9 +81,9 @@ public class ClubAdvisor {
     public void addManagedClub(Club club) {
         if (!managedClubs.contains(club)) {
             managedClubs.add(club);
+            club.setClubAdvisor(this);
         }
     }
-
 
 
     public ClubAdvisor(String advisorId, String name, String gender, String gmail, Date DOB, String username, String password) {
@@ -107,7 +107,7 @@ public class ClubAdvisor {
     @Override
     public String toString() {
         return "ClubAdvisor{" +
-                "advisorId=" + advisorId +
+                "advisorId='" + advisorId + '\'' +
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", Gmail='" + Gmail + '\'' +

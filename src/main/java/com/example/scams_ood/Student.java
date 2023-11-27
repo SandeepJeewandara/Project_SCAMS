@@ -1,5 +1,6 @@
 package com.example.scams_ood;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Student {
     private String Username;
     private String password;
     private List<Club> clubsJoined;
+    private List<Event> eventsjoined;
 
     public String getStudentId() {
         return studentId;
@@ -77,9 +79,30 @@ public class Student {
         this.clubsJoined = clubsJoined;
     }
 
+
     public void joinClub(Club club) {
-        clubsJoined.add(club);
+        if (this.clubsJoined == null) {
+            this.clubsJoined = new ArrayList<>();
+        }
+        this.clubsJoined.add(club);
     }
+
+    public void leaveClub(Club club) {
+        clubsJoined.remove(club);
+        club.removeMember(this);
+    }
+
+    public void addEvent(Event event) {
+        eventsjoined.add(event);
+        event.addMember(this);
+    }
+
+    public void removeEvent(Event event) {
+        eventsjoined.remove(event);
+        event.removeMember(this);
+    }
+
+
 
     public Student(String studentId, String studentName, String gender, String gmail, Date DOB, String username, String password) {
         this.studentId = studentId;
@@ -89,7 +112,12 @@ public class Student {
         this.DOB = DOB;
         Username = username;
         this.password = password;
+
+        this.clubsJoined = new ArrayList<>();
+        this.eventsjoined = new ArrayList<>();
     }
+
+
 
     public Student(String studentId, String studentName, String username, String password) {
         this.studentId = studentId;
@@ -98,10 +126,11 @@ public class Student {
         this.password = password;
     }
 
+
     @Override
     public String toString() {
         return "Student{" +
-                "studentId=" + studentId +
+                "studentId='" + studentId + '\'' +
                 ", studentName='" + studentName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", Gmail='" + Gmail + '\'' +
@@ -109,6 +138,7 @@ public class Student {
                 ", Username='" + Username + '\'' +
                 ", password='" + password + '\'' +
                 ", clubsJoined=" + clubsJoined +
+                ", eventsjoined=" + eventsjoined +
                 '}';
     }
 }
