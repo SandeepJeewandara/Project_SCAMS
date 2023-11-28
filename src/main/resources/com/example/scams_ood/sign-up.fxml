@@ -16,13 +16,13 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.SignUpController">
-   <AnchorPane layoutX="598.0" layoutY="13.0" prefHeight="675.0" prefWidth="538.0" style="-fx-background-color: #D3D3D3; -fx-background-radius: 20;">
+   <AnchorPane layoutX="598.0" layoutY="13.0" prefHeight="675.0" prefWidth="538.0" style="-fx-background-color: #D3D3D3; -fx-background-radius: 20;" styleClass="float-item" stylesheets="@Styles.css">
       <Text fontSmoothingType="LCD" layoutX="241.0" layoutY="668.0" strokeType="OUTSIDE" strokeWidth="0.0" text="©SCAMS" wrappingWidth="56.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <Text fontSmoothingType="LCD" layoutX="169.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up to SCAMS" wrappingWidth="204.0">
+      <Text fontSmoothingType="LCD" layoutX="228.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" wrappingWidth="90.0">
          <font>
             <Font name="Segoe UI Semibold" size="24.0" />
          </font>
@@ -67,7 +67,7 @@
       <TextField fx:id="idFill" disable="true" layoutX="210.0" layoutY="317.0" onKeyPressed="#hiddenError" onKeyTyped="#validTyped" onMouseExited="#idExit" prefHeight="36.0" prefWidth="286.0" promptText="Ex: S123" style="-fx-background-radius: 20;" />
       <TextField fx:id="emailFill" disable="true" layoutX="210.0" layoutY="423.0" onKeyPressed="#hiddenError" onKeyTyped="#validTyped" onMouseExited="#emailExit" prefHeight="36.0" prefWidth="286.0" promptText="Ex: john.wick@scams.com" style="-fx-background-radius: 20;" />
       <DatePicker fx:id="dateOfBirthPicker" disable="true" layoutX="210.0" layoutY="370.0" onKeyTyped="#validTyped" prefHeight="36.0" prefWidth="286.0" promptText="MM/DD/YYYY" />
-      <Button fx:id="cancelButton" layoutX="122.0" layoutY="605.0" mnemonicParsing="false" onMousePressed="#cancelPress" onMouseReleased="#cancelRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Cancel" textFill="WHITE">
+      <Button fx:id="cancelButton" layoutX="122.0" layoutY="605.0" mnemonicParsing="false" onMousePressed="#cancelPress" onMouseReleased="#cancelRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-radius: 40;" styleClass="option_Button_main" stylesheets="@Styles.css" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
@@ -75,7 +75,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="signUpButton" disable="true" layoutX="299.0" layoutY="605.0" mnemonicParsing="false" onMouseEntered="#signUpEnter" onMousePressed="#signUpPress" onMouseReleased="#signUpRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Sign Up" textFill="WHITE">
+      <Button fx:id="signUpButton" disable="true" layoutX="299.0" layoutY="605.0" mnemonicParsing="false" onMouseEntered="#signUpEnter" onMousePressed="#signUpPress" onMouseReleased="#signUpRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-radius: 40;" styleClass="option_Button_main" stylesheets="@Styles.css" text="Sign Up" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
@@ -137,7 +137,7 @@
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>
       </Text>
-      <ToggleButton fx:id="studentToggle" layoutX="297.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#studentPress" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Student" textFill="WHITE">
+      <ToggleButton fx:id="studentToggle" layoutX="297.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#studentPress" style="-fx-background-radius: 40; -fx-background-color: #813EB6;" text="Student" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -145,7 +145,7 @@
             <Font name="Tahoma Bold" size="13.5" />
          </font>
       </ToggleButton>
-      <ToggleButton fx:id="advisorToggle" layoutX="176.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#advisorPress" prefHeight="28.0" prefWidth="72.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Advisor" textFill="WHITE">
+      <ToggleButton fx:id="advisorToggle" layoutX="176.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#advisorPress" prefHeight="28.0" prefWidth="72.0" style="-fx-background-radius: 40; -fx-background-color: #813EB6;" text="Advisor" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
