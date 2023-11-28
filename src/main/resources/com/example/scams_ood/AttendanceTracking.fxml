@@ -31,7 +31,7 @@
                         <Insets top="10.0" />
                      </opaqueInsets>
                   </HBox>
-                  <HBox prefHeight="248.0" prefWidth="200.0" styleClass="student-vBox" stylesheets="@attendanceClub.css">
+                  <HBox prefHeight="248.0" prefWidth="200.0" style="-fx-background-color: #ACBABF;" styleClass="club-item" stylesheets="@attendanceClub.css">
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </VBox.margin>
@@ -66,7 +66,7 @@
                               <Button fx:id="saveToDatabaseButton" minWidth="0.0" mnemonicParsing="false" onAction="#saveToDatabase" prefHeight="31.0" prefWidth="95.0" stylesheets="@attendanceClub.css" text="Save">
                                  <styleClass>
                                     <String fx:value="font-normal" />
-                                    <String fx:value="back-button" />
+                                    <String fx:value="club-1-button" />
                                  </styleClass>
                               </Button>
                            </children>
