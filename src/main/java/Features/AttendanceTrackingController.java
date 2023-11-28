@@ -134,7 +134,7 @@ public class AttendanceTrackingController implements Initializable {
                         for (Student students : retrieveStudentsList) {
                         preparedStatement.setString(1, students.getStudentId());
                         preparedStatement.setString(2, eventId);
-                        preparedStatement.setBoolean(3, value);
+                        preparedStatement.setBoolean(3,value);
 
                         preparedStatement.executeUpdate();
                     }

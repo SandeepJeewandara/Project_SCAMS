@@ -29,7 +29,7 @@ public class Student {
         this.password = password;
         this.clubsJoined = clubsJoined;
         this.eventsjoined = eventsjoined;
-        this.attendance = new CheckBox();
+        this.attendance =new CheckBox();
     }
 
 
