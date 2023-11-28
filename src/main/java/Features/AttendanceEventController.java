@@ -38,7 +38,10 @@ public class AttendanceEventController {
     private ScrollPane eventScroll;
 
     public void displayClubEvent(ActionEvent event) {
+        PromptController promptController = new PromptController();
+
         String clubId = clubIdTextField.getText();
+        if(clubId == null || )
         System.out.println(clubId);
 
         List <Event> retrievedClubs = DataAccess.getEvents();

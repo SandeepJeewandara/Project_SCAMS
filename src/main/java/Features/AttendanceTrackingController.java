@@ -58,6 +58,7 @@ public class AttendanceTrackingController implements Initializable {
 
     public String setStudentDataInTable(Label eventIdLabel) {
 
+
         this.eventId = eventIdLabel.getText();
         checksTheInitialization();
         System.out.println(eventId);
