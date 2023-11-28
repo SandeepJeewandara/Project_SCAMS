@@ -37,23 +37,11 @@ public class AttendanceTrackingController implements Initializable {
     @FXML
     private TableView<Student> attendanceTableView;
 
-    @FXML
-    private Button saveToDatabaseButton;
-
     private String eventId;
     @FXML
     private Label countLabel;
 
     private boolean isInitialized = false;
-
-
-//    public void backToClubDashBoard(ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("attendance-event.fxml"));
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
 
 
     public String setStudentDataInTable(Label eventIdLabel) {
@@ -83,19 +71,18 @@ public class AttendanceTrackingController implements Initializable {
 
             for (Student student : retrievedStudentList) {
                 List<Event> joinedEvents = student.getEventsjoined();
-                if (joinedEvents != null){
-                    for(Event event: joinedEvents){
-                        if(event.getEventId().equals(eventId)){
+                if (joinedEvents != null) {
+                    for (Event event : joinedEvents) {
+                        if (event.getEventId().equals(eventId)) {
                             studentOfEvents.add(student);
                             break;
                         }
                     }
 
 
-                    //studentOfEvents.add(student);
+                }
             }
-            }
-            int count= Integer.parseInt(String.valueOf(studentOfEvents.size()));
+            int count = Integer.parseInt(String.valueOf(studentOfEvents.size()));
             countLabel.setText(String.valueOf(count));
 
             if (!studentOfEvents.isEmpty()) {
@@ -118,31 +105,30 @@ public class AttendanceTrackingController implements Initializable {
     public void saveToDatabase(ActionEvent event) {
         List<Student> retrieveStudentsList = new ArrayList<>(attendanceTableView.getItems());
         int studentCount = attendanceTableView.getItems().size();
-        System.out.println("Count of Students"+studentCount);
+        System.out.println("Count of Students" + studentCount);
 
 
         for (Student student : retrieveStudentsList) {
             boolean value;
-            if (student.getAttendance()!=null && student.getAttendance().isSelected()) {
-                 value = true;
+            if (student.getAttendance() != null && student.getAttendance().isSelected()) {
+                value = true;
             } else {
-                 value = false;
+                value = false;
             }
 
 
             try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db", "root", "")) {
                 //for (Student students : retrieveStudentsList) {
-                    String sql = "INSERT INTO Event_Registration (StudentID, EventID, Attendance) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE Attendance = VALUES(Attendance)";
+                String sql = "INSERT INTO Event_Registration (StudentID, EventID, Attendance) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE Attendance = VALUES(Attendance)";
 //                    for (Student students : retrieveStudentsList) {
-                    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                        for (Student students : retrieveStudentsList) {
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    for (Student students : retrieveStudentsList) {
                         preparedStatement.setString(1, students.getStudentId());
                         preparedStatement.setString(2, eventId);
-                        preparedStatement.setBoolean(3,value);
+                        preparedStatement.setBoolean(3, value);
 
                         preparedStatement.executeUpdate();
                     }
-
 
 
                 }
@@ -156,30 +142,6 @@ public class AttendanceTrackingController implements Initializable {
 
 
     }
-
-//    public void saveToDatabase(ActionEvent event) {
-//        List<Student> retrieveStudentsList = new ArrayList<>(attendanceTableView.getItems());
-//        int studentCount = attendanceTableView.getItems().size();
-//        System.out.println("Count of Students" + studentCount);
-//
-//        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db", "root", "")) {
-//            String sql = "INSERT INTO Event_Registration (StudentID, EventID, Attendance) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE Attendance = VALUES(Attendance)";
-//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//                for (Student student : retrieveStudentsList) {
-//                    boolean value = student.getAttendance() != null && student.getAttendance().isSelected();
-//
-//                    preparedStatement.setString(1, student.getStudentId());
-//                    preparedStatement.setString(2, eventId);
-//                    preparedStatement.setBoolean(3, value);
-//
-//                    preparedStatement.executeUpdate();
-//                }
-//            }
-//        } catch (SQLException ev) {
-//            ev.printStackTrace();
-//        }
-//    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

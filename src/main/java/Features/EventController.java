@@ -22,7 +22,7 @@ public class EventController {
     private ImageView Image;
 
     @FXML
-    private Button eventButton;
+    private AnchorPane dashBoard;
 
     @FXML
     private Label eventId;
@@ -32,46 +32,24 @@ public class EventController {
 
     private Event event;
 
-    public void eventIconSetData(Event event){
+    public void eventIconSetData(Event event) {
         this.event = event;
         eventName.setText(event.getEventName());
         eventId.setText((event.getEventId()));
 
-        //Image image = new Image(getClass().getResourceAsStream(club.getImageLogoPath()));
-        //clubImage.setImage(image);
 
     }
 
 
-
-
-
-
-
-
-
-    /*
-
-    public void switchToAttendance(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/scams_ood/AttendanceTracking.fxml"));
-
-        AttendanceTrackingController attendanceController = loader.getController();
-        attendanceController.setClubId(club.getClubId());
-
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("SCAMS - Attendance Tracking");
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-     */
     public void switchToAttendance(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/AttendanceTracking.fxml"));
         Parent root = loader.load();
 
         AttendanceTrackingController attendanceTrackingController = loader.getController();
         attendanceTrackingController.setStudentDataInTable(eventId);
+//
+//        group.getChildren().clear();
+//        group.getChildren().add(root);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("SCAMS - Attendance Tracking");
@@ -79,17 +57,6 @@ public class EventController {
         stage.setScene(scene);
         stage.show();
     }
-
-//    FXMLLoader attendanceTrackLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/AttendanceClub.fxml"));
-//    AnchorPane pnAttendanceTrackContent=attendanceTrackLoader.load();
-//    AttendanceEventController attendanceTrackingController= attendanceTrackLoader.getController();
-//            pnTrackAttendance.getChildren().clear();
-//            pnTrackAttendance.getChildren().addAll(pnAttendanceTrackContent);
-//
-//            pnTrackAttendance.toFront();
-//
-//
-//
 
 
 }

@@ -18,11 +18,6 @@ import java.io.IOException;
 
 public class PromptController {
 
-    @FXML
-    private Button okButton;
-
-    @FXML
-    private AnchorPane promptBoxPain;
 
     @FXML
     private Label promptText;
@@ -62,29 +57,6 @@ public class PromptController {
         scaleTransition.setToY(1);
         scaleTransition.play();
     }
-
-    public void showSuccessPrompt(String message) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/PromptBox.fxml"));
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(loader.load());
-//        stage.setScene(scene);
-//        stage.initStyle(StageStyle.UNDECORATED);
-//
-//        stage.setResizable(false);
-//
-//        PromptBoxController controller = loader.getController();
-//        controller.setPromptText(message);
-//
-//        // Access the promptBoxPain and set the border color to green
-//        AnchorPane promptBoxPane = (AnchorPane) scene.lookup("#promptBoxPain");
-//        if (promptBoxPane != null) {
-//            promptBoxPane.setStyle("-fx-border-color: #27ae60;");
-//        }
-//
-//        addPopUpAnimation(stage);
-//        stage.show();
-//    }
-
-
-    }
 }
+
+

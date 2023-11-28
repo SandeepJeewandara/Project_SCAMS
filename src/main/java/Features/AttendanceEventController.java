@@ -23,7 +23,6 @@ import java.util.List;
 public class AttendanceEventController {
 
 
-
     @FXML
     private TextField clubIdTextField;
 
@@ -32,19 +31,23 @@ public class AttendanceEventController {
 
 
     private boolean isValidClubId(String clubId) {
-        if (clubId.length() != 4) {
+        if (clubId.length() != 4 ) {
             return false;
-
+        }
+        if (!clubId.substring(0,1).equals("C")  || !clubId.substring(1).matches(("\\d{3}"))){
+            return false;
         }
         return true;
     }
 
 
-        public void displayClubEvent(ActionEvent event) throws IOException {
+    public void displayClubEvent(ActionEvent event) throws IOException {
+
         PromptController promptController = new PromptController();
 
         String clubId = clubIdTextField.getText();
-        if(isValidClubId(clubId)) {
+
+        if (isValidClubId(clubId)) {
             System.out.println(clubId);
 
             List<Event> retrievedClubs = DataAccess.getEvents();
@@ -97,25 +100,13 @@ public class AttendanceEventController {
                 e.printStackTrace();
             }
 
-        } else (promptController.showPromptMessage(""))
-    }
-
-    /*
-    public void backToMain(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("DashBoard.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Dash Board");
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        } else {
+            promptController.showPromptMessage("Club ID must be start with "+'C'+" and have exactly 4 characters.");
         }
-
-     */
-
-
-
-
     }
+
+
+}
 
 
 

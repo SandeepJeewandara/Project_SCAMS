@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="AttendanceTrackingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="920.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.AttendanceTrackingController">
+<AnchorPane fx:id="AttendanceTrackingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="920.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.AttendanceTrackingController">
     <children>
         <BorderPane layoutY="-7.0" prefHeight="713.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -31,14 +26,14 @@
                         <Insets top="10.0" />
                      </opaqueInsets>
                   </HBox>
-                  <HBox prefHeight="248.0" prefWidth="200.0" style="-fx-background-color: #ACBABF;" styleClass="club-item" stylesheets="@attendanceClub.css">
+                  <HBox prefHeight="248.0" prefWidth="200.0" styleClass="track-student-label" stylesheets="@attendanceClub.css">
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </VBox.margin>
                      <children>
                         <VBox alignment="CENTER" prefHeight="215.0" prefWidth="237.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="156.0" prefWidth="193.0" styleClass="submit-button" stylesheets="@attendanceClub.css">
+                              <HBox alignment="CENTER" prefHeight="156.0" prefWidth="193.0" styleClass="club-item">
                                  <VBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </VBox.margin>
@@ -49,6 +44,10 @@
                                        </font>
                                     </Label>
                                  </children>
+                                 <stylesheets>
+                                    <URL value="@attendanceClub.css" />
+                                    <URL value="@Styles.css" />
+                                 </stylesheets>
                               </HBox>
                               <Label styleClass="font-normal" stylesheets="@attendanceClub.css" text="Active Student Count" textFill="#252424" />
                            </children></VBox>
@@ -63,11 +62,15 @@
                               <Insets />
                            </HBox.margin>
                            <children>
-                              <Button fx:id="saveToDatabaseButton" minWidth="0.0" mnemonicParsing="false" onAction="#saveToDatabase" prefHeight="31.0" prefWidth="95.0" stylesheets="@attendanceClub.css" text="Save">
+                              <Button fx:id="saveToDatabaseButton" minWidth="0.0" mnemonicParsing="false" onAction="#saveToDatabase" prefHeight="35.0" prefWidth="95.0" text="Save">
                                  <styleClass>
                                     <String fx:value="font-normal" />
-                                    <String fx:value="club-1-button" />
+                                    <String fx:value="option_Button_main" />
                                  </styleClass>
+                                 <stylesheets>
+                                    <URL value="@attendanceClub.css" />
+                                    <URL value="@Styles.css" />
+                                 </stylesheets>
                               </Button>
                            </children>
                         </VBox>
