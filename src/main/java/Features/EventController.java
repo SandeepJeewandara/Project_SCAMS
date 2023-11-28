@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -79,10 +80,16 @@ public class EventController {
         stage.show();
     }
 
-
-
-
-
+//    FXMLLoader attendanceTrackLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/AttendanceClub.fxml"));
+//    AnchorPane pnAttendanceTrackContent=attendanceTrackLoader.load();
+//    AttendanceEventController attendanceTrackingController= attendanceTrackLoader.getController();
+//            pnTrackAttendance.getChildren().clear();
+//            pnTrackAttendance.getChildren().addAll(pnAttendanceTrackContent);
+//
+//            pnTrackAttendance.toFront();
+//
+//
+//
 
 
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="920.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.AttendanceEventController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="920.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.AttendanceEventController">
     <children>
         <BorderPane layoutY="-7.0" prefHeight="713.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
@@ -62,10 +62,13 @@
                                     <children>
                                         <VBox alignment="CENTER" prefHeight="70.0" prefWidth="299.0" styleClass="unity-attendance" stylesheets="@attendanceClub.css">
                                             <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="203.0" styleClass="font-topic" stylesheets="@attendanceClub.css" text="Enter Club ID " textFill="WHITE" />
-                                    <TextField fx:id="clubIdTextField" prefHeight="25.0" prefWidth="236.0" styleClass="club-item" stylesheets="@attendanceClub.css">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="203.0" styleClass="font-topic" stylesheets="@attendanceClub.css" text="Enter Club ID " textFill="WHITE">
                                        <VBox.margin>
-                                          <Insets bottom="12.0" left="15.0" right="15.0" />
+                                          <Insets top="20.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="clubIdTextField" prefHeight="44.0" prefWidth="269.0" styleClass="club-item" stylesheets="@attendanceClub.css">
+                                       <VBox.margin>
+                                          <Insets left="15.0" right="15.0" top="3.0" />
                                        </VBox.margin>
                                     </TextField>
                                     <Label fx:id="clubIdValidationLabel" prefHeight="17.0" prefWidth="261.0" styleClass="font-normal" stylesheets="@attendanceClub.css" textFill="#e10707" />
@@ -85,14 +88,14 @@
                                         <Insets top="20.0" />
                                     </opaqueInsets>
                                 </HBox>
-                        <Pane prefHeight="80.0" prefWidth="36.0" />
+                        <Pane prefHeight="115.0" prefWidth="28.0" />
                         <Button fx:id="clubSubmitButton" mnemonicParsing="false" onAction="#displayClubEvent" prefHeight="35.0" prefWidth="95.0" stylesheets="@attendanceClub.css" text="Submit" textFill="#f2eded">
                            <styleClass>
                               <String fx:value="font-normal" />
                               <String fx:value="submit-button" />
                            </styleClass>
                            <HBox.margin>
-                              <Insets right="10.0" top="30.0" />
+                              <Insets right="15.0" top="38.0" />
                            </HBox.margin>
                         </Button>
                             </children>

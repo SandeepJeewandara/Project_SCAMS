@@ -1,5 +1,7 @@
 package com.example.scams_ood;
 
+import javafx.scene.control.CheckBox;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +17,20 @@ public class Student {
     private List<Club> clubsJoined;
     private List<Event> eventsjoined;
 
+    private CheckBox attendance;
+
+    public Student(String studentId, String studentName, String gender, String gmail, Date DOB, String username, String password, List<Club> clubsJoined, List<Event> eventsjoined, CheckBox attendance) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.gender = gender;
+        Gmail = gmail;
+        this.DOB = DOB;
+        Username = username;
+        this.password = password;
+        this.clubsJoined = clubsJoined;
+        this.eventsjoined = eventsjoined;
+        this.attendance = new CheckBox();
+    }
 
 
     public String getStudentId() {
@@ -87,6 +103,14 @@ public class Student {
 
     public void setEventsjoined(List<Event> eventsjoined) {
         this.eventsjoined = eventsjoined;
+    }
+
+    public CheckBox getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(CheckBox attendance) {
+        this.attendance = attendance;
     }
 
     public void joinClub(Club club) {

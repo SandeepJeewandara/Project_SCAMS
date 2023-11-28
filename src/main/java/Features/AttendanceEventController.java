@@ -1,6 +1,9 @@
 package Features;
 
-import DB_Operations.EventAssignClubsDB;
+
+import Database.DataAccess;
+import com.example.scams_ood.Club;
+
 import com.example.scams_ood.Event;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AttendanceEventController {
@@ -35,14 +39,24 @@ public class AttendanceEventController {
 
     public void displayClubEvent(ActionEvent event) {
         String clubId = clubIdTextField.getText();
+        System.out.println(clubId);
 
-        List <Event> retrievedClubs = EventAssignClubsDB.retrieveEventDataFromDatabase(clubId);
+        List <Event> retrievedClubs = DataAccess.getEvents();
+        List<Event> eventsAssignToClubs =new ArrayList<>();
+
+        for(Event events : retrievedClubs){
+            System.out.println(events.getClubID().getClubId());
+            if(events.getClubID().getClubId().equals(clubId)){
+                System.out.println(events.getClubID());
+                eventsAssignToClubs.add(events);
+            }
+        }
 
         int column = 0;
         int row = 1;
 
         try {
-            for (int i = 0; i < retrievedClubs.size(); i++) {
+            for (int i = 0; i < eventsAssignToClubs.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/com/example/scams_ood/event.fxml"));
                 //main/resources/com/example/scams_ood
@@ -50,7 +64,7 @@ public class AttendanceEventController {
 
 
                 EventController eventController = fxmlLoader.getController();
-                eventController.eventIconSetData(retrievedClubs.get(i));
+                eventController.eventIconSetData(eventsAssignToClubs.get(i));
 
                 if(column == 3){
                     column =0;

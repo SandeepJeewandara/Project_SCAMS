@@ -1,6 +1,8 @@
 package Features;
 
-import DB_Operations.ClubAttendanceTrackingDB;
+
+import Database.DataAccess;
+import com.example.scams_ood.Event;
 import com.example.scams_ood.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,13 +42,14 @@ public class AttendanceTrackingController implements Initializable {
 
     private boolean isInitialized = false;
 
-    public void backToClubDashBoard(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("attendance-event.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
+//    public void backToClubDashBoard(ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("attendance-event.fxml"));
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
 
     public String setStudentDataInTable(Label eventIdLabel) {
@@ -69,18 +72,36 @@ public class AttendanceTrackingController implements Initializable {
             attendanceTableView.getColumns().addAll(studentNameColumn, studentIdColumn, studentGmailColumn, studentAttendanceColumn);
             System.out.println(eventId);
 
-            List<Student> retrievedStudentList = ClubAttendanceTrackingDB.retrieveStudentDataFromDatabase(eventId);
+            List<Student> retrievedStudentList = DataAccess.getStudents();
+            List<Student> studentOfEvents = new ArrayList<>();
 
-            if (!retrievedStudentList.isEmpty()) {
+            for (Student student : retrievedStudentList) {
+                List<Event> joinedEvents = student.getEventsjoined();
+                if (joinedEvents != null){
+                    for(Event event: joinedEvents){
+                        if(event.getEventId().equals(eventId)){
+                            studentOfEvents.add(student);
+                            break;
+                        }
+                    }
+
+
+                    //studentOfEvents.add(student);
+            }
+            }
+            System.out.println("Students Of Events "+ studentOfEvents.size());
+            System.out.println(studentOfEvents);
+
+            if (!studentOfEvents.isEmpty()) {
                 studentNameColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("studentName"));
                 studentIdColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("studentId"));
-                studentGmailColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("studentGmail"));
+                studentGmailColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("Gmail"));
                 studentAttendanceColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("attendance"));
                 //studentAttendanceColumn.setCellFactory(CheckBoxTableCell.forTableColumn(studentAttendanceColumn));
             }
 
             if (attendanceTableView != null) {
-                ObservableList<Student> students = FXCollections.observableArrayList(retrievedStudentList);
+                ObservableList<Student> students = FXCollections.observableArrayList(studentOfEvents);
                 this.attendanceTableView.setItems(students);
 
             }
@@ -89,6 +110,8 @@ public class AttendanceTrackingController implements Initializable {
 
     public void saveToDatabase(ActionEvent event) {
         List<Student> retrieveStudentsList = new ArrayList<>(attendanceTableView.getItems());
+        int studentCount = attendanceTableView.getItems().size();
+        System.out.println("Count of Students"+studentCount);
 
 
         for (Student student : retrieveStudentsList){
@@ -106,6 +129,7 @@ public class AttendanceTrackingController implements Initializable {
                     preparedStatement.setString(1,student.getStudentId());
                     preparedStatement.setString(2,eventId);
                     preparedStatement.setBoolean(3,student.getAttendance().isSelected());
+
 
                     preparedStatement.executeUpdate();
                 }

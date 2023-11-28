@@ -156,6 +156,12 @@ public class DashboardController {
 
         } else if (event.getSource() == trackAttendanceButton) {
 
+            FXMLLoader attendanceTrackLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/AttendanceClub.fxml"));
+            AnchorPane pnAttendanceTrackContent=attendanceTrackLoader.load();
+            AttendanceEventController attendanceTrackingController= attendanceTrackLoader.getController();
+            pnTrackAttendance.getChildren().clear();
+            pnTrackAttendance.getChildren().addAll(pnAttendanceTrackContent);
+
             pnTrackAttendance.toFront();
 
         } else if (event.getSource() == generateReportsButton) {

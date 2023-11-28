@@ -131,7 +131,7 @@
                     event.setEventId(resultSet.getString("EventID"));
                     event.setEventName(resultSet.getString("Event_name"));
                     event.setEventDate(resultSet.getDate("Event_date"));
-                    event.setEventTime(resultSet.getTime("Event_time"));
+                    event.setEventTime(resultSet.getTime("Event_time").toLocalTime());
                     event.setEventDescription(resultSet.getString("Event_description"));
 
                     // Connect Event, Club, and Students
