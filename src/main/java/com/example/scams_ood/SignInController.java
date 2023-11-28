@@ -91,23 +91,6 @@ public class SignInController {
         }
     }
 
-    //
-    private void openDashboard(Object user) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
-            Parent root = loader.load();
-
-            DashboardController dashboardController = loader.getController();
-            dashboardController.setUser(user);
-
-            Scene dashboardScene = new Scene(root);
-            Stage stage = (Stage) signInButton.getScene().getWindow();
-            stage.setScene(dashboardScene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     //Check for username and password if it's available in the list and set messages to visible if user inputs are incorrect
     @FXML
     public void signInRelease() {
