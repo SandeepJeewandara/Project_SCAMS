@@ -15,7 +15,6 @@ public class UserAccountAccess {
     private static List<ClubAdvisor> advisorAccounts;
     private static List<Student> studentsAccount;
 
-
     public static List<ClubAdvisor> getAdvisorAccounts() {
         if (advisorAccounts == null) {
             advisorAccounts = new ArrayList<>();

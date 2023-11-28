@@ -13,7 +13,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.example.scams_ood.Validations.addTextLimiter;
 import static com.example.scams_ood.Validations.validInput;
@@ -24,7 +28,7 @@ public class SignUpController {
     private TextField LastNameFill;
 
     @FXML
-    private Button advisorButton;
+    private ToggleButton advisorToggle;
 
     @FXML
     private Button cancelButton;
@@ -57,7 +61,7 @@ public class SignUpController {
     private Button signUpButton;
 
     @FXML
-    private Button studentButton;
+    private ToggleButton studentToggle;
 
     @FXML
     private TextField idFill;
@@ -72,13 +76,24 @@ public class SignUpController {
     private Text emailMessage;
 
     @FXML
-    private ToggleGroup genderGroup;
+    private Text passwordMessage;
 
     @FXML
-    private void initialize() {
+    private Text idMessage;
 
+    @FXML
+    private ToggleGroup genderGroup;
+
+    //Limit input characters for text fields and set listeners to user input fields
+    @FXML
+    private void initialize() {
         addTextLimiter(idFill, 4);
         addTextLimiter(dateOfBirthPicker.getEditor(), 10);
+        addTextLimiter(firstNameFill, 100);
+        addTextLimiter(LastNameFill, 100);
+        addTextLimiter(emailFill, 150);
+        addTextLimiter(usernameFill, 50);
+        addTextLimiter(passwordFill,50);
 
         genderGroup = new ToggleGroup();
         maleRadio.setToggleGroup(genderGroup);
@@ -95,12 +110,7 @@ public class SignUpController {
         reEnterPasswordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
     }
 
-    @FXML
-    void validTyped() {
-        validInput(idFill, "[SA0-9]*");
-        validInput(emailFill, "[a-z0-9@._%-+]*");
-    }
-
+    //Enable sign up button after all fields are filled
     private void enableSignUp() {
         boolean firstnameFilled = !firstNameFill.getText().trim().isEmpty();
         boolean lastnameFilled = !LastNameFill.getText().trim().isEmpty();
@@ -116,6 +126,7 @@ public class SignUpController {
                 dobFilled && emailFilled && passwordFilled && reEnterPasswordFilled));
     }
 
+    //When user select one of the toggle buttons all the text fields are enabled
     @FXML
     private void typeSelect() {
         firstNameFill.setDisable(false);
@@ -130,24 +141,53 @@ public class SignUpController {
         reEnterPasswordFill.setDisable(false);
     }
 
+    //Method to clear all text fields
+    private void clearAll() {
+        firstNameFill.clear();
+        LastNameFill.clear();
+        genderGroup.selectToggle(null);
+        usernameFill.clear();
+        idFill.clear();
+        dateOfBirthPicker.getEditor().clear();
+        emailFill.clear();
+        passwordFill.clear();
+        reEnterPasswordFill.clear();
+    }
+
+    //Advisor button mouse event for mouse press
     @FXML
     public void advisorPress() {
-        advisorButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
-        studentButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
+        advisorToggle.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
+        studentToggle.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
         idText.setText("Staff ID:");
         typeMessage.setVisible(false);
         idFill.setPromptText("Ex: A123");
+        clearAll();
     }
 
+    //Student button mouse event for mouse press
     @FXML
     public void studentPress() {
-        studentButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
-        advisorButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
+        studentToggle.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
+        advisorToggle.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
         idText.setText("Student ID:");
         typeMessage.setVisible(false);
         idFill.setPromptText("Ex: S123");
+        clearAll();
     }
 
+    //Validate User ID field to only take A or S and numbers
+    @FXML
+    public void validTyped() {
+        if (advisorToggle.isSelected()) {
+            validInput(idFill, "[A][0-9]*");
+        }
+        else if (studentToggle.isSelected()) {
+            validInput(idFill, "[S][0-9]*");
+        }
+    }
+
+    //Redirect to Sign In scene if user already registered
     @FXML
     public void signInRelease(MouseEvent event) {
         try {
@@ -162,11 +202,14 @@ public class SignUpController {
         }
     }
 
+    //Styles for cancel button when mouse pressed
     @FXML
     public void cancelPress() {
         cancelButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
     }
 
+
+    //Styles for cancel button when mouse released and redirect to Sign In scene
     @FXML
     public void cancelRelease() {
         cancelButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
@@ -183,44 +226,141 @@ public class SignUpController {
         }
     }
 
+    //Validation for emails
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    //Method to check the values are available in database
+    private boolean isAvailable(String check, String table, String column) {
+        try {
+            Connection connection = DatabaseConnectionTest.getConnection();
+            if (connection == null) {
+                System.err.println("Database connection is null.");
+            }
+
+            String query = "SELECT * FROM " + table +" WHERE "+ column +" = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, check);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    return resultSet.next();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //Call isAvailable method to check in database and show message if ID is available
     @FXML
-    void signUpRelease() {
+    public void idExit() {
+        String id = idFill.getText();
+
+        if (idFill.getText().isEmpty()) {
+            idMessage.setVisible(false);
+        }
+        else if (isAvailable(id,"club_advisor", "AdvisorID")) {
+            idMessage.setVisible(true);
+        }
+        else if (isAvailable(id,"student", "StudentID")) {
+            idMessage.setVisible(true);
+        }
+    }
+
+    //Call isAvailable method to check in database and show message if ID is available
+    @FXML
+    public void emailExit() {
+        String email = emailFill.getText();
+
+        if (email.isEmpty()) {
+            emailMessage.setVisible(false);
+        }
+        else if (!isValidEmail(email)) {
+            emailMessage.setText("*Email not valid");
+            emailMessage.setVisible(true);
+        }
+        else if (isAvailable(email,"club_advisor", "Email")) {
+            emailMessage.setVisible(true);
+        }
+        else if (isAvailable(email,"student", "Email")) {
+            emailMessage.setVisible(true);
+        }
+    }
+
+    //If fields are empty visible messages are set to false
+    @FXML
+    public void hiddenError() {
+        if (idFill.getText().isEmpty()) {
+            idMessage.setVisible(false);
+        }
+        if (reEnterPasswordFill.getText().isEmpty()) {
+            passwordMessage.setVisible(false);
+        }
+        if (emailFill.getText().isEmpty()) {
+            emailMessage.setVisible(false);
+        }
+    }
+
+    //Check for both password fields to verify password is same in both
+    @FXML
+    public void passwordExit() {
+        if (reEnterPasswordFill.getText().isEmpty()) {
+            passwordMessage.setVisible(false);
+        }
+        else if (!(Objects.equals(passwordFill.getText(), reEnterPasswordFill.getText()))) {
+            passwordMessage.setVisible(true);
+        }
+    }
+
+    //If messages are visible Sign Up button is set to disable
+    private void disableSignUp() {
+        boolean idMessageVisible = idMessage.isVisible();
+        boolean emailMessageVisible = emailMessage.isVisible();
+        boolean passwordMessageVisible = passwordMessage.isVisible();
+
+        signUpButton.setDisable(idMessageVisible || emailMessageVisible || passwordMessageVisible);
+    }
+
+    //Disable sign up method is called when mouse entered to sign up button
+    @FXML
+    public void signUpEnter() {
+        disableSignUp();
+    }
+
+    //Styles for Sign Up button when mouse pressed
+    @FXML
+    public void signUpPress() {
+        signUpButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
+    }
+
+    //User details are inserted into respective tables and prompt box will appear when mouse released
+    @FXML
+    public void signUpRelease() throws IOException {
         Toggle selectedToggle = genderGroup.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
 
-        
+        PromptBoxController promptBoxController = new PromptBoxController();
+        promptBoxController.showPromptMessage("Successfully Signed Up!");
 
-        try {
-            Connection connection = DatabaseConnectionTest.getConnection();
+        StoreUserData storeUserData = new StoreUserData();
 
-            if (connection == null) {
-                System.err.println("Database connection is null.");
-                return;
-            }
+        signUpButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
 
-            String sql = "INSERT INTO Student(StudentID, First_name, Last_name, Gender, Email, DOB, User_name, Password)"
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
-            try {
-                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                    preparedStatement.setString(1, idFill.getText());
-                    preparedStatement.setString(2, firstNameFill.getText());
-                    preparedStatement.setString(3, LastNameFill.getText());
-                    preparedStatement.setString(4, selectedRadioButton.getText());
-                    preparedStatement.setString(5, emailFill.getText());
-                    preparedStatement.setDate(6, java.sql.Date.valueOf(dateOfBirthPicker.getValue()));
-                    preparedStatement.setString(7, usernameFill.getText());
-                    preparedStatement.setString(8, passwordFill.getText());
-
-                    preparedStatement.executeUpdate();
-
-                    System.out.println("Club details inserted into the database successfully!");
-                }
-            } catch (SQLException e) {
-                System.err.println("Error inserting user details into the database: " + e.getMessage());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (advisorToggle.isSelected()) {
+            storeUserData.setUserType("club_advisor", "AdvisorID", "Username", idFill, firstNameFill, LastNameFill, selectedRadioButton,
+                    emailFill, dateOfBirthPicker, usernameFill, passwordFill);
         }
+        else if (studentToggle.isSelected()) {
+            storeUserData.setUserType("student", "StudentID", "User_name", idFill, firstNameFill, LastNameFill, selectedRadioButton,
+                    emailFill, dateOfBirthPicker, usernameFill, passwordFill);
+        }
+        clearAll();
     }
 }

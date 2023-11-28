@@ -3,7 +3,6 @@ package com.example.scams_ood;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 public class ClubAdvisor {
     private String advisorId;
     private String name;

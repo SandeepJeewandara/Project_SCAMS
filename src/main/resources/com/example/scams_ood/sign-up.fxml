@@ -7,36 +7,22 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.SignUpController">
-   <AnchorPane layoutX="598.0" layoutY="13.0" prefHeight="675.0" prefWidth="538.0" style="-fx-background-color: #D3D3D3; -fx-background-radius: 20;">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.SignUpController">
+   <AnchorPane layoutX="598.0" layoutY="13.0" prefHeight="675.0" prefWidth="538.0" style="-fx-background-color: #D3D3D3; -fx-background-radius: 20;" styleClass="float-item" stylesheets="@Styles.css">
       <Text fontSmoothingType="LCD" layoutX="241.0" layoutY="668.0" strokeType="OUTSIDE" strokeWidth="0.0" text="©SCAMS" wrappingWidth="56.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <Button fx:id="studentButton" layoutX="300.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#studentPress" prefHeight="23.0" prefWidth="73.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Student" textFill="WHITE">
-         <font>
-            <Font name="Tahoma Bold" size="13.5" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="advisorButton" layoutX="172.0" layoutY="72.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#advisorPress" prefHeight="28.0" prefWidth="73.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Advisor" textFill="WHITE">
-         <font>
-            <Font name="Tahoma Bold" size="13.5" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Text fontSmoothingType="LCD" layoutX="169.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up to SCAMS" wrappingWidth="204.0">
+      <Text fontSmoothingType="LCD" layoutX="228.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" wrappingWidth="90.0">
          <font>
             <Font name="Segoe UI Semibold" size="24.0" />
          </font>
@@ -78,10 +64,10 @@
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <TextField fx:id="idFill" disable="true" layoutX="210.0" layoutY="317.0" onKeyTyped="#validTyped" prefHeight="36.0" prefWidth="286.0" promptText="Ex: S123" style="-fx-background-radius: 20;" />
-      <TextField fx:id="emailFill" disable="true" layoutX="210.0" layoutY="423.0" onKeyTyped="#validTyped" prefHeight="36.0" prefWidth="286.0" promptText="Ex: john.wick@scams.com" style="-fx-background-radius: 20;" />
+      <TextField fx:id="idFill" disable="true" layoutX="210.0" layoutY="317.0" onKeyPressed="#hiddenError" onKeyTyped="#validTyped" onMouseExited="#idExit" prefHeight="36.0" prefWidth="286.0" promptText="Ex: S123" style="-fx-background-radius: 20;" />
+      <TextField fx:id="emailFill" disable="true" layoutX="210.0" layoutY="423.0" onKeyPressed="#hiddenError" onKeyTyped="#validTyped" onMouseExited="#emailExit" prefHeight="36.0" prefWidth="286.0" promptText="Ex: john.wick@scams.com" style="-fx-background-radius: 20;" />
       <DatePicker fx:id="dateOfBirthPicker" disable="true" layoutX="210.0" layoutY="370.0" onKeyTyped="#validTyped" prefHeight="36.0" prefWidth="286.0" promptText="MM/DD/YYYY" />
-      <Button fx:id="cancelButton" layoutX="122.0" layoutY="605.0" mnemonicParsing="false" onMousePressed="#cancelPress" onMouseReleased="#cancelRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Cancel" textFill="WHITE">
+      <Button fx:id="cancelButton" layoutX="122.0" layoutY="605.0" mnemonicParsing="false" onMousePressed="#cancelPress" onMouseReleased="#cancelRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-radius: 40;" styleClass="option_Button_main" stylesheets="@Styles.css" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
@@ -89,7 +75,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="signUpButton" disable="true" layoutX="299.0" layoutY="605.0" mnemonicParsing="false" onMouseReleased="#signUpRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Sign Up" textFill="WHITE">
+      <Button fx:id="signUpButton" disable="true" layoutX="299.0" layoutY="605.0" mnemonicParsing="false" onMouseEntered="#signUpEnter" onMousePressed="#signUpPress" onMouseReleased="#signUpRelease" prefHeight="46.0" prefWidth="121.0" style="-fx-background-radius: 40;" styleClass="option_Button_main" stylesheets="@Styles.css" text="Sign Up" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
@@ -97,12 +83,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" wrappingWidth="259.0">
+      <Text fx:id="idMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" visible="false" wrappingWidth="259.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>
       </Text>
-      <Text fx:id="emailMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" wrappingWidth="259.0">
+      <Text fx:id="emailMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="223.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Already Registered" visible="false" wrappingWidth="259.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>
@@ -129,7 +115,7 @@
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <PasswordField fx:id="reEnterPasswordFill" disable="true" layoutX="210.0" layoutY="529.0" prefHeight="36.0" prefWidth="286.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
+      <PasswordField fx:id="reEnterPasswordFill" disable="true" layoutX="210.0" layoutY="529.0" onKeyPressed="#hiddenError" onMouseExited="#passwordExit" prefHeight="36.0" prefWidth="286.0" promptText="Enter Password" style="-fx-background-radius: 20;" />
       <Text fontSmoothingType="LCD" layoutX="194.0" layoutY="595.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already Registered? " wrappingWidth="113.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />
@@ -141,15 +127,34 @@
             <Font name="Segoe UI Semibold" size="12.0" />
          </font>
       </Text>
-      <RadioButton fx:id="maleRadio" disable="true" layoutX="210.0" layoutY="228.0" mnemonicParsing="false" text="Male" />
-      <RadioButton fx:id="femaleRadio" disable="true" layoutX="301.0" layoutY="228.0" mnemonicParsing="false" text="Female" />
-      <Text fill="#c92c2c" fontSmoothingType="LCD" layoutX="219.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Password not matching" wrappingWidth="259.0">
+      <RadioButton fx:id="maleRadio" disable="true" layoutX="210.0" layoutY="228.0" mnemonicParsing="false" text="Male">
+         <toggleGroup>
+            <ToggleGroup fx:id="genderGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="femaleRadio" disable="true" layoutX="301.0" layoutY="228.0" mnemonicParsing="false" text="Female" toggleGroup="$genderGroup" />
+      <Text fx:id="passwordMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="219.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Password not matching" visible="false" wrappingWidth="259.0">
          <font>
             <Font name="Segoe UI Semibold" size="11.0" />
          </font>
       </Text>
+      <ToggleButton fx:id="studentToggle" layoutX="297.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#studentPress" style="-fx-background-radius: 40; -fx-background-color: #813EB6;" text="Student" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Tahoma Bold" size="13.5" />
+         </font>
+      </ToggleButton>
+      <ToggleButton fx:id="advisorToggle" layoutX="176.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#advisorPress" prefHeight="28.0" prefWidth="72.0" style="-fx-background-radius: 40; -fx-background-color: #813EB6;" text="Advisor" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Tahoma Bold" size="13.5" />
+         </font>
+      </ToggleButton>
    </AnchorPane>
-   <ImageView fitHeight="205.0" fitWidth="278.0" layoutX="151.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../../../../../../../../Downloads/JohnsCafe/JohnsCafe/src/main/resources/com/example/johnscafe/Pictures/Logo.png" />
+   <ImageView fitHeight="471.0" fitWidth="457.0" layoutX="74.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../../../Images/Logo/Animation_3.gif" />
    </ImageView>
 </AnchorPane>
