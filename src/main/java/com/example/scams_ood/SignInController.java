@@ -33,6 +33,7 @@ public class SignInController {
     @FXML
     private TextField usernameFill;
 
+    //Retrieve data from database to lists and set listeners to user input fields
     @FXML
     private void initialize() {
         List<ClubAdvisor> advisorAccounts = UserAccountAccess.getAdvisorAccounts();
@@ -41,7 +42,6 @@ public class SignInController {
         System.out.println(advisorAccounts);
         System.out.println(studentsAccount);
 
-
         passwordMessage.setVisible(false);
         usernameMessage.setVisible(false);
 
@@ -49,6 +49,7 @@ public class SignInController {
         passwordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignIn());
     }
 
+    //Enable sign in button after all fields are filled
     @FXML
     private void enableSignIn() {
         boolean usernameFilled = !usernameFill.getText().trim().isEmpty();
@@ -56,22 +57,26 @@ public class SignInController {
         signInButton.setDisable(!(usernameFilled && passwordFilled));
     }
 
+    //Styles for exit button when mouse pressed
     @FXML
     public void exitPress() {
         exitButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
     }
 
+    //Styles for exit button when mouse release
     @FXML
     public void exitRelease() {
         System.exit(0);
         exitButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
     }
 
+    //Styles for sign in button when mouse pressed
     @FXML
     public void signInPress() {
         signInButton.setStyle("-fx-background-color: #690260;" + "-fx-background-radius: 40");
     }
 
+    //Redirect to Sign Up scene if user not registered
     @FXML
     public void signUpRelease(MouseEvent event) {
         try {
@@ -86,6 +91,7 @@ public class SignInController {
         }
     }
 
+    //
     private void openDashboard(Object user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
@@ -102,6 +108,7 @@ public class SignInController {
         }
     }
 
+    //Check for username and password if it's available in the list and set messages to visible if user inputs are incorrect
     @FXML
     public void signInRelease() {
         signInButton.setStyle("-fx-background-color: #813EB6;" + "-fx-background-radius: 40");
@@ -141,6 +148,7 @@ public class SignInController {
         usernameMessage.setVisible(true);
     }
 
+    //If user input fields are empty messages are set to not visible
     @FXML
     public void hiddenError() {
         if (usernameFill.getText().isEmpty()) {

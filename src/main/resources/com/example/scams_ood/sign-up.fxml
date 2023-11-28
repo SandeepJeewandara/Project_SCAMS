@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.SignUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1150.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.SignUpController">
    <AnchorPane layoutX="598.0" layoutY="13.0" prefHeight="675.0" prefWidth="538.0" style="-fx-background-color: #D3D3D3; -fx-background-radius: 20;">
       <Text fontSmoothingType="LCD" layoutX="241.0" layoutY="668.0" strokeType="OUTSIDE" strokeWidth="0.0" text="©SCAMS" wrappingWidth="56.0">
          <font>
@@ -154,7 +154,7 @@
          </font>
       </ToggleButton>
    </AnchorPane>
-   <ImageView fitHeight="205.0" fitWidth="278.0" layoutX="151.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@../../../../../../../../../Downloads/JohnsCafe/JohnsCafe/src/main/resources/com/example/johnscafe/Pictures/Logo.png" />
+   <ImageView fitHeight="471.0" fitWidth="457.0" layoutX="74.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../../../Images/Logo/Animation_3.gif" />
    </ImageView>
 </AnchorPane>

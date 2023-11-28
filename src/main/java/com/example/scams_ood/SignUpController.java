@@ -84,6 +84,7 @@ public class SignUpController {
     @FXML
     private ToggleGroup genderGroup;
 
+    //Limit input characters for text fields and set listeners to user input fields
     @FXML
     private void initialize() {
         addTextLimiter(idFill, 4);
@@ -109,6 +110,7 @@ public class SignUpController {
         reEnterPasswordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
     }
 
+    //Enable sign up button after all fields are filled
     private void enableSignUp() {
         boolean firstnameFilled = !firstNameFill.getText().trim().isEmpty();
         boolean lastnameFilled = !LastNameFill.getText().trim().isEmpty();
@@ -124,6 +126,7 @@ public class SignUpController {
                 dobFilled && emailFilled && passwordFilled && reEnterPasswordFilled));
     }
 
+    //When user select one of the toggle buttons all the text fields are enabled
     @FXML
     private void typeSelect() {
         firstNameFill.setDisable(false);
@@ -138,6 +141,7 @@ public class SignUpController {
         reEnterPasswordFill.setDisable(false);
     }
 
+    //Method to clear all text fields
     private void clearAll() {
         firstNameFill.clear();
         LastNameFill.clear();
@@ -150,6 +154,7 @@ public class SignUpController {
         reEnterPasswordFill.clear();
     }
 
+    //Advisor button mouse event for mouse press
     @FXML
     public void advisorPress() {
         advisorToggle.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
@@ -160,6 +165,7 @@ public class SignUpController {
         clearAll();
     }
 
+    //Student button mouse event for mouse press
     @FXML
     public void studentPress() {
         studentToggle.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
@@ -170,6 +176,7 @@ public class SignUpController {
         clearAll();
     }
 
+    //Validate User ID field to only take A or S and numbers
     @FXML
     public void validTyped() {
         if (advisorToggle.isSelected()) {
@@ -180,6 +187,7 @@ public class SignUpController {
         }
     }
 
+    //Redirect to Sign In scene if user already registered
     @FXML
     public void signInRelease(MouseEvent event) {
         try {
@@ -194,11 +202,14 @@ public class SignUpController {
         }
     }
 
+    //Styles for cancel button when mouse pressed
     @FXML
     public void cancelPress() {
         cancelButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
     }
 
+
+    //Styles for cancel button when mouse released and redirect to Sign In scene
     @FXML
     public void cancelRelease() {
         cancelButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
@@ -215,6 +226,7 @@ public class SignUpController {
         }
     }
 
+    //Validation for emails
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pattern = Pattern.compile(emailRegex);
@@ -222,6 +234,7 @@ public class SignUpController {
         return matcher.matches();
     }
 
+    //Method to check the values are available in database
     private boolean isAvailable(String check, String table, String column) {
         try {
             Connection connection = DatabaseConnectionTest.getConnection();
@@ -244,8 +257,9 @@ public class SignUpController {
         }
     }
 
+    //Call isAvailable method to check in database and show message if ID is available
     @FXML
-    void idExit() {
+    public void idExit() {
         String id = idFill.getText();
 
         if (idFill.getText().isEmpty()) {
@@ -259,8 +273,9 @@ public class SignUpController {
         }
     }
 
+    //Call isAvailable method to check in database and show message if ID is available
     @FXML
-    void emailExit() {
+    public void emailExit() {
         String email = emailFill.getText();
 
         if (email.isEmpty()) {
@@ -278,6 +293,7 @@ public class SignUpController {
         }
     }
 
+    //If fields are empty visible messages are set to false
     @FXML
     public void hiddenError() {
         if (idFill.getText().isEmpty()) {
@@ -291,6 +307,7 @@ public class SignUpController {
         }
     }
 
+    //If messages are visible Sign Up button is set to disable
     private void disableSignUp() {
         boolean idMessageVisible = idMessage.isVisible();
         boolean emailMessageVisible = emailMessage.isVisible();
@@ -299,6 +316,7 @@ public class SignUpController {
         signUpButton.setDisable(idMessageVisible || emailMessageVisible || passwordMessageVisible);
     }
 
+    //Check for both password fields to verify password is same in both
     @FXML
     public void passwordExit() {
         if (reEnterPasswordFill.getText().isEmpty()) {
@@ -310,11 +328,13 @@ public class SignUpController {
         disableSignUp();
     }
 
+    //Styles for Sign Up button when mouse pressed
     @FXML
     public void signUpPress() {
         signUpButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
     }
 
+    //User details are inserted into respective tables and prompt box will appear when mouse released
     @FXML
     public void signUpRelease() throws IOException {
         Toggle selectedToggle = genderGroup.getSelectedToggle();
@@ -336,7 +356,6 @@ public class SignUpController {
             storeUserData.setUserType("student", "StudentID", "User_name", idFill, firstNameFill, LastNameFill, selectedRadioButton,
                     emailFill, dateOfBirthPicker, usernameFill, passwordFill);
         }
-
         clearAll();
     }
 }
