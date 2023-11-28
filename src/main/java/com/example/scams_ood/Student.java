@@ -1,5 +1,6 @@
 package com.example.scams_ood;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,9 @@ public class Student {
     private String Username;
     private String password;
     private List<Club> clubsJoined;
+    private List<Event> eventsjoined;
+
+
 
     public String getStudentId() {
         return studentId;
@@ -77,6 +81,21 @@ public class Student {
         this.clubsJoined = clubsJoined;
     }
 
+    public List<Event> getEventsjoined() {
+        return eventsjoined;
+    }
+
+    public void setEventsjoined(List<Event> eventsjoined) {
+        this.eventsjoined = eventsjoined;
+    }
+
+    public void joinClub(Club club) {
+        clubsJoined.add(club);
+        club.getMembers().add(this);
+    }
+
+
+
     public Student(String studentId, String studentName, String gender, String gmail, Date DOB, String username, String password) {
         this.studentId = studentId;
         this.studentName = studentName;
@@ -85,7 +104,12 @@ public class Student {
         this.DOB = DOB;
         Username = username;
         this.password = password;
+
+        this.clubsJoined = new ArrayList<>();
+        this.eventsjoined = new ArrayList<>();
     }
+
+
 
     public Student(String studentId, String studentName, String username, String password) {
         this.studentId = studentId;
@@ -94,17 +118,18 @@ public class Student {
         this.password = password;
     }
 
+
     @Override
     public String toString() {
         return "Student{" +
-                "studentId=" + studentId +
+                "studentId='" + studentId + '\'' +
                 ", studentName='" + studentName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", Gmail='" + Gmail + '\'' +
                 ", DOB=" + DOB +
                 ", Username='" + Username + '\'' +
                 ", password='" + password + '\'' +
-                ", clubsJoined=" + clubsJoined +
+                ", eventsjoined=" + eventsjoined +
                 '}';
     }
 }

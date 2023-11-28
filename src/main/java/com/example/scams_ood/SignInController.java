@@ -125,7 +125,7 @@ public class SignInController {
         for (ClubAdvisor advisor : advisorAccounts) {
             if (advisor.getUsername().equals(username)) {
                 if (advisor.getPassword().equals(password)) {
-                    openDashboard(advisor);
+                    openDashboard(advisor,true);
                     return;
                 } else {
                     passwordMessage.setVisible(true);
@@ -137,7 +137,7 @@ public class SignInController {
         for (Student student : studentsAccount) {
             if (student.getUsername().equals(username)) {
                 if (student.getPassword().equals(password)) {
-                    openDashboard(student);
+                    openDashboard(student,false);
                     return;
                 } else {
                     passwordMessage.setVisible(true);
@@ -148,7 +148,27 @@ public class SignInController {
         usernameMessage.setVisible(true);
     }
 
+
     //If user input fields are empty messages are set to not visible
+
+    @FXML
+    private void openDashboard(Object user,boolean isAdvisor) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+            Parent root = loader.load();
+
+            DashboardController dashboardController = loader.getController();
+            dashboardController.setUser(user,isAdvisor);
+
+            Scene dashboardScene = new Scene(root);
+            Stage stage = (Stage) signInButton.getScene().getWindow();
+            stage.setScene(dashboardScene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @FXML
     public void hiddenError() {
         if (usernameFill.getText().isEmpty()) {
