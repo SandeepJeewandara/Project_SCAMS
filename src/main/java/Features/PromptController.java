@@ -36,7 +36,7 @@ public class PromptController {
         promptText.setText(message);
     }
 
-    public void showPromptMessage(String message) throws IOException {
+    public static void showPromptMessage(String message) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/PromptBox.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.load()));

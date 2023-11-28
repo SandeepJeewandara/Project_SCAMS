@@ -37,62 +37,75 @@ public class AttendanceEventController {
     @FXML
     private ScrollPane eventScroll;
 
-    public void displayClubEvent(ActionEvent event) {
+    private boolean isValidClubId(String clubId) {
+        if (clubId.length() != 4) {
+            return false;
+
+        }
+        return true;
+    }
+
+
+        public void displayClubEvent(ActionEvent event) {
         PromptController promptController = new PromptController();
 
         String clubId = clubIdTextField.getText();
-        if(clubId == null || )
-        System.out.println(clubId);
+        if(isValidClubId(clubId)) {
+            System.out.println(clubId);
 
-        List <Event> retrievedClubs = DataAccess.getEvents();
-        List<Event> eventsAssignToClubs =new ArrayList<>();
+            List<Event> retrievedClubs = DataAccess.getEvents();
+            List<Event> eventsAssignToClubs = new ArrayList<>();
 
-        for(Event events : retrievedClubs){
-            System.out.println(events.getClubID().getClubId());
-            if(events.getClubID().getClubId().equals(clubId)){
-                System.out.println(events.getClubID());
-                eventsAssignToClubs.add(events);
+            for (Event events : retrievedClubs) {
+                System.out.println(events.getClubID().getClubId());
+                if (events.getClubID().getClubId().equals(clubId)) {
+                    System.out.println(events.getClubID());
+                    eventsAssignToClubs.add(events);
+                }
             }
-        }
 
-        int column = 0;
-        int row = 1;
+            int column = 0;
+            int row = 1;
 
-        try {
-            for (int i = 0; i < eventsAssignToClubs.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/com/example/scams_ood/event.fxml"));
-                //main/resources/com/example/scams_ood
-                AnchorPane anchorPane = fxmlLoader.load();
+            try {
+                for (int i = 0; i < eventsAssignToClubs.size(); i++) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/com/example/scams_ood/event.fxml"));
+                    //main/resources/com/example/scams_ood
+                    AnchorPane anchorPane = fxmlLoader.load();
 
 
-                EventController eventController = fxmlLoader.getController();
-                eventController.eventIconSetData(eventsAssignToClubs.get(i));
+                    EventController eventController = fxmlLoader.getController();
+                    eventController.eventIconSetData(eventsAssignToClubs.get(i));
 
-                if(column == 3){
-                    column =0;
-                    row ++;
+                    if (column == 3) {
+                        column = 0;
+                        row++;
+                    }
+
+                    eventGrid.add(anchorPane, column++, row);
+                    //Set width
+                    eventGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    eventGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    eventGrid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                    //set height
+                    eventGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    eventGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    eventGrid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                    GridPane.setMargin(anchorPane, new Insets(10));
+
+                    retrievedClubs.clear();
                 }
 
-                eventGrid.add(anchorPane,column++, row);
-                //Set width
-                eventGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                eventGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                eventGrid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                //set height
-                eventGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                eventGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                eventGrid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(anchorPane,new Insets(10));
-
-                retrievedClubs.clear();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        } else (
+                PromptController.showPromptMessage("")
+                )
     }
 
     /*
