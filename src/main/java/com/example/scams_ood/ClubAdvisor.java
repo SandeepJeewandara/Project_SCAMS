@@ -12,7 +12,7 @@ public class ClubAdvisor {
     private Date DOB;
     private String Username;
     private String password;
-    private List<Club> managedClubs; // Bi-directional association
+    private List<Club> managedClubs;
 
     public String getAdvisorId() {
         return advisorId;
@@ -84,7 +84,6 @@ public class ClubAdvisor {
             club.setClubAdvisor(this);
         }
     }
-
 
     public ClubAdvisor(String advisorId, String name, String gender, String gmail, Date DOB, String username, String password) {
         this.advisorId = advisorId;

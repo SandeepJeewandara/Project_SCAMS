@@ -1,224 +1,263 @@
-package Database;
+    package Database;
 
-import com.example.scams_ood.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+    import com.example.scams_ood.*;
+    import java.sql.Connection;
+    import java.sql.PreparedStatement;
+    import java.sql.ResultSet;
+    import java.sql.SQLException;
+    import java.util.ArrayList;
+    import java.util.List;
 
-public class DataAccess {
+    public class DataAccess {
 
-    //Static lists uses for all operations
-    private static List<Club> clubs;
-    private static List<ClubAdvisor> clubAdvisors;
-    private static List<Event> events;
-    private static List<Student> students;
-
-
-
-    static {
-        clubs = new ArrayList<>();
-        clubAdvisors = new ArrayList<>();
-        students=new ArrayList<>();
-        events=new ArrayList<>();
+        //Static lists uses for all operations
+        private static List<Club> clubs;
+        private static List<ClubAdvisor> clubAdvisors;
+        private static List<Event> events;
+        private static List<Student> students;
 
 
-        try {
-            Connection connection = DatabaseConnectionTest.getConnection();
-            fetchClubAdvisors(connection);
-            fetchClubs(connection);
-            fetchEvents(connection);
-            fetchStudents(connection);
-            connection.close();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+        static {
+            clubs = new ArrayList<>();
+            clubAdvisors = new ArrayList<>();
+            students=new ArrayList<>();
+            events=new ArrayList<>();
 
 
-    //Update Club Advisors list from Database
-    private static void fetchClubAdvisors(Connection connection) throws SQLException {
-        String query = "SELECT * FROM Club_Advisor";
+            try {
+                //Set Database Connection
+                Connection connection = DatabaseConnectionTest.getConnection();
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
+                //Fetch Tables
+                fetchClubAdvisors(connection);
+                fetchClubs(connection);
+                fetchEvents(connection);
+                fetchStudents(connection);
 
-            while (resultSet.next()) {
-                ClubAdvisor clubAdvisor = new ClubAdvisor(
-                        resultSet.getString("AdvisorID"),
-                        resultSet.getString("First_name"),
-                        resultSet.getString("Gender"),
-                        resultSet.getString("Email"),
-                        resultSet.getDate("DOB"),
-                        resultSet.getString("Username"),
-                        resultSet.getString("Password")
-                );
-                clubAdvisors.add(clubAdvisor);
+                // Fetch club memberships
+                fetchClubMemberships(connection);
+                fetchEventParticipation(connection);
+
+
+                connection.close();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
-    }
 
-    //Update Club list from Database
-    private static void fetchClubs(Connection connection) throws SQLException {
-        String query = "SELECT * FROM Club";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
+        //Update Club Advisors list from Database
+        private static void fetchClubAdvisors(Connection connection) throws SQLException {
+            String query = "SELECT * FROM Club_Advisor";
 
-            while (resultSet.next()) {
-                Club club = new Club(
-                        resultSet.getString("ClubID"),
-                        resultSet.getString("Club_name"),
-                        resultSet.getString("Club_type"),
-                        resultSet.getDate("Started_date").toLocalDate(),
-                        resultSet.getString("Club_description"),
-                        resultSet.getString("Club_logo_path"),
-                        null
-                );
-                clubs.add(club);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-                // Connect Club and ClubAdvisor
-                String advisorId = resultSet.getString("AdvisorID");
-                connectClubAndAdvisor(club, advisorId);
+                while (resultSet.next()) {
+                    ClubAdvisor clubAdvisor = new ClubAdvisor(
+                            resultSet.getString("AdvisorID"),
+                            resultSet.getString("First_name"),
+                            resultSet.getString("Gender"),
+                            resultSet.getString("Email"),
+                            resultSet.getDate("DOB"),
+                            resultSet.getString("Username"),
+                            resultSet.getString("Password")
+                    );
+                    clubAdvisors.add(clubAdvisor);
+                }
             }
         }
-    }
 
-    private static void fetchStudents(Connection connection) throws SQLException {
-        String query = "SELECT * FROM Student";
+        //Update Club list from Database
+        private static void fetchClubs(Connection connection) throws SQLException {
+            String query = "SELECT * FROM Club";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                Student student = new Student(
-                        resultSet.getString("StudentID"),
-                        resultSet.getString("First_name"),
-                        resultSet.getString("Gender"),
-                        resultSet.getString("Email"),
-                        resultSet.getDate("DOB"),
-                        resultSet.getString("User_name"),
-                        resultSet.getString("Password")
-                );
-                students.add(student);
+                while (resultSet.next()) {
+                    Club club = new Club(
+                            resultSet.getString("ClubID"),
+                            resultSet.getString("Club_name"),
+                            resultSet.getString("Club_type"),
+                            resultSet.getDate("Started_date").toLocalDate(),
+                            resultSet.getString("Club_description"),
+                            resultSet.getString("Club_logo_path"),
+                            null
+                    );
+                    clubs.add(club);
 
-                // Connect Student and Clubs
-                connectStudentAndClubs(student, resultSet.getString("StudentID"));
+                    // Connect Club and ClubAdvisor
+                    String advisorId = resultSet.getString("AdvisorID");
+                    connectClubAndAdvisor(club, advisorId);
+                }
             }
         }
-    }
 
+        //Update Student list from Database
+        private static void fetchStudents(Connection connection) throws SQLException {
+            String query = "SELECT * FROM Student";
 
-    private static void fetchEvents(Connection connection) throws SQLException {
-        String query = "SELECT * FROM Event";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Student student = new Student(
+                            resultSet.getString("StudentID"),
+                            resultSet.getString("First_name"),
+                            resultSet.getString("Gender"),
+                            resultSet.getString("Email"),
+                            resultSet.getDate("DOB"),
+                            resultSet.getString("User_name"),
+                            resultSet.getString("Password")
+                    );
+                    students.add(student);
 
-            while (resultSet.next()) {
-                Event event = new Event();
-                event.setEventId(resultSet.getString("EventID"));
-                event.setEventName(resultSet.getString("Event_name"));
-                event.setEventDate(resultSet.getDate("Event_date"));
-                event.setEventTime(resultSet.getTime("Event_time"));
-                event.setEventDescription(resultSet.getString("Event_description"));
-
-                // Connect Event, Club, and Students
-                connectEventAndClub(event, resultSet.getString("ClubID"));
-                connectEventAndStudents(event, resultSet.getString("EventID"));
-
-                events.add(event);
-
+                }
             }
         }
-    }
 
-    private static void connectClubAndAdvisor(Club club, String advisorId) {
-        for (ClubAdvisor advisor : clubAdvisors) {
-            if (advisor.getAdvisorId().equals(advisorId)) {
-                club.setClubAdvisor(advisor);
-                break;
+        //Update Events list from Database
+        private static void fetchEvents(Connection connection) throws SQLException {
+            String query = "SELECT * FROM Event";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Event event = new Event();
+                    event.setEventId(resultSet.getString("EventID"));
+                    event.setEventName(resultSet.getString("Event_name"));
+                    event.setEventDate(resultSet.getDate("Event_date"));
+                    event.setEventTime(resultSet.getTime("Event_time"));
+                    event.setEventDescription(resultSet.getString("Event_description"));
+
+                    // Connect Event, Club, and Students
+                    connectEventAndClub(event, resultSet.getString("ClubID"));
+
+                    events.add(event);
+
+                    // Associate the event with the corresponding club
+                    for (Club club : clubs) {
+                        if (club.getClubId().equals(resultSet.getString("ClubID"))) {
+                            club.addEvent(event);
+                            break;
+                        }
+                    }
+
+                }
             }
         }
-    }
 
 
+        //Update ClubMembership association from Database
+        private static void fetchClubMemberships(Connection connection) throws SQLException {
+            String query = "SELECT * FROM Student_Club";
 
-    private static void connectStudentAndClubs(Student student, String studentId) {
-        String query = "SELECT * FROM Student_Club WHERE StudentID = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-        try (Connection connection = DatabaseConnectionTest.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                while (resultSet.next()) {
+                    String studentId = resultSet.getString("StudentID");
+                    String clubId = resultSet.getString("ClubID");
 
-            preparedStatement.setString(1, studentId);
+                    // Find the student and club based on their IDs
+                    Student student = findStudentById(studentId);
+                    Club club = findClubById(clubId);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                String clubId = resultSet.getString("ClubID");
-                for (Club club : clubs) {
-                    if (club.getClubId().equals(clubId)) {
-                        student.joinClub(club);
-                        break;
+                    // Update the lists with associations
+                    if (student != null && club != null) {
+                        student.getClubsJoined().add(club);
+                        club.getMembers().add(student);
                     }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-    }
 
-
-
-
-
-    private static void connectEventAndClub(Event event, String clubId) {
-        for (Club club : clubs) {
-            if (club.getClubId().equals(clubId)) {
-                event.setClubID(club);
-                break;
+        private static Student findStudentById(String studentId) {
+            for (Student student : students) {
+                if (student.getStudentId().equals(studentId)) {
+                    return student;
+                }
             }
+            return null;
         }
-    }
 
+        private static Club findClubById(String clubId) {
+            for (Club club : clubs) {
+                if (club.getClubId().equals(clubId)) {
+                    return club;
+                }
+            }
+            return null;
+        }
 
-    private static void connectEventAndStudents(Event event, String eventId) {
-        String query = "SELECT * FROM Event_Registration WHERE EventID = ?";
+        //Update EventParticipation association from Database
+        private static void fetchEventParticipation(Connection connection) throws SQLException {
+            String query = "SELECT * FROM Event_Registration";
 
-        try (Connection connection = DatabaseConnectionTest.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-            preparedStatement.setString(1, eventId);
+                while (resultSet.next()) {
+                    String studentId = resultSet.getString("StudentID");
+                    String eventId = resultSet.getString("EventID");
+                    boolean attendance = resultSet.getBoolean("Attendance");
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+                    // Find the student and Event based on their IDs
+                    Student student = findStudentById(studentId);
+                    Event event = findEventById(eventId);
 
-            while (resultSet.next()) {
-                String studentId = resultSet.getString("StudentID");
-                for (Student student : students) {
-                    if (student.getStudentId().equals(studentId)) {
-                        event.addMember(student);
-                        break;
+                    // Update the lists with associations
+                    if (student != null && event != null) {
+                        student.getEventsjoined().add(event);
+                        event.getMembers().add(student);
+
                     }
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+
+        private static Event findEventById(String eventId) {
+            for (Event event : events) {
+                if (event.getEventId().equals(eventId)) {
+                    return event;
+                }
+            }
+            return null;
+        }
+
+
+        private static void connectEventAndClub(Event event, String clubId) {
+            for (Club club : clubs) {
+                if (club.getClubId().equals(clubId)) {
+                    event.setClubID(club);
+                    break;
+                }
+            }
+        }
+
+        private static void connectClubAndAdvisor(Club club, String advisorId) {
+            for (ClubAdvisor advisor : clubAdvisors) {
+                if (advisor.getAdvisorId().equals(advisorId)) {
+                    club.setClubAdvisor(advisor);
+                    break;
+                }
+            }
+        }
+
+
+        public static List<Club> getClubs() {
+            return clubs;
+        }
+
+        public static List<ClubAdvisor> getClubAdvisors() {
+            return clubAdvisors;
+        }
+
+        public static List<Student> getStudents(){ return students;}
+
+        public static List<Event> getEvents(){ return  events;}
     }
-
-
-    public static List<Club> getClubs() {
-        return clubs;
-    }
-
-    public static List<ClubAdvisor> getClubAdvisors() {
-        return clubAdvisors;
-    }
-
-    public static List<Student> getStudents(){ return students;}
-
-    public static List<Event> getEvents(){ return  events;}
-}

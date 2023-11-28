@@ -15,6 +15,8 @@ public class Student {
     private List<Club> clubsJoined;
     private List<Event> eventsjoined;
 
+
+
     public String getStudentId() {
         return studentId;
     }
@@ -79,27 +81,17 @@ public class Student {
         this.clubsJoined = clubsJoined;
     }
 
+    public List<Event> getEventsjoined() {
+        return eventsjoined;
+    }
+
+    public void setEventsjoined(List<Event> eventsjoined) {
+        this.eventsjoined = eventsjoined;
+    }
 
     public void joinClub(Club club) {
-        if (this.clubsJoined == null) {
-            this.clubsJoined = new ArrayList<>();
-        }
-        this.clubsJoined.add(club);
-    }
-
-    public void leaveClub(Club club) {
-        clubsJoined.remove(club);
-        club.removeMember(this);
-    }
-
-    public void addEvent(Event event) {
-        eventsjoined.add(event);
-        event.addMember(this);
-    }
-
-    public void removeEvent(Event event) {
-        eventsjoined.remove(event);
-        event.removeMember(this);
+        clubsJoined.add(club);
+        club.getMembers().add(this);
     }
 
 
@@ -137,7 +129,6 @@ public class Student {
                 ", DOB=" + DOB +
                 ", Username='" + Username + '\'' +
                 ", password='" + password + '\'' +
-                ", clubsJoined=" + clubsJoined +
                 ", eventsjoined=" + eventsjoined +
                 '}';
     }

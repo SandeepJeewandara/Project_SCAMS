@@ -1,6 +1,7 @@
 package com.example.scams_ood;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,11 @@ public class Event {
     private String eventDescription;
     private Club clubID;
     private List<Student> members;
+
+
+    public Event() {
+        this.members = new ArrayList<>();
+    }
 
     public String getEventId() {
         return eventId;
@@ -62,14 +68,12 @@ public class Event {
         this.clubID = clubID;
     }
 
-    public void addMember(Student member) {
-        members.add(member);
-        member.addEvent(this);
+    public List<Student> getMembers() {
+        return members;
     }
 
-    public void removeMember(Student member) {
-        members.remove(member);
-        member.removeEvent(this);
+    public void setMembers(List<Student> members) {
+        this.members = members;
     }
 
     @Override
@@ -80,8 +84,7 @@ public class Event {
                 ", eventDate=" + eventDate +
                 ", eventTime=" + eventTime +
                 ", eventDescription='" + eventDescription + '\'' +
-                ", clubID=" + clubID +
-                ", members=" + members +
+                ", clubID=" + (clubID != null ? clubID.getClubId() : "null") +
                 '}';
     }
 }

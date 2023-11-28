@@ -25,6 +25,7 @@ public class Club {
         this.clubLogoPath = clubLogoPath;
         this.clubAdvisor = clubAdvisor;
 
+        this.members = new ArrayList<>();
         this.events = new ArrayList<>();
     }
 
@@ -62,18 +63,8 @@ public class Club {
         return members;
     }
 
-
     public List<Event> getEvents() {
         return events;
-    }
-
-    public void addMember(Student member) {
-        members.add(member);
-        member.joinClub(this);
-    }
-    public void removeMember(Student member) {
-        members.remove(member);
-        member.leaveClub(this);
     }
 
 
@@ -83,6 +74,15 @@ public class Club {
             this.clubAdvisor = clubAdvisor;
             clubAdvisor.addManagedClub(this); // Add this club to the advisor's managed clubs
         }
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+
+    public void addMember(Student student) {
+        members.add(student);
+        student.getClubsJoined().add(this);
     }
 
 
@@ -95,8 +95,7 @@ public class Club {
                 ", startedDate=" + startedDate +
                 ", clubDescription='" + clubDescription + '\'' +
                 ", clubLogoPath='" + clubLogoPath + '\'' +
-                ", clubAdvisor=" + clubAdvisor +
-                ", members=" + members+
+                ", clubAdvisor=" + (clubAdvisor != null ? clubAdvisor.getAdvisorId() : "null") +
                 ", events=" + events +
                 '}';
     }
