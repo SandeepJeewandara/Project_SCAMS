@@ -1,6 +1,7 @@
 package com.example.scams_ood;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Club {
@@ -11,7 +12,7 @@ public class Club {
     private LocalDate startedDate;
     private String clubDescription;
     private String clubLogoPath;
-    private ClubAdvisor clubAdvisor; // Bi-directional association
+    private ClubAdvisor clubAdvisor;
     private List<Student> members;
     private List<Event> events;
 
@@ -23,7 +24,12 @@ public class Club {
         this.clubDescription = clubDescription;
         this.clubLogoPath = clubLogoPath;
         this.clubAdvisor = clubAdvisor;
+
+        this.members = new ArrayList<>();
+        this.events = new ArrayList<>();
     }
+
+
 
     public String getClubId() {
         return clubId;
@@ -61,6 +67,25 @@ public class Club {
         return events;
     }
 
+
+
+    public void setClubAdvisor(ClubAdvisor clubAdvisor) {
+        if (this.clubAdvisor == null) {
+            this.clubAdvisor = clubAdvisor;
+            clubAdvisor.addManagedClub(this); // Add this club to the advisor's managed clubs
+        }
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+
+    public void addMember(Student student) {
+        members.add(student);
+        student.getClubsJoined().add(this);
+    }
+
+
     @Override
     public String toString() {
         return "Club{" +
@@ -70,7 +95,8 @@ public class Club {
                 ", startedDate=" + startedDate +
                 ", clubDescription='" + clubDescription + '\'' +
                 ", clubLogoPath='" + clubLogoPath + '\'' +
-                ", clubAdvisor=" + clubAdvisor +
+                ", clubAdvisor=" + (clubAdvisor != null ? clubAdvisor.getAdvisorId() : "null") +
+                ", events=" + events +
                 '}';
     }
 }
