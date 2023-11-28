@@ -307,15 +307,6 @@ public class SignUpController {
         }
     }
 
-    //If messages are visible Sign Up button is set to disable
-    private void disableSignUp() {
-        boolean idMessageVisible = idMessage.isVisible();
-        boolean emailMessageVisible = emailMessage.isVisible();
-        boolean passwordMessageVisible = passwordMessage.isVisible();
-
-        signUpButton.setDisable(idMessageVisible || emailMessageVisible || passwordMessageVisible);
-    }
-
     //Check for both password fields to verify password is same in both
     @FXML
     public void passwordExit() {
@@ -325,6 +316,20 @@ public class SignUpController {
         else if (!(Objects.equals(passwordFill.getText(), reEnterPasswordFill.getText()))) {
             passwordMessage.setVisible(true);
         }
+    }
+
+    //If messages are visible Sign Up button is set to disable
+    private void disableSignUp() {
+        boolean idMessageVisible = idMessage.isVisible();
+        boolean emailMessageVisible = emailMessage.isVisible();
+        boolean passwordMessageVisible = passwordMessage.isVisible();
+
+        signUpButton.setDisable(idMessageVisible || emailMessageVisible || passwordMessageVisible);
+    }
+
+    //Disable sign up method is called when mouse entered to sign up button
+    @FXML
+    public void signUpEnter() {
         disableSignUp();
     }
 
