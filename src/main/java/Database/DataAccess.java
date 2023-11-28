@@ -35,8 +35,8 @@
                 //Fetch Tables
                 fetchClubAdvisors(connection);
                 fetchClubs(connection);
-                fetchEvents(connection);
                 fetchStudents(connection);
+                fetchEvents(connection);
 
                 // Fetch club memberships
                 fetchClubMemberships(connection);
@@ -225,6 +225,26 @@
             }
         }
 
+        public static boolean isStudentMemberOfClub(String studentId, String clubId) {
+            try (Connection connection = DatabaseConnectionTest.getConnection()) {
+                String query = "SELECT COUNT(*) FROM Student_Club WHERE StudentID = ? AND ClubID = ?";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                    preparedStatement.setString(1, studentId);
+                    preparedStatement.setString(2, clubId);
+
+                    try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                        if (resultSet.next()) {
+                            return resultSet.getInt(1) > 0;
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return false;
+        }
         private static Event findEventById(String eventId) {
             for (Event event : events) {
                 if (event.getEventId().equals(eventId)) {

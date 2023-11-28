@@ -116,6 +116,9 @@ public class Student {
         this.studentName = studentName;
         Username = username;
         this.password = password;
+
+        this.clubsJoined = new ArrayList<>();
+        this.eventsjoined = new ArrayList<>();
     }
 
 
