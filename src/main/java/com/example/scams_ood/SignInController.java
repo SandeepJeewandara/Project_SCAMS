@@ -131,9 +131,7 @@ public class SignInController {
         usernameMessage.setVisible(true);
     }
 
-
-    //If user input fields are empty messages are set to not visible
-
+    //Directing user and user credentials to the dashboard
     @FXML
     private void openDashboard(Object user,boolean isAdvisor) {
         try {
@@ -151,7 +149,7 @@ public class SignInController {
         }
     }
 
-
+    //If user input fields are empty messages are set to not visible
     @FXML
     public void hiddenError() {
         if (usernameFill.getText().isEmpty()) {
