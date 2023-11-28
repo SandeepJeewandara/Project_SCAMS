@@ -18,4 +18,5 @@ public class PromptBoxController {
         okButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
     }
 
+
 }

@@ -1,5 +1,6 @@
 package Features;
 
+import com.example.scams_ood.PromptBoxController;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,7 +37,7 @@ public class PromptController {
         promptText.setText(message);
     }
 
-    public static void showPromptMessage(String message) throws IOException {
+    public void showPromptMessage(String message) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/PromptBox.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.load()));
@@ -51,6 +52,7 @@ public class PromptController {
         stage.setResizable(false);
         stage.show();
     }
+
 
     private void addPopUpAnimation(Stage stage) {
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), stage.getScene().getRoot());

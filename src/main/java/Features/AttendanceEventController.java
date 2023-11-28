@@ -22,20 +22,14 @@ import java.util.List;
 
 public class AttendanceEventController {
 
-    @FXML
-    private Button backButton;
+
 
     @FXML
     private TextField clubIdTextField;
 
     @FXML
-    private Button clubSubmitButton;
-
-    @FXML
     private GridPane eventGrid;
 
-    @FXML
-    private ScrollPane eventScroll;
 
     private boolean isValidClubId(String clubId) {
         if (clubId.length() != 4) {
@@ -46,7 +40,7 @@ public class AttendanceEventController {
     }
 
 
-        public void displayClubEvent(ActionEvent event) {
+        public void displayClubEvent(ActionEvent event) throws IOException {
         PromptController promptController = new PromptController();
 
         String clubId = clubIdTextField.getText();
@@ -103,9 +97,7 @@ public class AttendanceEventController {
                 e.printStackTrace();
             }
 
-        } else (
-                PromptController.showPromptMessage("")
-                )
+        } else (promptController.showPromptMessage(""))
     }
 
     /*
