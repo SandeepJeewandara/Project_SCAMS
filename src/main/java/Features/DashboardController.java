@@ -1,10 +1,7 @@
 package Features;
 
 import Database.DataAccess;
-import com.example.scams_ood.Club;
-import com.example.scams_ood.ClubAdvisor;
-import com.example.scams_ood.Event;
-import com.example.scams_ood.Student;
+import com.example.scams_ood.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -198,6 +195,13 @@ public class DashboardController {
 
         } else if (event.getSource() == joinClubButton) {
 
+            FXMLLoader joinClubLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/JoinClub.fxml"));
+            AnchorPane pnJoinClubContent = joinClubLoader.load();
+            JoinClubController joinClubController =joinClubLoader.getController();
+            joinClubController.setUser(loggedStudent);
+
+            pnJoinClub.getChildren().clear();
+            pnJoinClub.getChildren().addAll(pnJoinClubContent);
             pnJoinClub.toFront();
 
         } else if (event.getSource() == joinEventButton) {

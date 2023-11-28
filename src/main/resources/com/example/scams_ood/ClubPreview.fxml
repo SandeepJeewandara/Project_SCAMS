@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="240.0" prefWidth="190.0" style="-fx-background-radius: 30; -fx-border-color: purple; -fx-border-radius: 20; -fx-border-width: 2px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.ClubPreviewController">
+<AnchorPane prefHeight="240.0" prefWidth="190.0" style="-fx-background-radius: 30; -fx-border-color: purple; -fx-border-radius: 20; -fx-border-width: 2px;" styleClass="club-item" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.ClubPreviewController">
    <ImageView fx:id="clubImagePreview" fitHeight="125.0" fitWidth="126.0" layoutX="38.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
 
    </ImageView>
