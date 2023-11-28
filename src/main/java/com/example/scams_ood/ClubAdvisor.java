@@ -12,7 +12,7 @@ public class ClubAdvisor {
     private Date DOB;
     private String Username;
     private String password;
-    private List<Club> managedClubs; // Bi-directional association
+    private List<Club> managedClubs;
 
     public String getAdvisorId() {
         return advisorId;
@@ -81,6 +81,7 @@ public class ClubAdvisor {
     public void addManagedClub(Club club) {
         if (!managedClubs.contains(club)) {
             managedClubs.add(club);
+            club.setClubAdvisor(this);
         }
     }
 
@@ -105,7 +106,7 @@ public class ClubAdvisor {
     @Override
     public String toString() {
         return "ClubAdvisor{" +
-                "advisorId=" + advisorId +
+                "advisorId='" + advisorId + '\'' +
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
                 ", Gmail='" + Gmail + '\'' +
