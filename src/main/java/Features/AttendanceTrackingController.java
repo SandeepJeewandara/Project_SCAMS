@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -40,6 +41,8 @@ public class AttendanceTrackingController implements Initializable {
     private Button saveToDatabaseButton;
 
     private String eventId;
+    @FXML
+    private Label countLabel;
 
     private boolean isInitialized = false;
 
@@ -91,8 +94,8 @@ public class AttendanceTrackingController implements Initializable {
                     //studentOfEvents.add(student);
             }
             }
-            System.out.println("Students Of Events "+ studentOfEvents.size());
-            System.out.println(studentOfEvents);
+            int count= Integer.parseInt(String.valueOf(studentOfEvents.size()));
+            countLabel.setText(String.valueOf(count));
 
             if (!studentOfEvents.isEmpty()) {
                 studentNameColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("studentName"));
