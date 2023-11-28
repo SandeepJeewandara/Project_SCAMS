@@ -281,7 +281,7 @@ public class SignUpController {
         if (email.isEmpty()) {
             emailMessage.setVisible(false);
         }
-        else if (!isValidEmail(email)) {
+        else if (!(isValidEmail(email))) {
             emailMessage.setText("*Email not valid");
             emailMessage.setVisible(true);
         }
@@ -313,9 +313,7 @@ public class SignUpController {
         if (reEnterPasswordFill.getText().isEmpty()) {
             passwordMessage.setVisible(false);
         }
-        else if (!(Objects.equals(passwordFill.getText(), reEnterPasswordFill.getText()))) {
-            passwordMessage.setVisible(true);
-        }
+        else passwordMessage.setVisible(!(Objects.equals(passwordFill.getText(), reEnterPasswordFill.getText())));
     }
 
     //If messages are visible Sign Up button is set to disable
