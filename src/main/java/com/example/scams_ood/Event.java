@@ -1,6 +1,7 @@
 package com.example.scams_ood;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -87,4 +88,6 @@ public class Event {
                 ", clubID=" + (clubID != null ? clubID.getClubId() : "null") +
                 '}';
     }
+
+
 }
