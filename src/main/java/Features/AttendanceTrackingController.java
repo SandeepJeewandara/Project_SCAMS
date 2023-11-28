@@ -117,35 +117,65 @@ public class AttendanceTrackingController implements Initializable {
         System.out.println("Count of Students"+studentCount);
 
 
-        for (Student student : retrieveStudentsList){
-            if(student.getAttendance().isSelected()){
-                Boolean value =true;
-            }else{
-                Boolean value = false;
+        for (Student student : retrieveStudentsList) {
+            boolean value;
+            if (student.getAttendance()!=null && student.getAttendance().isSelected()) {
+                 value = true;
+            } else {
+                 value = false;
             }
-        }
-
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db","root","")){
-            for (Student student : retrieveStudentsList){
-                String sql = "INSERT INTO Event_Registration (StudentID, EventID, Attendance) VALUES (?, ?, ?)";
-                try(PreparedStatement preparedStatement =connection.prepareStatement(sql)){
-                    preparedStatement.setString(1,student.getStudentId());
-                    preparedStatement.setString(2,eventId);
-                    preparedStatement.setBoolean(3,student.getAttendance().isSelected());
 
 
-                    preparedStatement.executeUpdate();
+            try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db", "root", "")) {
+                //for (Student students : retrieveStudentsList) {
+                    String sql = "INSERT INTO Event_Registration (StudentID, EventID, Attendance) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE Attendance = VALUES(Attendance)";
+//                    for (Student students : retrieveStudentsList) {
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                        for (Student students : retrieveStudentsList) {
+                        preparedStatement.setString(1, students.getStudentId());
+                        preparedStatement.setString(2, eventId);
+                        preparedStatement.setBoolean(3, value);
+
+                        preparedStatement.executeUpdate();
+                    }
+
+
+
                 }
+
+            } catch (SQLException ev) {
+                ev.printStackTrace();
             }
 
-        }catch (SQLException ev){
-            ev.printStackTrace();
+
         }
-
-
 
 
     }
+
+//    public void saveToDatabase(ActionEvent event) {
+//        List<Student> retrieveStudentsList = new ArrayList<>(attendanceTableView.getItems());
+//        int studentCount = attendanceTableView.getItems().size();
+//        System.out.println("Count of Students" + studentCount);
+//
+//        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db", "root", "")) {
+//            String sql = "INSERT INTO Event_Registration (StudentID, EventID, Attendance) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE Attendance = VALUES(Attendance)";
+//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+//                for (Student student : retrieveStudentsList) {
+//                    boolean value = student.getAttendance() != null && student.getAttendance().isSelected();
+//
+//                    preparedStatement.setString(1, student.getStudentId());
+//                    preparedStatement.setString(2, eventId);
+//                    preparedStatement.setBoolean(3, value);
+//
+//                    preparedStatement.executeUpdate();
+//                }
+//            }
+//        } catch (SQLException ev) {
+//            ev.printStackTrace();
+//        }
+//    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
