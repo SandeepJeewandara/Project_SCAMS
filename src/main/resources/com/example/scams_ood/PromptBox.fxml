@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="promptBoxPain" prefHeight="150.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.PromptBoxController">
+<AnchorPane fx:id="promptBoxPain" prefHeight="150.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.PromptBoxController">
    <children>
       <Label fx:id="promptText" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="31.0" prefHeight="22.0" prefWidth="400.0" text="Successfully Signed Up!" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Semibold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="okButton" layoutX="160.0" layoutY="82.0" mnemonicParsing="false" onKeyPressed="#okPress" onKeyReleased="#okRelease" prefHeight="47.0" prefWidth="77.0" style="-fx-background-radius: 40; -fx-background-color: #813EB6;" text="OK" textFill="#fafafa">
+      <Button fx:id="okButton" layoutX="160.0" layoutY="82.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="77.0" style="-fx-background-radius: 40; -fx-background-color: #813EB6;" text="OK" textFill="#fafafa">
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
