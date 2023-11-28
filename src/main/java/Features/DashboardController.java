@@ -171,6 +171,13 @@ public class DashboardController {
 
         } else if (event.getSource() == clubDetailsButton) {
 
+            FXMLLoader viewClubLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/ViewClubs.fxml"));
+            AnchorPane pnViewClubContent = viewClubLoader.load();
+            ViewClubsController viewClubsController=viewClubLoader.getController();
+
+            pnClubDetails.getChildren().clear();
+            pnClubDetails.getChildren().addAll(pnViewClubContent);
+
             pnClubDetails.toFront();
 
         } else if (event.getSource() == scheduleEventButton) {

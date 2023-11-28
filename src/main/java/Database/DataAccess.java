@@ -18,6 +18,9 @@
 
 
 
+
+
+
         static {
             clubs = new ArrayList<>();
             clubAdvisors = new ArrayList<>();
@@ -46,6 +49,8 @@
                 e.printStackTrace();
             }
         }
+
+
 
 
         //Update Club Advisors list from Database
@@ -239,6 +244,7 @@
             }
         }
 
+
         private static void connectClubAndAdvisor(Club club, String advisorId) {
             for (ClubAdvisor advisor : clubAdvisors) {
                 if (advisor.getAdvisorId().equals(advisorId)) {
@@ -260,4 +266,21 @@
         public static List<Student> getStudents(){ return students;}
 
         public static List<Event> getEvents(){ return  events;}
-    }
+
+        public static void addClub(Club newClub) {
+            clubs.add(newClub);
+        }
+
+        public static void removeClub(Club clubToRemove) {
+            clubs.remove(clubToRemove);
+        }
+
+        public static void addEvent(Event newEvent) {
+            events.add(newEvent);
+        }
+
+        public static void removeEvent(Event eventToRemove) {
+            events.remove(eventToRemove);
+        }
+
+        }

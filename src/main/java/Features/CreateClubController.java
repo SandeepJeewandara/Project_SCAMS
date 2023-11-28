@@ -144,7 +144,9 @@ public class CreateClubController {
                     }
                 }
                 Club newClub = new Club(clubID, clubName, clubType, startDate, description, imageFileName,loggedAdvisor);
+                DataAccess.addClub(newClub);
                 insertClubIntoDatabase(newClub);
+
             }
         } else {
             promptBoxController.showPromptMessage("Club ID must be unique and have exactly 4 characters.");
