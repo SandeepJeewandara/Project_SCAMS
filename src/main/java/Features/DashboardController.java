@@ -91,6 +91,9 @@ public class DashboardController {
     private List<Student> students;
     private List<Event> events;
 
+    private ClubAdvisor loggedAdvisor;
+    private Student loggedStudent;
+
 
     @FXML
     private void initialize() {
@@ -128,7 +131,21 @@ public class DashboardController {
         pnDashboard.toFront();
     }
 
+    public ClubAdvisor getLoggedAdvisor() {
+        return loggedAdvisor;
+    }
 
+    public void setLoggedAdvisor(ClubAdvisor loggedAdvisor) {
+        this.loggedAdvisor = loggedAdvisor;
+    }
+
+    public Student getLoggedStudent() {
+        return loggedStudent;
+    }
+
+    public void setLoggedStudent(Student loggedStudent) {
+        this.loggedStudent = loggedStudent;
+    }
 
     //Main Dashboard with Panes
     @FXML
@@ -139,6 +156,16 @@ public class DashboardController {
             pnDashboard.toFront();
 
         } else if (event.getSource() == createClubButton) {
+
+            FXMLLoader creteClubLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/CreateClub.fxml"));
+            AnchorPane pnCreateClubContent = creteClubLoader.load();
+            CreateClubController createClubController=creteClubLoader.getController();
+            createClubController.setUser(loggedAdvisor);
+
+
+
+            pnCreateClub.getChildren().clear();
+            pnCreateClub.getChildren().addAll(pnCreateClubContent);
 
             pnCreateClub.toFront();
 
@@ -181,10 +208,13 @@ public class DashboardController {
         if (user instanceof ClubAdvisor advisor) {
             nameLabel.setText(advisor.getName());
             usenameLabel.setText(advisor.getUsername());
+            setLoggedAdvisor(advisor);
+
 
         } else if (user instanceof Student student) {
             nameLabel.setText(student.getStudentName());
             usenameLabel.setText(student.getUsername());
+            setLoggedStudent(student);
         }
 
         // Adjust visibility of functionalities based on the user's role
