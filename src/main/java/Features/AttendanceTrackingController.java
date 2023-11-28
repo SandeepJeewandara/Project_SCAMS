@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -70,6 +71,7 @@ public class AttendanceTrackingController implements Initializable {
             TableColumn studentAttendanceColumn = new TableColumn("Student Attendance");
 
             attendanceTableView.getColumns().addAll(studentNameColumn, studentIdColumn, studentGmailColumn, studentAttendanceColumn);
+            attendanceTableView.setEditable(true);
             System.out.println(eventId);
 
             List<Student> retrievedStudentList = DataAccess.getStudents();
@@ -97,7 +99,8 @@ public class AttendanceTrackingController implements Initializable {
                 studentIdColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("studentId"));
                 studentGmailColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("Gmail"));
                 studentAttendanceColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("attendance"));
-                //studentAttendanceColumn.setCellFactory(CheckBoxTableCell.forTableColumn(studentAttendanceColumn));
+                studentAttendanceColumn.setCellFactory(CheckBoxTableCell.forTableColumn(studentAttendanceColumn));
+                studentAttendanceColumn.setEditable(true);
             }
 
             if (attendanceTableView != null) {

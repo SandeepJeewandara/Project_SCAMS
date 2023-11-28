@@ -98,7 +98,8 @@
 
         //Update Student list from Database
         private static void fetchStudents(Connection connection) throws SQLException {
-            String query = "SELECT * FROM Student";
+            String query ="SELECT StudentID, CONCAT(First_name, ' ', Last_name) AS Full_name, Gender, Email, DOB, User_name, Password FROM Student";
+            //String query = "SELECT * FROM Student";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -106,7 +107,7 @@
                 while (resultSet.next()) {
                     Student student = new Student(
                             resultSet.getString("StudentID"),
-                            resultSet.getString("First_name"),
+                            resultSet.getString("Full_name"),
                             resultSet.getString("Gender"),
                             resultSet.getString("Email"),
                             resultSet.getDate("DOB"),
