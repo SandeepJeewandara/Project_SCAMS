@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="920.0" stylesheets="@attendanceClub.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.AttendanceEventController">
+    <children>
+        <BorderPane layoutY="-7.0" prefHeight="713.0" prefWidth="1150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" stylesheets="@attendanceClub.css">
+                            <VBox.margin>
+                                <Insets left="20.0" right="20.0" top="10.0" />
+                            </VBox.margin>
+                            <children>
+                                <Label prefHeight="66.0" prefWidth="57.0" styleClass="font-normal" stylesheets="@attendanceClub.css" text="Language" />
+                                <Label prefHeight="66.0" prefWidth="57.0" styleClass="font-normal" stylesheets="@attendanceClub.css" text="English" textFill="#a89999" underline="true" />
+                                <Pane prefHeight="80.0" prefWidth="592.0" stylesheets="@attendanceClub.css" />
+                            </children>
+                            <opaqueInsets>
+                                <Insets top="10.0" />
+                            </opaqueInsets>
+                        </HBox>
+                        <HBox prefHeight="115.0" prefWidth="880.0" styleClass="track-student-label" stylesheets="@attendanceClub.css">
+                            <VBox.margin>
+                                <Insets left="20.0" right="20.0" top="18.0" />
+                            </VBox.margin>
+                            <children>
+                                <HBox prefHeight="80.0" prefWidth="400.0">
+                                    <children>
+                                        <VBox alignment="CENTER" prefHeight="70.0" prefWidth="403.0" styleClass="student-vBox" stylesheets="@attendanceClub.css">
+                                            <children>
+                                                <Label styleClass="font-topic" stylesheets="@attendanceClub.css" text="Your Students'" textFill="WHITE" />
+                                                <Label styleClass="font-topic" stylesheets="@attendanceClub.css" text="Attendence" textFill="WHITE" />
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                            </HBox.margin>
+                                        </VBox>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="5.0" />
+                                    </HBox.margin>
+                                    <opaqueInsets>
+                                        <Insets top="10.0" />
+                                    </opaqueInsets>
+                                </HBox>
+                                <Pane prefHeight="80.0" prefWidth="20.0" />
+                                <HBox prefHeight="80.0" prefWidth="304.0">
+                                    <children>
+                                        <VBox alignment="CENTER" prefHeight="70.0" prefWidth="299.0" styleClass="unity-attendance" stylesheets="@attendanceClub.css">
+                                            <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="203.0" styleClass="font-topic" stylesheets="@attendanceClub.css" text="Enter Club ID " textFill="WHITE" />
+                                    <TextField fx:id="clubIdTextField" prefHeight="25.0" prefWidth="236.0" styleClass="club-item" stylesheets="@attendanceClub.css">
+                                       <VBox.margin>
+                                          <Insets bottom="12.0" left="15.0" right="15.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label fx:id="clubIdValidationLabel" prefHeight="17.0" prefWidth="261.0" styleClass="font-normal" stylesheets="@attendanceClub.css" textFill="#e10707" />
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                            </HBox.margin>
+                                            <opaqueInsets>
+                                                <Insets right="10.0" />
+                                            </opaqueInsets>
+                                        </VBox>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets right="5.0" />
+                                    </HBox.margin>
+                                    <opaqueInsets>
+                                        <Insets top="20.0" />
+                                    </opaqueInsets>
+                                </HBox>
+                        <Pane prefHeight="80.0" prefWidth="36.0" />
+                        <Button fx:id="clubSubmitButton" mnemonicParsing="false" onAction="#displayClubEvent" prefHeight="35.0" prefWidth="95.0" stylesheets="@attendanceClub.css" text="Submit" textFill="#f2eded">
+                           <styleClass>
+                              <String fx:value="font-normal" />
+                              <String fx:value="submit-button" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets right="10.0" top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                            </children>
+                            <opaqueInsets>
+                                <Insets top="100.0" />
+                            </opaqueInsets>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@attendanceClub.css" VBox.vgrow="ALWAYS">
+                            <children>
+                                <ScrollPane fx:id="eventScroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@attendanceClub.css">
+                                    <content>
+                                        <GridPane fx:id="eventGrid" prefHeight="17.0" prefWidth="39.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                                        </GridPane>
+                                    </content>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                                </ScrollPane>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </center></BorderPane>
+    </children>
+</AnchorPane>
