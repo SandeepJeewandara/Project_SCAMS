@@ -144,11 +144,8 @@
          <font>
             <Font name="Tahoma Bold" size="13.5" />
          </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="userType" />
-         </toggleGroup>
       </ToggleButton>
-      <ToggleButton fx:id="advisorToggle" layoutX="176.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#advisorPress" prefHeight="28.0" prefWidth="72.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Advisor" textFill="WHITE" toggleGroup="$userType">
+      <ToggleButton fx:id="advisorToggle" layoutX="176.0" layoutY="70.0" mnemonicParsing="false" onAction="#typeSelect" onMousePressed="#advisorPress" prefHeight="28.0" prefWidth="72.0" style="-fx-background-color: #813EB6; -fx-background-radius: 40;" text="Advisor" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

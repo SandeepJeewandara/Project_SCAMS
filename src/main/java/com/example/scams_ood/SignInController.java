@@ -25,9 +25,6 @@ public class SignInController {
     private Button exitButton;
 
     @FXML
-    private Hyperlink forgotPasswordLink;
-
-    @FXML
     private PasswordField passwordFill;
 
     @FXML
@@ -37,25 +34,9 @@ public class SignInController {
     private TextField usernameFill;
 
     @FXML
-    public void exitPress() {
-        exitButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
-    }
-
-    @FXML
-    public void exitRelease() {
-        System.exit(0);
-        exitButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
-    }
-
-    @FXML
-    public void signInPress() {
-        signInButton.setStyle("-fx-background-color: #690260;" + "-fx-background-radius: 40");
-    }
-
-    @FXML
     private void initialize() {
-         List<ClubAdvisor> advisorAccounts = UserAccountAccess.getAdvisorAccounts();
-         List<Student> studentsAccount = UserAccountAccess.getStudentsAccount();
+        List<ClubAdvisor> advisorAccounts = UserAccountAccess.getAdvisorAccounts();
+        List<Student> studentsAccount = UserAccountAccess.getStudentsAccount();
 
         System.out.println(advisorAccounts);
         System.out.println(studentsAccount);
@@ -76,6 +57,22 @@ public class SignInController {
     }
 
     @FXML
+    public void exitPress() {
+        exitButton.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
+    }
+
+    @FXML
+    public void exitRelease() {
+        System.exit(0);
+        exitButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
+    }
+
+    @FXML
+    public void signInPress() {
+        signInButton.setStyle("-fx-background-color: #690260;" + "-fx-background-radius: 40");
+    }
+
+    @FXML
     public void signUpRelease(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("sign-up.fxml"));
@@ -84,6 +81,22 @@ public class SignInController {
             Stage stage = (Stage) ((Hyperlink) event.getSource()).getScene().getWindow();
             stage.setScene(anotherScene);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openDashboard(Object user) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+            Parent root = loader.load();
+
+            DashboardController dashboardController = loader.getController();
+            dashboardController.setUser(user);
+
+            Scene dashboardScene = new Scene(root);
+            Stage stage = (Stage) signInButton.getScene().getWindow();
+            stage.setScene(dashboardScene);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -126,23 +139,6 @@ public class SignInController {
             }
         }
         usernameMessage.setVisible(true);
-    }
-
-    @FXML
-    private void openDashboard(Object user) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
-            Parent root = loader.load();
-
-            DashboardController dashboardController = loader.getController();
-            dashboardController.setUser(user);
-
-            Scene dashboardScene = new Scene(root);
-            Stage stage = (Stage) signInButton.getScene().getWindow();
-            stage.setScene(dashboardScene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML

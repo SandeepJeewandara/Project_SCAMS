@@ -49,10 +49,6 @@
          <font>
             <Font size="13.0" />
          </font></Hyperlink>
-      <Hyperlink fx:id="forgotPasswordLink" layoutX="279.0" layoutY="409.0" text="Forgot Password?">
-         <font>
-            <Font size="13.0" />
-         </font></Hyperlink>
       <Text fx:id="usernameMessage" fill="#c92c2c" fontSmoothingType="LCD" layoutX="115.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Incorrect Username" wrappingWidth="112.0">
          <font>
             <Font name="Segoe UI Semibold" size="12.0" />

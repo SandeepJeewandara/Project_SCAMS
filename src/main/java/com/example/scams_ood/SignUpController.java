@@ -82,14 +82,10 @@ public class SignUpController {
     private Text idMessage;
 
     @FXML
-    private ToggleGroup userType;
-
-    @FXML
     private ToggleGroup genderGroup;
 
     @FXML
     private void initialize() {
-
         addTextLimiter(idFill, 4);
         addTextLimiter(dateOfBirthPicker.getEditor(), 10);
         addTextLimiter(firstNameFill, 100);
@@ -111,19 +107,6 @@ public class SignUpController {
         emailFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
         passwordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
         reEnterPasswordFill.textProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
-        idMessage.visibleProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
-        emailMessage.visibleProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
-        passwordMessage.visibleProperty().addListener((observable, oldValue, newValue) -> enableSignUp());
-    }
-
-    @FXML
-    void validTyped() {
-        if (advisorToggle.isSelected()) {
-            validInput(idFill, "[A][0-9]*");
-        }
-        else if (studentToggle.isSelected()) {
-            validInput(idFill, "[S][0-9]*");
-        }
     }
 
     private void enableSignUp() {
@@ -138,14 +121,7 @@ public class SignUpController {
         boolean reEnterPasswordFilled = !reEnterPasswordFill.getText().trim().isEmpty();
 
         signUpButton.setDisable(!(firstnameFilled && lastnameFilled && usernameFilled && genderSelected && idFilled &&
-                dobFilled && emailFilled && passwordFilled && reEnterPasswordFilled ));
-    }
-    private void disableSignUp() {
-        boolean idMessageVisible = idMessage.isVisible();
-        boolean emailMessageVisible = emailMessage.isVisible();
-        boolean passwordMessageVisible = passwordMessage.isVisible();
-
-        signUpButton.setDisable(idMessageVisible || emailMessageVisible || passwordMessageVisible);
+                dobFilled && emailFilled && passwordFilled && reEnterPasswordFilled));
     }
 
     @FXML
@@ -162,6 +138,18 @@ public class SignUpController {
         reEnterPasswordFill.setDisable(false);
     }
 
+    private void clearAll() {
+        firstNameFill.clear();
+        LastNameFill.clear();
+        genderGroup.selectToggle(null);
+        usernameFill.clear();
+        idFill.clear();
+        dateOfBirthPicker.getEditor().clear();
+        emailFill.clear();
+        passwordFill.clear();
+        reEnterPasswordFill.clear();
+    }
+
     @FXML
     public void advisorPress() {
         advisorToggle.setStyle("-fx-background-color: #690260;"+"-fx-background-radius: 40");
@@ -169,6 +157,7 @@ public class SignUpController {
         idText.setText("Staff ID:");
         typeMessage.setVisible(false);
         idFill.setPromptText("Ex: A123");
+        clearAll();
     }
 
     @FXML
@@ -178,6 +167,17 @@ public class SignUpController {
         idText.setText("Student ID:");
         typeMessage.setVisible(false);
         idFill.setPromptText("Ex: S123");
+        clearAll();
+    }
+
+    @FXML
+    public void validTyped() {
+        if (advisorToggle.isSelected()) {
+            validInput(idFill, "[A][0-9]*");
+        }
+        else if (studentToggle.isSelected()) {
+            validInput(idFill, "[S][0-9]*");
+        }
     }
 
     @FXML
@@ -228,6 +228,7 @@ public class SignUpController {
             if (connection == null) {
                 System.err.println("Database connection is null.");
             }
+
             String query = "SELECT * FROM " + table +" WHERE "+ column +" = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -246,6 +247,7 @@ public class SignUpController {
     @FXML
     void idExit() {
         String id = idFill.getText();
+
         if (idFill.getText().isEmpty()) {
             idMessage.setVisible(false);
         }
@@ -289,6 +291,14 @@ public class SignUpController {
         }
     }
 
+    private void disableSignUp() {
+        boolean idMessageVisible = idMessage.isVisible();
+        boolean emailMessageVisible = emailMessage.isVisible();
+        boolean passwordMessageVisible = passwordMessage.isVisible();
+
+        signUpButton.setDisable(idMessageVisible || emailMessageVisible || passwordMessageVisible);
+    }
+
     @FXML
     public void passwordExit() {
         if (reEnterPasswordFill.getText().isEmpty()) {
@@ -317,6 +327,7 @@ public class SignUpController {
 
         signUpButton.setStyle("-fx-background-color: #813EB6;"+"-fx-background-radius: 40");
 
+
         if (advisorToggle.isSelected()) {
             storeUserData.setUserType("club_advisor", "AdvisorID", "Username", idFill, firstNameFill, LastNameFill, selectedRadioButton,
                     emailFill, dateOfBirthPicker, usernameFill, passwordFill);
@@ -325,5 +336,7 @@ public class SignUpController {
             storeUserData.setUserType("student", "StudentID", "User_name", idFill, firstNameFill, LastNameFill, selectedRadioButton,
                     emailFill, dateOfBirthPicker, usernameFill, passwordFill);
         }
+
+        clearAll();
     }
 }
