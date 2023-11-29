@@ -100,7 +100,7 @@ public class AttendanceTrackingController implements Initializable { //Create a 
 
     public void saveToDatabase(ActionEvent event)throws IOException { //Method to save student data into database
         List<Student> retrieveStudentsList = new ArrayList<>(attendanceTableView.getItems());
-        PromptController promptController = new PromptController();
+//        PromptController promptController = new PromptController();
 
         for (Student student : retrieveStudentsList) { //Iteration to check the students' attendance checkboxes values
             boolean value;
@@ -124,11 +124,11 @@ public class AttendanceTrackingController implements Initializable { //Create a 
                         preparedStatement.executeUpdate();
                     }
                 }
-                promptController.showPromptMessage("Attendance Added Successfully!");
+//                promptController.showPromptMessage("Attendance Added Successfully!");
 
             } catch (SQLException ev) {
                 ev.printStackTrace();
-                promptController.showPromptMessage("Error Occurred!");
+//                promptController.showPromptMessage("Error Occurred!");
             }
         }
     }

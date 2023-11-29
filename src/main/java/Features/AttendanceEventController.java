@@ -39,7 +39,7 @@ public class AttendanceEventController { //Controller Class for handling attenda
 
     public void displayClubEvent(ActionEvent event) throws IOException { //Method to display events related with clubs
 
-        PromptController promptController = new PromptController(); //Create an instance of PromptController class
+
 
         String clubId = clubIdTextField.getText(); //Get the club id from the text field
 
@@ -96,7 +96,6 @@ public class AttendanceEventController { //Controller Class for handling attenda
             }
 
         } else { // Display a prompt message if the club id is invalid
-            promptController.showPromptMessage("Club ID must be start with " + 'C' + " and have exactly 4 characters.");
         }
     }
 
