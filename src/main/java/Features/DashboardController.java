@@ -177,6 +177,13 @@ public class DashboardController {
             pnClubDetails.toFront();
 
         } else if (event.getSource() == scheduleEventButton) {
+            FXMLLoader addEventLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/CreateEvent.fxml"));
+            AnchorPane pnCreateEventContent = addEventLoader.load();
+            AddEventController addEventController=addEventLoader.getController();
+            addEventController.setUser(loggedAdvisor);
+
+            pnScheduleEvent.getChildren().clear();
+            pnScheduleEvent.getChildren().addAll(pnCreateEventContent);
 
             pnScheduleEvent.toFront();
 

@@ -1,6 +1,7 @@
 package com.example.scams_ood;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,12 @@ public class Event {
         this.members = new ArrayList<>();
     }
 
+    public Event(String eventID, String eventName, LocalDate eventDate, String eventdescription, String eventTime) {
+    }
+
+    public Event(String eventID, String eventName, String eventdescription) {
+    }
+
     public String getEventId() {
         return eventId;
     }
@@ -56,7 +63,7 @@ public class Event {
         this.eventDate = eventDate;
     }
 
-    public Time getEventTime() {
+    public Date getEventTime() {
         return eventTime;
     }
 
@@ -100,4 +107,6 @@ public class Event {
                 ", clubID=" + (clubID != null ? clubID.getClubId() : "null") +
                 '}';
     }
+
+
 }
