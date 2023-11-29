@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="690.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scams_ood.JoinClubController">
+<AnchorPane prefHeight="690.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.JoinClubController">
    <children>
       <AnchorPane fx:id="titlePane" layoutX="-1.0" layoutY="-1.0" prefHeight="142.0" prefWidth="924.0" styleClass="title_pane" stylesheets="@Styles.css">
          <children>

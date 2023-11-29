@@ -1,6 +1,8 @@
     package Database;
 
     import com.example.scams_ood.*;
+
+    import java.io.IOException;
     import java.sql.Connection;
     import java.sql.PreparedStatement;
     import java.sql.ResultSet;
@@ -17,16 +19,11 @@
         private static List<Student> students;
 
 
-
-
-
-
         static {
             clubs = new ArrayList<>();
             clubAdvisors = new ArrayList<>();
             students=new ArrayList<>();
             events=new ArrayList<>();
-
 
             try {
                 //Set Database Connection
@@ -38,19 +35,17 @@
                 fetchStudents(connection);
                 fetchEvents(connection);
 
-                // Fetch club memberships
+                // Fetch Club Memberships and Event Membership
                 fetchClubMemberships(connection);
                 fetchEventParticipation(connection);
 
-
+                //Close Database Connection
                 connection.close();
 
-            } catch (SQLException e) {
+            } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
         }
-
-
 
 
         //Update Club Advisors list from Database
@@ -94,7 +89,7 @@
                     );
                     clubs.add(club);
 
-                    // Connect Club and ClubAdvisor
+                    // Connect Club and ClubAdvisor objects
                     String advisorId = resultSet.getString("AdvisorID");
                     connectClubAndAdvisor(club, advisorId);
                 }
@@ -139,7 +134,7 @@
                     event.setEventTime(resultSet.getTime("Event_time"));
                     event.setEventDescription(resultSet.getString("Event_description"));
 
-                    // Connect Event, Club, and Students
+                    // Connect Even and Club Objects
                     connectEventAndClub(event, resultSet.getString("ClubID"));
 
                     events.add(event);
@@ -181,6 +176,7 @@
             }
         }
 
+        //Method for find Students by their ID
         private static Student findStudentById(String studentId) {
             for (Student student : students) {
                 if (student.getStudentId().equals(studentId)) {
@@ -190,6 +186,7 @@
             return null;
         }
 
+        //Method for find Clubs by their ID
         private static Club findClubById(String clubId) {
             for (Club club : clubs) {
                 if (club.getClubId().equals(clubId)) {
@@ -225,6 +222,7 @@
             }
         }
 
+        //Method for Find if student is a Member of Particular Club
         public static boolean isStudentMemberOfClub(String studentId, String clubId) {
             try (Connection connection = DatabaseConnectionTest.getConnection()) {
                 String query = "SELECT COUNT(*) FROM Student_Club WHERE StudentID = ? AND ClubID = ?";
@@ -241,10 +239,14 @@
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
 
             return false;
         }
+
+        // Find the Event based on their IDs
         private static Event findEventById(String eventId) {
             for (Event event : events) {
                 if (event.getEventId().equals(eventId)) {
@@ -254,7 +256,7 @@
             return null;
         }
 
-
+        //Method for Connect Respective Events with their Clubs
         private static void connectEventAndClub(Event event, String clubId) {
             for (Club club : clubs) {
                 if (club.getClubId().equals(clubId)) {
@@ -264,7 +266,7 @@
             }
         }
 
-
+        //Method for Connect Respective ClubAdvisors with their Clubs
         private static void connectClubAndAdvisor(Club club, String advisorId) {
             for (ClubAdvisor advisor : clubAdvisors) {
                 if (advisor.getAdvisorId().equals(advisorId)) {
@@ -274,7 +276,7 @@
             }
         }
 
-
+        //Getters and Setters
         public static List<Club> getClubs() {
             return clubs;
         }
@@ -302,5 +304,4 @@
         public static void removeEvent(Event eventToRemove) {
             events.remove(eventToRemove);
         }
-
         }

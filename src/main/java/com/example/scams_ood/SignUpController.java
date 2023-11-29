@@ -15,8 +15,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static com.example.scams_ood.Validations.addTextLimiter;
-import static com.example.scams_ood.Validations.validInput;
+import static Features.CreateClubController.Validations.addTextLimiter;
+import static Features.CreateClubController.Validations.validInput;
 
 public class SignUpController {
 

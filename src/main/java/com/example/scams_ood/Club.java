@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Club {
 
+    //Attributes of the Club Class
     private String clubId;
     private String clubName;
     private String clubType;
@@ -16,6 +17,8 @@ public class Club {
     private List<Student> members;
     private List<Event> events;
 
+
+    //Main Constructor of Club Class
     public Club(String clubId, String clubName, String clubType, LocalDate startedDate, String clubDescription, String clubLogoPath, ClubAdvisor clubAdvisor) {
         this.clubId = clubId;
         this.clubName = clubName;
@@ -25,12 +28,13 @@ public class Club {
         this.clubLogoPath = clubLogoPath;
         this.clubAdvisor = clubAdvisor;
 
+        // Initialize lists to store members and events
         this.members = new ArrayList<>();
         this.events = new ArrayList<>();
     }
 
 
-
+    //Getters and Setters
     public String getClubId() {
         return clubId;
     }
@@ -68,23 +72,24 @@ public class Club {
     }
 
 
-
+    // Setter method for setting the club advisor
     public void setClubAdvisor(ClubAdvisor clubAdvisor) {
         if (this.clubAdvisor == null) {
             this.clubAdvisor = clubAdvisor;
-            clubAdvisor.addManagedClub(this); // Add this club to the advisor's managed clubs
+            clubAdvisor.addManagedClub(this);
         }
     }
 
+    // Method for add event to the club
     public void addEvent(Event event) {
         events.add(event);
     }
 
+    //Method for add members to a club
     public void addMember(Student student) {
         members.add(student);
         student.getClubsJoined().add(this);
     }
-
 
     @Override
     public String toString() {

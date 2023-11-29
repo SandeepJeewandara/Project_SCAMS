@@ -1,12 +1,14 @@
-package com.example.scams_ood;
+package Features;
 
 import Database.DataAccess;
 import Database.DatabaseConnectionTest;
 import Features.PromptBoxController;
+import com.example.scams_ood.Club;
+import com.example.scams_ood.ClubAdvisor;
+import com.example.scams_ood.Student;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,7 +67,7 @@ public class JoinClubController {
     private ClubAdvisor LoggedAdvisor;
 
     private boolean isMember = false;
-    private Features.PromptBoxController promptBoxController = new PromptBoxController();
+    private PromptBoxController promptBoxController = new PromptBoxController();
 
     @FXML
     private void initialize() {
@@ -194,7 +196,7 @@ public class JoinClubController {
 
 
 
-    public static void addStudentToClub(String studentId, String clubId) {
+    public static void addStudentToClub(String studentId, String clubId) throws IOException {
         try (Connection connection = DatabaseConnectionTest.getConnection()) {
             String query = "INSERT INTO Student_Club (StudentID, ClubID) VALUES (?, ?)";
 
@@ -208,7 +210,7 @@ public class JoinClubController {
         }
     }
 
-    public static void removeStudentFromClub(String studentId, String clubId) {
+    public static void removeStudentFromClub(String studentId, String clubId) throws IOException {
         try (Connection connection = DatabaseConnectionTest.getConnection()) {
             String query = "DELETE FROM Student_Club WHERE StudentID = ? AND ClubID = ?";
 
