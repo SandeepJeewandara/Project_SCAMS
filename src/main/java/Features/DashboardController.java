@@ -1,13 +1,8 @@
 package Features;
 
 import Database.DataAccess;
-import Database.DatabaseConnectionTest;
 import com.example.scams_ood.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,22 +11,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
-
 
 public class DashboardController {
 
@@ -100,21 +85,22 @@ public class DashboardController {
     private List<ClubAdvisor> clubAdvisors;
     private List<Student> students;
     private List<Event> events;
-
     private ClubAdvisor loggedAdvisor;
     private Student loggedStudent;
 
 
+    // Initialize method
     @FXML
     private void initialize() {
 
+        // Retrieve data from DataAccess Class
         clubs = DataAccess.getClubs();
         clubAdvisors = DataAccess.getClubAdvisors();
         students=DataAccess.getStudents();
         events=DataAccess.getEvents();
 
 
-        // Print club details in the console
+        // Print club details in the Console
         System.out.println("Clubs:");
         for (Club club : clubs) {
             System.out.println(club);
@@ -141,6 +127,7 @@ public class DashboardController {
         pnDashboard.toFront();
     }
 
+    // Getters and setters for logged users
     public ClubAdvisor getLoggedAdvisor() {
         return loggedAdvisor;
     }
@@ -157,6 +144,7 @@ public class DashboardController {
         this.loggedStudent = loggedStudent;
     }
 
+
     //Main Dashboard with Panes
     @FXML
     private void handleClicks(ActionEvent event) throws IOException {
@@ -171,8 +159,6 @@ public class DashboardController {
             AnchorPane pnCreateClubContent = creteClubLoader.load();
             CreateClubController createClubController=creteClubLoader.getController();
             createClubController.setUser(loggedAdvisor);
-
-
 
             pnCreateClub.getChildren().clear();
             pnCreateClub.getChildren().addAll(pnCreateClubContent);
@@ -220,7 +206,6 @@ public class DashboardController {
         } else if (event.getSource() == joinEventButton) {
 
             pnJoinEvent.toFront();
-
         }
     }
 
@@ -260,6 +245,7 @@ public class DashboardController {
     }
 
 
+    //Method for Redirect Login Page
     @FXML
     public void onExitButtonClick(ActionEvent event) {
         try {

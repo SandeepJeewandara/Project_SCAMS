@@ -1,6 +1,7 @@
 package com.example.scams_ood;
 
 import Database.DatabaseConnectionTest;
+import Features.Validations;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,8 +16,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static Features.CreateClubController.Validations.addTextLimiter;
-import static Features.CreateClubController.Validations.validInput;
+
+
+import static Features.Validations.addTextLimiter;
+import static Features.Validations.validInput;
 
 public class SignUpController {
 
@@ -76,7 +79,6 @@ public class SignUpController {
 
     @FXML
     private void initialize() {
-
         addTextLimiter(idFill, 4);
         addTextLimiter(dateOfBirthPicker.getEditor(), 10);
 

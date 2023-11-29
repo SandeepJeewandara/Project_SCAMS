@@ -37,42 +37,42 @@ public class CreateClubController {
     public ComboBox<String> ClubAdvisorInput;
     @FXML
     private TextField clubIDInput;
-
     @FXML
     private TextField clubNameInput;
-
     @FXML
     private ChoiceBox<String> clubTypeInput;
-
     @FXML
     private DatePicker clubStartDateInput;
-
     @FXML
     private TextArea clubDescriptionInput;
-
     @FXML
     private Pane clubLogoInput;
 
+    // FXML elements
     private File selectedImageFile;
-
     private Student LoggedStudent;
-
     private ClubAdvisor loggedAdvisor;
-
     private PromptBoxController promptBoxController = new PromptBoxController();
 
+
+
+    // Initialization method for the controller
     @FXML
     private void initialize() {
 
     }
 
 
+    // Method to handle club type selection
     public void onClubTypeSelected() {
         String selectedType = clubTypeInput.getValue();
     }
 
 
+    //Method for Choose a Picture from Local Drive
     public void onChooseImageBtnClick() {
+
+        // Logic to choose an image file using FileChooser
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Club Logos");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
@@ -94,7 +94,7 @@ public class CreateClubController {
         }
     }
 
-
+    // Method to set the logged-in user (either student or advisor)
     public void setUser(Object user){
         if (user instanceof ClubAdvisor advisor) {
             setLoggedAdvisor(advisor);
@@ -106,6 +106,8 @@ public class CreateClubController {
         }
     }
 
+
+    // Getter and setter methods
     public Student getLoggedStudent() {
         return LoggedStudent;
     }
@@ -122,6 +124,8 @@ public class CreateClubController {
         this.loggedAdvisor = loggedAdvisor;
     }
 
+
+    // Method to Create a Club Object and Insert iy into Database
     public void onCreateBtnClick() throws IOException {
         String clubID = clubIDInput.getText();
         String clubName = clubNameInput.getText();
@@ -131,7 +135,10 @@ public class CreateClubController {
         String description = clubDescriptionInput.getText();
         String imageFileName = null;
 
+        //Check if Club ID is Valid
         if (isValidClubId(clubID)) {
+
+            //Validations For Club name, Club Type and Club Date
             if(isValidField(clubName, "Club Name")&&isValidField(clubType, "Club Type")&&isValidField(startDate, "Club Started Date")){
                 if (selectedImageFile != null) {
                     String destinationFolderPath = "src/main/resources/Images/ClubLogos";
@@ -144,33 +151,36 @@ public class CreateClubController {
 
                         Path destinationFilePath = destinationFolder.resolve(imageFileName);
                         Files.copy(selectedImageFile.toPath(), destinationFilePath, StandardCopyOption.REPLACE_EXISTING);
-                        System.out.println(destinationFilePath);
 
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
+
+                //Create a Club Object and add into Main List
                 Club newClub = new Club(clubID, clubName, clubType, startDate, description, imageFileName,loggedAdvisor);
                 DataAccess.addClub(newClub);
-                insertClubIntoDatabase(newClub);
+                insertClubIntoDatabase(newClub); //Insert New Object into Database
 
             }
         } else {
+            //Preview Success Message to the User
             promptBoxController.showPromptMessage("Club ID must be unique and have exactly 4 characters.");
         }
 
     }
 
+    //Method to Insert Club Details into the Database
     private void insertClubIntoDatabase(Club club) {
         try {
+            //Get the Connection
             Connection connection = DatabaseConnectionTest.getConnection();
-
             if (connection == null) {
                 System.err.println("Error occurred when Connected to the Database. Please Check Your JDBC and Database Server");
                 return;
             }
 
-            // SQL query for inserting data into the Club table
+            // SQL Query for Inserting Data into the Club Table
             String sql = "INSERT INTO Club (ClubID, Club_name, Club_type, Started_date, Club_description, Club_logo_path, AdvisorID) " + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try {
@@ -183,9 +193,10 @@ public class CreateClubController {
                     preparedStatement.setString(6, club.getClubLogoPath());
                     preparedStatement.setString(7,loggedAdvisor.getAdvisorId());
 
-                    // Execute the SQL query
+                    // Execute the SQL Query
                     preparedStatement.executeUpdate();
 
+                    //Preview Success Message to the User
                     System.out.println("Club details inserted into the database successfully!");
                     promptBoxController.showSuccessPrompt("Club Details Inserted Successfully!");
                     clearInputFields();
@@ -201,6 +212,7 @@ public class CreateClubController {
         }
     }
 
+    // Method to Validate Input Fields
     private boolean isValidField(String fieldValue, String fieldName) throws IOException {
         if (fieldValue == null || fieldValue.trim().isEmpty()) {
             String errorMessage = fieldName + " cannot be empty.";
@@ -210,6 +222,7 @@ public class CreateClubController {
         return true;
     }
 
+    // Method to Validate Date Input Field
     private boolean isValidField(LocalDate fieldValue, String fieldName) throws IOException {
         if (fieldValue == null) {
             String errorMessage = fieldName + " cannot be empty.";
@@ -220,6 +233,7 @@ public class CreateClubController {
     }
 
 
+    // Method for validate Club ID
     private boolean isValidClubId(String clubId) {
         if (clubId.length() != 4) {
             return false;
@@ -234,6 +248,7 @@ public class CreateClubController {
         return true;
     }
 
+    // Method to clear input fields after club creation
     private void clearInputFields(){
         clubIDInput.clear();
         clubNameInput.clear();
@@ -245,219 +260,5 @@ public class CreateClubController {
     }
 
 
-    public static class Validations {
-        public static void addTextLimiter(final TextField textField, final int maxLength) {
-            textField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if (textField.getText().length() > maxLength) {
-                    textField.setText(textField.getText(0, maxLength));
-                }
-            });
-        }
 
-        public static void validInput(TextField text, String validation) {
-            String input = text.getText();
-            if (!input.matches(validation)) {
-                text.clear();
-            }
-        }
-    }
-
-    public static class JoinClubController {
-        public Button joinClubButton;
-        @FXML
-        private TableView<Club> clubsTable;
-
-        @FXML
-        private TableColumn<Club, String> clubNameColumn;
-
-
-        @FXML
-        private Label clubIDLabel;
-
-        @FXML
-        private Label clubAdvisorLabel;
-
-        @FXML
-        private ImageView clubLogoView;
-
-        @FXML
-        private Label clubNameLabel;
-
-        @FXML
-        private Label clubTypeLabel;
-
-        @FXML
-        private Label startedDateLabel;
-
-        @FXML
-        private Label titleLabel;
-
-        @FXML
-        private AnchorPane titlePane;
-
-        private ObservableList<Club> observableClubs;
-
-        private Student LoggedStudent;
-
-        private ClubAdvisor LoggedAdvisor;
-
-        private boolean isMember = false;
-        private PromptBoxController promptBoxController = new PromptBoxController();
-
-        @FXML
-        private void initialize() {
-            initializeTable();
-            displayClubs();
-            setupTableListener();
-            updateJoinLeaveButton();
-            loadMemberStatus();
-        }
-
-        private void loadMemberStatus() {
-            Club selectedClub = clubsTable.getSelectionModel().getSelectedItem();
-            if (selectedClub != null && getLoggedStudent() != null) {
-                isMember = DataAccess.isStudentMemberOfClub(getLoggedStudent().getStudentId(), selectedClub.getClubId());
-                updateJoinLeaveButton();
-            }
-        }
-
-        private void updateJoinLeaveButton() {
-            if (isMember) {
-                joinClubButton.setText("Leave Club");
-            } else {
-                joinClubButton.setText("Join Club");
-            }
-        }
-
-
-        private void initializeTable() {
-            clubNameColumn.setCellValueFactory(new PropertyValueFactory<>("clubName"));
-
-            observableClubs = FXCollections.observableArrayList();
-
-            clubsTable.setItems(observableClubs);
-        }
-
-        public Student getLoggedStudent() {
-            return LoggedStudent;
-        }
-
-        public void setLoggedStudent(Student loggedStudent) {
-            LoggedStudent = loggedStudent;
-        }
-
-        public ClubAdvisor getLoggedAdvisor() {
-            return LoggedAdvisor;
-        }
-
-        public void setLoggedAdvisor(ClubAdvisor loggedAdvisor) {
-            LoggedAdvisor = loggedAdvisor;
-        }
-
-        private void displayClubs() {
-            List<Club> retrievedClubs = DataAccess.getClubs();
-
-            observableClubs.addAll(retrievedClubs);
-        }
-
-        private void setupTableListener() {
-            clubsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Club>() {
-                @Override
-                public void changed(ObservableValue<? extends Club> observable, Club oldValue, Club newValue) {
-                    // Update the labels with the details of the selected club
-                    if (newValue != null) {
-                        showSelectedClubDetails(newValue);
-                        isMember = newValue.getMembers().contains(getLoggedStudent());
-                        updateJoinLeaveButton();
-                    } else {
-                        clearLabels();
-                    }
-                }
-            });
-        }
-
-        private void showSelectedClubDetails(Club selectedClub) {
-            clubIDLabel.setText(selectedClub.getClubId());
-            clubNameLabel.setText(selectedClub.getClubName());
-            clubTypeLabel.setText(selectedClub.getClubType());
-            startedDateLabel.setText(selectedClub.getStartedDate().toString());
-            clubAdvisorLabel.setText(selectedClub.getClubAdvisor().getName());
-
-            if (selectedClub.getClubLogoPath() != null && !selectedClub.getClubLogoPath().isEmpty()) {
-                String imagePath = "/Images/ClubLogos/" + selectedClub.getClubLogoPath();
-                clubLogoView.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
-            } else {
-                clubLogoView.setImage(null);
-            }
-        }
-
-        private void clearLabels() {
-            clubNameLabel.setText("");
-            clubTypeLabel.setText("");
-            startedDateLabel.setText("");
-            clubAdvisorLabel.setText("");
-            clubLogoView.setImage(null);
-        }
-
-        public void setUser(Object user){
-            if (user instanceof ClubAdvisor advisor) {
-                setLoggedAdvisor(advisor);
-
-            } else if (user instanceof Student student) {
-                setLoggedStudent(student);
-                setLoggedStudent(student);
-            }
-        }
-
-        public void onJoinClubButtonClick(ActionEvent event) throws IOException {
-            // Get the selected club from the TableView
-            Club selectedClub = clubsTable.getSelectionModel().getSelectedItem();
-
-            if (isMember) {
-                // If the student is already a member, remove the membership
-                selectedClub.getMembers().remove(getLoggedStudent());
-                promptBoxController.showPromptMessage("You have left this Club Successfully");
-                removeStudentFromClub(getLoggedStudent().getStudentId(), selectedClub.getClubId());
-            } else {
-                // If the student is not a member, add the membership
-                selectedClub.addMember(getLoggedStudent());
-                promptBoxController.showSuccessPrompt("You have joined this Club Successfully");
-                addStudentToClub(getLoggedStudent().getStudentId(), selectedClub.getClubId());
-            }
-
-            isMember = selectedClub.getMembers().contains(getLoggedStudent()); // Check if the student is a member after the operation
-            updateJoinLeaveButton();
-        }
-
-
-
-        public static void addStudentToClub(String studentId, String clubId) throws IOException {
-            try (Connection connection = DatabaseConnectionTest.getConnection()) {
-                String query = "INSERT INTO Student_Club (StudentID, ClubID) VALUES (?, ?)";
-
-                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                    preparedStatement.setString(1, studentId);
-                    preparedStatement.setString(2, clubId);
-                    preparedStatement.executeUpdate();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        public static void removeStudentFromClub(String studentId, String clubId) throws IOException {
-            try (Connection connection = DatabaseConnectionTest.getConnection()) {
-                String query = "DELETE FROM Student_Club WHERE StudentID = ? AND ClubID = ?";
-
-                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                    preparedStatement.setString(1, studentId);
-                    preparedStatement.setString(2, clubId);
-
-                    preparedStatement.executeUpdate();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }

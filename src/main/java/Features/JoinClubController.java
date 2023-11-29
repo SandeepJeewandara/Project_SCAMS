@@ -2,7 +2,6 @@ package Features;
 
 import Database.DataAccess;
 import Database.DatabaseConnectionTest;
-import Features.PromptBoxController;
 import com.example.scams_ood.Club;
 import com.example.scams_ood.ClubAdvisor;
 import com.example.scams_ood.Student;
@@ -28,48 +27,41 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JoinClubController {
+    @FXML
     public Button joinClubButton;
     @FXML
     private TableView<Club> clubsTable;
-
     @FXML
     private TableColumn<Club, String> clubNameColumn;
-
-
     @FXML
     private Label clubIDLabel;
-
     @FXML
     private Label clubAdvisorLabel;
-
     @FXML
     private ImageView clubLogoView;
-
     @FXML
     private Label clubNameLabel;
-
     @FXML
     private Label clubTypeLabel;
-
     @FXML
     private Label startedDateLabel;
-
     @FXML
     private Label titleLabel;
-
     @FXML
     private AnchorPane titlePane;
 
+    //In Class Variables
     private ObservableList<Club> observableClubs;
-
     private Student LoggedStudent;
-
     private ClubAdvisor LoggedAdvisor;
-
     private boolean isMember = false;
     private PromptBoxController promptBoxController = new PromptBoxController();
 
+
+
+
     @FXML
+    // Initializes The Controller, Setting Up The Table and Displaying Clubs.
     private void initialize() {
         initializeTable();
         displayClubs();
@@ -78,6 +70,7 @@ public class JoinClubController {
         loadMemberStatus();
     }
 
+    //Loads the Membership Status of the Logged Student for Selected Club
     private void loadMemberStatus() {
         Club selectedClub = clubsTable.getSelectionModel().getSelectedItem();
         if (selectedClub != null && getLoggedStudent() != null) {
@@ -86,6 +79,7 @@ public class JoinClubController {
         }
     }
 
+    //Update Join/Leave Text According to Membership Status
     private void updateJoinLeaveButton() {
         if (isMember) {
             joinClubButton.setText("Leave Club");
@@ -95,14 +89,16 @@ public class JoinClubController {
     }
 
 
+    //Initializes the TableView and Sets Up The Observable List.
     private void initializeTable() {
         clubNameColumn.setCellValueFactory(new PropertyValueFactory<>("clubName"));
 
         observableClubs = FXCollections.observableArrayList();
-
         clubsTable.setItems(observableClubs);
     }
 
+
+    //Getters and Setters for Logged Student and Advisor
     public Student getLoggedStudent() {
         return LoggedStudent;
     }
@@ -119,12 +115,15 @@ public class JoinClubController {
         LoggedAdvisor = loggedAdvisor;
     }
 
+
+    //Displays the List of Clubs in the TableView.
     private void displayClubs() {
         List<Club> retrievedClubs = DataAccess.getClubs();
 
         observableClubs.addAll(retrievedClubs);
     }
 
+    //Logic to Sets up a Listener for the TableView selection change.
     private void setupTableListener() {
         clubsTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Club>() {
             @Override
@@ -141,6 +140,7 @@ public class JoinClubController {
         });
     }
 
+    //Method for Preview Selected Club Details in the Pane
     private void showSelectedClubDetails(Club selectedClub) {
         clubIDLabel.setText(selectedClub.getClubId());
         clubNameLabel.setText(selectedClub.getClubName());
@@ -148,6 +148,7 @@ public class JoinClubController {
         startedDateLabel.setText(selectedClub.getStartedDate().toString());
         clubAdvisorLabel.setText(selectedClub.getClubAdvisor().getName());
 
+        // Preview the Club Logo if Available
         if (selectedClub.getClubLogoPath() != null && !selectedClub.getClubLogoPath().isEmpty()) {
             String imagePath = "/Images/ClubLogos/" + selectedClub.getClubLogoPath();
             clubLogoView.setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
@@ -156,6 +157,7 @@ public class JoinClubController {
         }
     }
 
+    //Clears the Details Labels.
     private void clearLabels() {
         clubNameLabel.setText("");
         clubTypeLabel.setText("");
@@ -164,6 +166,7 @@ public class JoinClubController {
         clubLogoView.setImage(null);
     }
 
+    //Method for set the Logged user
     public void setUser(Object user){
         if (user instanceof ClubAdvisor advisor) {
             setLoggedAdvisor(advisor);
@@ -174,6 +177,7 @@ public class JoinClubController {
         }
     }
 
+    //Handles the Join/leave Club Button Click Event.
     public void onJoinClubButtonClick(ActionEvent event) throws IOException {
         // Get the selected club from the TableView
         Club selectedClub = clubsTable.getSelectionModel().getSelectedItem();
@@ -190,12 +194,13 @@ public class JoinClubController {
             addStudentToClub(getLoggedStudent().getStudentId(), selectedClub.getClubId());
         }
 
-        isMember = selectedClub.getMembers().contains(getLoggedStudent()); // Check if the student is a member after the operation
+        isMember = selectedClub.getMembers().contains(getLoggedStudent());
         updateJoinLeaveButton();
     }
 
 
 
+    //Method for add new Student Membership to the Club
     public static void addStudentToClub(String studentId, String clubId) throws IOException {
         try (Connection connection = DatabaseConnectionTest.getConnection()) {
             String query = "INSERT INTO Student_Club (StudentID, ClubID) VALUES (?, ?)";
@@ -210,6 +215,7 @@ public class JoinClubController {
         }
     }
 
+    //Method for remove Student Membership from the Club
     public static void removeStudentFromClub(String studentId, String clubId) throws IOException {
         try (Connection connection = DatabaseConnectionTest.getConnection()) {
             String query = "DELETE FROM Student_Club WHERE StudentID = ? AND ClubID = ?";
