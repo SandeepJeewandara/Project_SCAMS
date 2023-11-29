@@ -1,5 +1,6 @@
 package Features;
 
+//Imports packages and classes
 
 import Database.DataAccess;
 import com.example.scams_ood.Event;
@@ -8,21 +9,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,44 +24,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AttendanceTrackingController implements Initializable {
+public class AttendanceTrackingController implements Initializable { //Create a AttendanceTrackingController class that implements the initialize interface
 
     @FXML
-    private TableView<Student> attendanceTableView;
+    private TableView<Student> attendanceTableView; //TableView for display students Names
 
-    private String eventId;
+    private String eventId; //Variable for store the Event ID
     @FXML
-    private Label countLabel;
+    private Label countLabel; //Variable for count Student Count for each event
 
-    private boolean isInitialized = false;
+    private boolean isInitialized = false; //value for check initialize state
 
 
-    public String setStudentDataInTable(Label eventIdLabel) {
-
+    public String setStudentDataInTable(Label eventIdLabel) { //method to set the event id from the Label
 
         this.eventId = eventIdLabel.getText();
-        checksTheInitialization();
-        System.out.println(eventId);
+        checksTheInitialization(); //call the checksTheInitialization method
         return eventId;
 
     }
 
-    public void checksTheInitialization() {
+    public void checksTheInitialization() { //Method to check the if the controller is initialized and the event id is set
         if (isInitialized && eventId != null) {
-
+            //Create table columns for display student information
             TableColumn studentNameColumn = new TableColumn("Student Name");
             TableColumn studentIdColumn = new TableColumn("Student ID");
             TableColumn studentGmailColumn = new TableColumn("Student Gmail");
             TableColumn studentAttendanceColumn = new TableColumn("Student Attendance");
 
             attendanceTableView.getColumns().addAll(studentNameColumn, studentIdColumn, studentGmailColumn, studentAttendanceColumn);
-            attendanceTableView.setEditable(true);
-            System.out.println(eventId);
+            attendanceTableView.setEditable(true); //Enable tableview for editing
 
-            List<Student> retrievedStudentList = DataAccess.getStudents();
+            List<Student> retrievedStudentList = DataAccess.getStudents(); //Retrieve all students details from the database
             List<Student> studentOfEvents = new ArrayList<>();
 
-            for (Student student : retrievedStudentList) {
+            for (Student student : retrievedStudentList) { //Logic to get students who joined the specific event
                 List<Event> joinedEvents = student.getEventsjoined();
                 if (joinedEvents != null) {
                     for (Event event : joinedEvents) {
@@ -78,14 +67,12 @@ public class AttendanceTrackingController implements Initializable {
                             break;
                         }
                     }
-
-
                 }
             }
-            int count = Integer.parseInt(String.valueOf(studentOfEvents.size()));
+            int count = Integer.parseInt(String.valueOf(studentOfEvents.size()));//Count the number students for the event and display it
             countLabel.setText(String.valueOf(count));
 
-            if (!studentOfEvents.isEmpty()) {
+            if (!studentOfEvents.isEmpty()) { //Add the table view with student data if not empty
                 studentNameColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("studentName"));
                 studentIdColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("studentId"));
                 studentGmailColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("Gmail"));
@@ -94,7 +81,7 @@ public class AttendanceTrackingController implements Initializable {
                 studentAttendanceColumn.setEditable(true);
             }
 
-            if (attendanceTableView != null) {
+            if (attendanceTableView != null) { //Set the items in the table view
                 ObservableList<Student> students = FXCollections.observableArrayList(studentOfEvents);
                 this.attendanceTableView.setItems(students);
 
@@ -102,13 +89,10 @@ public class AttendanceTrackingController implements Initializable {
         }
     }
 
-    public void saveToDatabase(ActionEvent event) {
+    public void saveToDatabase(ActionEvent event) { //Method to save student data into database
         List<Student> retrieveStudentsList = new ArrayList<>(attendanceTableView.getItems());
-        int studentCount = attendanceTableView.getItems().size();
-        System.out.println("Count of Students" + studentCount);
 
-
-        for (Student student : retrieveStudentsList) {
+        for (Student student : retrieveStudentsList) { //Iteration to check the students' attendance checkboxes values
             boolean value;
             if (student.getAttendance() != null && student.getAttendance().isSelected()) {
                 value = true;
@@ -116,7 +100,7 @@ public class AttendanceTrackingController implements Initializable {
                 value = false;
             }
 
-
+            //Create a connection with database and set values in Event_Registration table
             try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scams_db", "root", "")) {
                 //for (Student students : retrieveStudentsList) {
                 String sql = "INSERT INTO Event_Registration (StudentID, EventID, Attendance) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE Attendance = VALUES(Attendance)";
@@ -129,24 +113,18 @@ public class AttendanceTrackingController implements Initializable {
 
                         preparedStatement.executeUpdate();
                     }
-
-
                 }
 
             } catch (SQLException ev) {
                 ev.printStackTrace();
             }
-
-
         }
-
-
     }
 
-    @Override
+    @Override //Initialize method to called when the controller is loaded
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        isInitialized = true;
-        checksTheInitialization();
+        isInitialized = true; //Set the initialization to true
+        checksTheInitialization(); //calls the initialization check method
     }
 
 
