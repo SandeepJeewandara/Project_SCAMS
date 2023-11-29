@@ -1,6 +1,7 @@
 package com.example.scams_ood;
 
 import Database.DatabaseConnectionTest;
+import Features.PromptBoxController;
 import Features.Validations;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -346,8 +347,10 @@ public class SignUpController {
         Toggle selectedToggle = genderGroup.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
 
+
+
         PromptBoxController promptBoxController = new PromptBoxController();
-        promptBoxController.showPromptMessage("Successfully Signed Up!");
+        promptBoxController.showSuccessPrompt("Successfully Signed Up!");
 
         StoreUserData storeUserData = new StoreUserData();
 
