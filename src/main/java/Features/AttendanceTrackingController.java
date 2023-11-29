@@ -9,12 +9,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,6 +41,8 @@ public class AttendanceTrackingController implements Initializable { //Create a 
     private Label countLabel; //Variable for count Student Count for each event
 
     private boolean isInitialized = false; //value for check initialize state
+    private Stage stage;
+    private Scene scene;
 
 
     public String setStudentDataInTable(Label eventIdLabel) { //method to set the event id from the Label
@@ -89,8 +98,9 @@ public class AttendanceTrackingController implements Initializable { //Create a 
         }
     }
 
-    public void saveToDatabase(ActionEvent event) { //Method to save student data into database
+    public void saveToDatabase(ActionEvent event)throws IOException { //Method to save student data into database
         List<Student> retrieveStudentsList = new ArrayList<>(attendanceTableView.getItems());
+        PromptController promptController = new PromptController();
 
         for (Student student : retrieveStudentsList) { //Iteration to check the students' attendance checkboxes values
             boolean value;
@@ -114,11 +124,22 @@ public class AttendanceTrackingController implements Initializable { //Create a 
                         preparedStatement.executeUpdate();
                     }
                 }
+                promptController.showPromptMessage("Attendance Added Successfully!");
 
             } catch (SQLException ev) {
                 ev.printStackTrace();
+                promptController.showPromptMessage("Error Occurred!");
             }
         }
+    }
+
+    public void BackToClub(ActionEvent event) throws IOException {
+        Parent root = (Parent) FXMLLoader.load(this.getClass().getResource("/com/example/scams_ood/AttendanceClub.fxml"));
+        this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        this.scene = new Scene(root);
+        this.stage.setScene(this.scene);
+        this.stage.show();
+
     }
 
     @Override //Initialize method to called when the controller is loaded
