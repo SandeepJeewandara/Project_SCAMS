@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 public class ClubAdvisor {
+
+    //Attributes of the Club Advisor Class
     private String advisorId;
     private String name;
     private String gender;
@@ -13,6 +15,29 @@ public class ClubAdvisor {
     private String password;
     private List<Club> managedClubs;
 
+
+    //Main Constructor of ClubAdvisor Class
+    public ClubAdvisor(String advisorId, String name, String gender, String gmail, Date DOB, String username, String password) {
+        this.advisorId = advisorId;
+        this.name = name;
+        this.gender = gender;
+        Gmail = gmail;
+        this.DOB = DOB;
+        Username = username;
+        this.password = password;
+        this.managedClubs = new ArrayList<>();
+    }
+
+    public ClubAdvisor(String advisorId, String name, String username, String password) {
+        this.advisorId = advisorId;
+        this.name = name;
+        Username = username;
+        this.password = password;
+    }
+
+
+
+    //Getters and Setters
     public String getAdvisorId() {
         return advisorId;
     }
@@ -77,29 +102,15 @@ public class ClubAdvisor {
         this.managedClubs = managedClubs;
     }
 
+
+
+
+    //Method for add Managers to the Club
     public void addManagedClub(Club club) {
         if (!managedClubs.contains(club)) {
             managedClubs.add(club);
             club.setClubAdvisor(this);
         }
-    }
-
-    public ClubAdvisor(String advisorId, String name, String gender, String gmail, Date DOB, String username, String password) {
-        this.advisorId = advisorId;
-        this.name = name;
-        this.gender = gender;
-        Gmail = gmail;
-        this.DOB = DOB;
-        Username = username;
-        this.password = password;
-        this.managedClubs = new ArrayList<>();
-    }
-
-    public ClubAdvisor(String advisorId, String name, String username, String password) {
-        this.advisorId = advisorId;
-        this.name = name;
-        Username = username;
-        this.password = password;
     }
 
     @Override

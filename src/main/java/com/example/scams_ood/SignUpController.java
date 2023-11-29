@@ -1,6 +1,7 @@
 package com.example.scams_ood;
 
 import Database.DatabaseConnectionTest;
+import Features.Validations;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,8 +20,10 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.example.scams_ood.Validations.addTextLimiter;
-import static com.example.scams_ood.Validations.validInput;
+
+
+import static Features.Validations.addTextLimiter;
+import static Features.Validations.validInput;
 
 public class SignUpController {
 
@@ -235,7 +238,7 @@ public class SignUpController {
     }
 
     //Method to check the values are available in database
-    private boolean isAvailable(String check, String table, String column) {
+    private boolean isAvailable(String check, String table, String column) throws IOException {
         try {
             Connection connection = DatabaseConnectionTest.getConnection();
             if (connection == null) {
@@ -259,7 +262,7 @@ public class SignUpController {
 
     //Call isAvailable method to check in database and show message if ID is available
     @FXML
-    public void idExit() {
+    public void idExit() throws IOException {
         String id = idFill.getText();
 
         if (idFill.getText().isEmpty()) {
@@ -275,7 +278,7 @@ public class SignUpController {
 
     //Call isAvailable method to check in database and show message if ID is available
     @FXML
-    public void emailExit() {
+    public void emailExit() throws IOException {
         String email = emailFill.getText();
 
         if (email.isEmpty()) {

@@ -1,6 +1,7 @@
 package com.example.scams_ood;
 
 import Database.UserAccountAccess;
+import Features.CreateClubController;
 import Features.DashboardController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -140,6 +141,7 @@ public class SignInController {
 
             DashboardController dashboardController = loader.getController();
             dashboardController.setUser(user,isAdvisor);
+
 
             Scene dashboardScene = new Scene(root);
             Stage stage = (Stage) signInButton.getScene().getWindow();

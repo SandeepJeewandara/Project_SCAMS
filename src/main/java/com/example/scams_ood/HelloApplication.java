@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-        // Create a timeline to wait for 5 seconds
+        // Timeline that wait for 5 seconds
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.seconds(3),
                 event -> loadLoginOrSignUpPane(stage)

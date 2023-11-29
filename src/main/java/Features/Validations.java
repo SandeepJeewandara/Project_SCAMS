@@ -1,7 +1,8 @@
-package com.example.scams_ood;
+package Features;
 
 import javafx.scene.control.TextField;
 
+//Methods for text field validations
 public class Validations {
     public static void addTextLimiter(final TextField textField, final int maxLength) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {

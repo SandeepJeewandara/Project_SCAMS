@@ -1,10 +1,7 @@
 package Features;
 
 import Database.DataAccess;
-import com.example.scams_ood.Club;
-import com.example.scams_ood.ClubAdvisor;
-import com.example.scams_ood.Event;
-import com.example.scams_ood.Student;
+import com.example.scams_ood.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,10 +15,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
 import java.util.List;
-
 
 public class DashboardController {
 
@@ -90,18 +85,22 @@ public class DashboardController {
     private List<ClubAdvisor> clubAdvisors;
     private List<Student> students;
     private List<Event> events;
+    private ClubAdvisor loggedAdvisor;
+    private Student loggedStudent;
 
 
+    // Initialize method
     @FXML
     private void initialize() {
 
+        // Retrieve data from DataAccess Class
         clubs = DataAccess.getClubs();
         clubAdvisors = DataAccess.getClubAdvisors();
         students=DataAccess.getStudents();
         events=DataAccess.getEvents();
 
 
-        // Print club details in the console
+        // Print club details in the Console
         System.out.println("Clubs:");
         for (Club club : clubs) {
             System.out.println(club);
@@ -128,6 +127,22 @@ public class DashboardController {
         pnDashboard.toFront();
     }
 
+    // Getters and setters for logged users
+    public ClubAdvisor getLoggedAdvisor() {
+        return loggedAdvisor;
+    }
+
+    public void setLoggedAdvisor(ClubAdvisor loggedAdvisor) {
+        this.loggedAdvisor = loggedAdvisor;
+    }
+
+    public Student getLoggedStudent() {
+        return loggedStudent;
+    }
+
+    public void setLoggedStudent(Student loggedStudent) {
+        this.loggedStudent = loggedStudent;
+    }
 
 
     //Main Dashboard with Panes
@@ -140,9 +155,24 @@ public class DashboardController {
 
         } else if (event.getSource() == createClubButton) {
 
+            FXMLLoader creteClubLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/CreateClub.fxml"));
+            AnchorPane pnCreateClubContent = creteClubLoader.load();
+            CreateClubController createClubController=creteClubLoader.getController();
+            createClubController.setUser(loggedAdvisor);
+
+            pnCreateClub.getChildren().clear();
+            pnCreateClub.getChildren().addAll(pnCreateClubContent);
+
             pnCreateClub.toFront();
 
         } else if (event.getSource() == clubDetailsButton) {
+
+            FXMLLoader viewClubLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/ViewClubs.fxml"));
+            AnchorPane pnViewClubContent = viewClubLoader.load();
+            ViewClubsController viewClubsController=viewClubLoader.getController();
+
+            pnClubDetails.getChildren().clear();
+            pnClubDetails.getChildren().addAll(pnViewClubContent);
 
             pnClubDetails.toFront();
 
@@ -164,12 +194,18 @@ public class DashboardController {
 
         } else if (event.getSource() == joinClubButton) {
 
+            FXMLLoader joinClubLoader = new FXMLLoader(getClass().getResource("/com/example/scams_ood/JoinClub.fxml"));
+            AnchorPane pnJoinClubContent = joinClubLoader.load();
+            JoinClubController joinClubController =joinClubLoader.getController();
+            joinClubController.setUser(loggedStudent);
+
+            pnJoinClub.getChildren().clear();
+            pnJoinClub.getChildren().addAll(pnJoinClubContent);
             pnJoinClub.toFront();
 
         } else if (event.getSource() == joinEventButton) {
 
             pnJoinEvent.toFront();
-
         }
     }
 
@@ -181,10 +217,13 @@ public class DashboardController {
         if (user instanceof ClubAdvisor advisor) {
             nameLabel.setText(advisor.getName());
             usenameLabel.setText(advisor.getUsername());
+            setLoggedAdvisor(advisor);
+
 
         } else if (user instanceof Student student) {
             nameLabel.setText(student.getStudentName());
             usenameLabel.setText(student.getUsername());
+            setLoggedStudent(student);
         }
 
         // Adjust visibility of functionalities based on the user's role
@@ -206,6 +245,7 @@ public class DashboardController {
     }
 
 
+    //Method for Redirect Login Page
     @FXML
     public void onExitButtonClick(ActionEvent event) {
         try {
@@ -223,5 +263,4 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
-
 }

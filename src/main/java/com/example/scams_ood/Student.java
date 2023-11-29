@@ -16,7 +16,33 @@ public class Student {
     private List<Event> eventsjoined;
 
 
+    //Main Constructor of Student Class
+    public Student(String studentId, String studentName, String gender, String gmail, Date DOB, String username, String password) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.gender = gender;
+        Gmail = gmail;
+        this.DOB = DOB;
+        Username = username;
+        this.password = password;
 
+        this.clubsJoined = new ArrayList<>();
+        this.eventsjoined = new ArrayList<>();
+    }
+
+
+    public Student(String studentId, String studentName, String username, String password) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        Username = username;
+        this.password = password;
+
+        this.clubsJoined = new ArrayList<>();
+        this.eventsjoined = new ArrayList<>();
+    }
+
+
+    //Getters and Setters
     public String getStudentId() {
         return studentId;
     }
@@ -87,35 +113,6 @@ public class Student {
 
     public void setEventsjoined(List<Event> eventsjoined) {
         this.eventsjoined = eventsjoined;
-    }
-
-    public void joinClub(Club club) {
-        clubsJoined.add(club);
-        club.getMembers().add(this);
-    }
-
-
-
-    public Student(String studentId, String studentName, String gender, String gmail, Date DOB, String username, String password) {
-        this.studentId = studentId;
-        this.studentName = studentName;
-        this.gender = gender;
-        Gmail = gmail;
-        this.DOB = DOB;
-        Username = username;
-        this.password = password;
-
-        this.clubsJoined = new ArrayList<>();
-        this.eventsjoined = new ArrayList<>();
-    }
-
-
-
-    public Student(String studentId, String studentName, String username, String password) {
-        this.studentId = studentId;
-        this.studentName = studentName;
-        Username = username;
-        this.password = password;
     }
 
 

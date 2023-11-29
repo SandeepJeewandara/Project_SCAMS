@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Event {
 
+    //Attributes of the Event Class
     private String eventId;
     private String eventName;
     private Date eventDate;
@@ -16,6 +17,17 @@ public class Event {
     private List<Student> members;
 
 
+    //Main Constructor of Club Class
+    public Event(String eventId, String eventName, Date eventDate, Time eventTime, String eventDescription, Club clubID) {
+        this.eventId = eventId;
+        this.eventName = eventName;
+        this.eventDate = eventDate;
+        this.eventTime = eventTime;
+        this.eventDescription = eventDescription;
+        this.clubID = clubID;
+    }
+
+    //Getters and Setters
     public Event() {
         this.members = new ArrayList<>();
     }
@@ -75,6 +87,7 @@ public class Event {
     public void setMembers(List<Student> members) {
         this.members = members;
     }
+
 
     @Override
     public String toString() {

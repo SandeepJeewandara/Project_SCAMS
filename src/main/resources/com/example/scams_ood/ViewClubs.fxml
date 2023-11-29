@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="690.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Features.ViewClubsController">
+   <children>
+      <AnchorPane layoutX="67.0" layoutY="28.0" prefHeight="646.0" prefWidth="262.0" style="-fx-background-color: #D3D3D3; -fx-background-radius: 20;" stylesheets="@Styles.css">
+         <children>
+            <ImageView fx:id="clubLogoView" fitHeight="191.0" fitWidth="198.0" layoutX="29.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+            <Text layoutX="28.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club ID" wrappingWidth="65.26669311523438">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="28.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Name" wrappingWidth="110.06674194335938">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="28.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Type" wrappingWidth="110.06674194335938">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="28.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Description" wrappingWidth="110.06674194335938">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="28.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Advisor" wrappingWidth="110.06674194335938">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="28.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Started Date" wrappingWidth="110.06674194335938">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Text>
+            <Pane layoutX="28.0" layoutY="247.0" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+               <children>
+                  <Label fx:id="clubIDLabel" layoutX="4.0" layoutY="5.0" prefHeight="17.0" prefWidth="176.0" style="-fx-alignment: center;" />
+               </children>
+            </Pane>
+            <Pane layoutX="28.0" layoutY="299.0" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+               <children>
+                  <Label fx:id="clubNameLabel" layoutX="8.0" layoutY="5.0" prefHeight="17.0" prefWidth="176.0" style="-fx-alignment: center;" />
+               </children>
+            </Pane>
+            <Pane layoutX="28.0" layoutY="357.0" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+               <children>
+                  <Label fx:id="clubTypeLabel" layoutX="5.0" layoutY="3.0" prefHeight="17.0" prefWidth="176.0" style="-fx-alignment: center;" />
+               </children>
+            </Pane>
+            <Pane layoutX="28.0" layoutY="413.0" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+               <children>
+                  <Label fx:id="startedDateLabel" layoutX="8.0" layoutY="3.0" prefHeight="17.0" prefWidth="176.0" style="-fx-alignment: center;" text="Label" />
+               </children>
+            </Pane>
+            <Pane layoutX="28.0" layoutY="470.0" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+               <children>
+                  <Label fx:id="clubAdvisorLabel" layoutX="1.0" layoutY="3.0" prefHeight="17.0" prefWidth="190.0" style="-fx-alignment: center;" text="Label" />
+               </children>
+            </Pane>
+            <Pane layoutX="28.0" layoutY="523.0" prefHeight="70.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+               <children>
+                  <Label fx:id="clubDescriptionLabel" layoutX="15.0" layoutY="4.0" prefHeight="63.0" prefWidth="159.0" text="Label" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <ScrollPane fx:id="eventScroll" layoutX="389.0" layoutY="31.0" prefHeight="639.0" prefWidth="469.0" style="-fx-background-radius: 20; -fx-background-color: white;">
+         <content>
+            <GridPane fx:id="eventGrid" prefHeight="30.0" prefWidth="0.0" style="-fx-alignment: center;">
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
