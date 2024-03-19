@@ -34,7 +34,7 @@ public class Club {
     }
 
 
-    //Getters and Setters
+    //Getters and Setters for club class
     public String getClubId() {
         return clubId;
     }
